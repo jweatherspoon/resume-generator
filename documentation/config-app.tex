@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\title{Resume Generator Configuration App Conceptual Design}
+\author{Jon Weatherspoon}
+\date{\today}
+
+\begin{document}
+    \maketitle 
+
+    \tableofcontents
+
+    \section{High Level Flow}
+    Generating a new resume shall be done using the configuration app. 
+    If the user does not have a resume shell file (template file) ready, they 
+    will have to create one. 
+    
+    % TODO: import resume shell interface 
+    % { "template": string, "theme": string, "regions": list<object> }
+
+    Once they have a template file, the user will load it into the configuration 
+    app through the file menu (or through the button in the preview pane). Upon 
+    loading the file, the application will grab the template and theme ids from 
+    it and attempt to find a matching JSX file / theme configuration respectively. 
+    If both are found (or just the JSX file if the theme is an empty string), the 
+    file parsing will continue. If there are any regions with sections present, 
+    they will be parsed into the "editor" section of the configuration app. 
+
+    The editor section will be presented as a hierarchy following the same structure
+    as the opened file. The base of the hierarchy will be the template / configuration's 
+    name, followed by a list of named regions. Each region may have zero or more components
+    and each component may have zero or more editable properties. 
+
+    The user shall be able to click on a region to add a new component to it. When doing this, 
+    a dialog should appear, listing out the available components. These will be pulled from 
+    some data provider (likely a json file at first for simplicity, database in the future). 
+
+    The user shall be able to expand a component to show its properties. The user shall be 
+    able to edit those properties depending on their data types. The editors displayed in 
+    the application will depend on the data type in the property definition. See 
+    \ref{sec:building-the-editor} for details.
+
+    \section{Creating a New Resume Configuration File}
+    If no resume configuration file has been loaded, the preview / editor sections will be replaced 
+    by a canvas with the text "You must load or create a resume configuration file to view content."
+    Underneath the text will be two buttons. The first will spawn a dialog to create a new resume 
+    configuration file and automatically load it into the application. The second button will spawn a 
+    file browse dialog and allow the user to select an existing configuration file.  
+
+    \subsection{Creation Process}
+    When creating a new resume configuration file, a dialog will spawn asking for the following information:
+    \begin{itemize}
+        \item The desired filename (required)
+        \item The location to save the file to (required)
+        \item The resume template to use (required)
+        \item The theme definition to use (optional)
+    \end{itemize}
+
+    The user will have to select the resume template from a list retrieved by some provider (likely a JSON 
+    mapping at first, then database in the future). 
+
+    Once the information has been entered and the user clicks okay, the file will be created and loaded 
+    into the application. The resume's template cannot be changed at this point. If the user wishes to 
+    change the template, they will have to create a new resume and select that template.
+
+    \section{Building the Editor Section}
+    \label{sec:building-the-editor}
+    When loading an existing resume configuration file, the application will have to build the editor / 
+    preview sections to match the properties defined in the file. To do this, we will follow these steps:
+    \begin{enumerate}
+        \item Load the configuration file as a javascript object 
+        \item Verify the configuration's template id is valid. Fail if it is unknown
+        \item If present, attempt to verify the configuration's theme id is valid. 
+        \begin{itemize}
+            \item If not, set it to the empty string
+        \end{itemize}
+        \item Add a node to the editor section containing the configuration name 
+        \item Under it, add a ThemeEditor node for the theme 
+        \item For each region defined in the configuration:
+        \begin{enumerate}
+            \item Add a new region node with the corresponding name 
+            \item For each component in the region:
+            \begin{enumerate}
+                \item Look up the component definition from the component id 
+                \begin{itemize}
+                    \item If not found, fail?
+                \end{itemize}
+                \item For each property in the component definition:
+                \begin{enumerate}
+                    \item Add a new property editor node based on the property's data type.
+                    \item If the property exists on the component defined in the resume 
+                    configuration file, set up the new editor with that value. Otherwise, 
+                    use the default value from the component definition.
+                \end{enumerate}
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}   
+    
+    \subsection{ComponentFactory}
+    The ComponentFactory will be used to transform a component id to a JSX element that 
+    can be added to the virtual DOM. We shall create a IResumeComponent interface
+    that will include a component id (string) and an implementation of the factory method.
+    (probably more?)
+
+    A ComponentFactory class shall be created and it shall import all existing 
+    IResumeComponents upon initialization. When parsing a configuration file, we 
+    will query the factory for a component with the given name. If found, the factory 
+    will create it and pass it back to us. Our job is to then add it to the preview 
+    section of the application. 
+
+    Each new type of component will have to implement the interface and the dev will add 
+    an import for the component into the ComponentFactory definition. Or perhaps, the 
+    ComponentFactory class will be a singleton or something and each component type will 
+    just register to it? 
+
+    \subsection{PropertyEditorFactory}
+
+
+    \subsection{Editor Section Layout}
+    The resume editor section will be a hierarchical control that uses nested MUI lists.
+    The root node of the editor will contain the name of the loaded resume template file. 
+    Under it will be an expandable "Regions" node and an editable "Theme" property. Expanding 
+    the "Regions" node will show all regions defined by the selected template.
+
+    \subsection{Base Editor Implementations}
+    \subsubsection{TextEditor}
+
+    \subsubsection{DateEditor}
+
+    \subsubsection{ListEditor<T>}
+
+    \subsection{Specialized Editor Implementations}
+    \subsubsection{ThemeEditor}
+
+    \subsection{Saving a Configuration}
+
+\end{document}
