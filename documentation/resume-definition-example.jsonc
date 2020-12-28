@@ -1,0 +1,26 @@
+// This file would be created by the configuration application when you hit save 
+// The user will also be able to load an existing file into the application to edit it 
+// or to export it as a pdf. 
+{
+    "template": "<template-id>",
+    "theme": "<theme-id>",
+    "regions": {
+        "region1": {
+            "sections": [
+                {
+                    "component": "<component-id>",
+                    "properties": {
+                        "property1": {
+                            "type": "<data-type-id>",
+                            "value": "<property-value>"
+                        },
+                        // { ... }, ...,
+                        "propertyN": { /* ... */}
+                    }
+                } // , { ... }, { ... } ...
+            ]
+        },
+        // { ... }, ...,
+        "regionN": { /* ... */ }
+    }
+}
