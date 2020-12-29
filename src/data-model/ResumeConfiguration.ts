@@ -5,12 +5,13 @@ export interface IResumeConfiguration {
     name: string,
     templateId: string,
     theme: IResumeTheme,
-    regions: IResumeRegion[]
+    regions: any
 }
 
 export interface IResumeRegion {
     id: string,
-    components: IResumeComponent[]
+    components: IResumeComponent[],
+    width: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | "auto" | undefined
 }
 
 export interface IResumeComponent {

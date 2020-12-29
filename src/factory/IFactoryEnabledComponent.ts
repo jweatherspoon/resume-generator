@@ -1,7 +1,9 @@
-import { Component, FunctionComponent, PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
+import IProperty from "../data-model/IProperty";
 
 export interface IFactoryEnabledComponentProps extends PropsWithChildren<any> {
-    createComponent(objectDefinition: IFactoryEnabledComponentDefinition) : Component | FunctionComponent,
+    source: IFactoryEnabledComponentDefinition,
+    createComponent(objectDefinition: IFactoryEnabledComponentDefinition) : ReactNode,
 }
 
 export interface IFactoryEnabledComponentDefinition {
@@ -9,10 +11,10 @@ export interface IFactoryEnabledComponentDefinition {
     componentId: string,
 
     // The properties to pass to the created component 
-    componentProps: IFactoryEnabledComponentProps,
+    componentProps?: IProperty[],
 
     // clone the object
-    clone() : IFactoryEnabledComponentDefinition
+    clone(objectData: IFactoryEnabledComponentProps) : IFactoryEnabledComponentDefinition | ReactNode
 }
 
 export default IFactoryEnabledComponentDefinition;
