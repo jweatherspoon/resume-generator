@@ -1,25 +1,37 @@
 import { Grid } from '@material-ui/core'
+import { Component, ReactNode } from 'react';
+import IProperty from '../../data-model/IProperty';
+import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from '../../factory/IFactoryEnabledComponent';
 import IResumeConfigurationProps from '../IResumeConfigurationProps';
-import ResumeShellBase from './ResumeShellBase';
-import ResumeRegion, { IResumeRegionProps } from './ResumeRegion';
-import { ReactNode } from 'react';
-import { IResumeComponent } from '../../data-model/ResumeConfiguration';
+import ResumeRegion from './ResumeRegion';
+import ResumeShell from './ResumeShell';
 
-class FlashyResumeShell extends ResumeShellBase {
-    render() : ReactNode {
+class FlashyResumeShell extends Component<{} | IFactoryEnabledComponentProps> implements IFactoryEnabledComponentDefinition {
+    componentId: string = "flashy";
+    componentProps?: IProperty[] | undefined;
+
+    clone = (objectData: IFactoryEnabledComponentProps): IFactoryEnabledComponentDefinition | ReactNode => {
+        return new FlashyResumeShell(objectData);
+    }
+
+    render() {
+        const configProps = this.props as IFactoryEnabledComponentProps;
+        console.log(configProps);
         return (
             <Grid container>
                 <ResumeRegion regionInfo={{
-                    id: "sidebar",
-                    width: 5,
-                    components: this.props.config?.regions.sidebar as IResumeComponent[],
-                 }} />
+                        componentId: "sidebar",
+                        width: 5,
+                        components: configProps?.source.childrenData.sidebar,
+                        clone: this.clone,
+                    }} />
 
                 <ResumeRegion regionInfo={{
-                    id: "mainContent",
-                    width: 7,
-                    components: this.props.config?.regions.mainContent as IResumeComponent[],
-                }} />
+                        componentId: "mainContent",
+                        width: 7,
+                        components: configProps?.source.childrenData.mainContent,
+                        clone: this.clone,
+                    }} />
             </Grid>
         );
     }

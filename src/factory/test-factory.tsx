@@ -1,8 +1,9 @@
 import { Component, ReactNode } from "react";
+import { FactoryMapBase } from "./factory-maps";
 import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from "./IFactoryEnabledComponent";
 import IFactoryMapping from "./IFactoryMapping";
 
-class TestComponentOne extends Component<IFactoryEnabledComponentProps | {}> implements IFactoryEnabledComponentDefinition {
+export class TestComponentOne extends Component<IFactoryEnabledComponentProps | {}> implements IFactoryEnabledComponentDefinition {
     componentId: string;
 
     constructor(props: IFactoryEnabledComponentProps | any) {
@@ -26,18 +27,14 @@ class TestComponentOne extends Component<IFactoryEnabledComponentProps | {}> imp
     }
 }
 
-class TestFactory extends Map<string, IFactoryEnabledComponentDefinition> implements IFactoryMapping {
-    constructor() {
-        super();
+// class TestFactory extends FactoryMapBase { //extends Map<string, IFactoryEnabledComponentDefinition> implements IFactoryMapping {
+//     constructor() {
+//         const components: IFactoryEnabledComponentDefinition[] = [
+//             new TestComponentOne(null)
+//         ];
+        
+//         super(components);
+//     }
+// }
 
-        const components: IFactoryEnabledComponentDefinition[] = [
-            new TestComponentOne(null)
-        ];
-
-        for (let component of components) {
-            this.set(component.componentId, component);
-        }
-    }
-}
-
-export default TestFactory;
+// export default TestFactory;

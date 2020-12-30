@@ -3,8 +3,9 @@ import { Grid } from '@material-ui/core';
 import IResumeConfigurationProps from './IResumeConfigurationProps';
 import ResumeConfigEditor from './ResumeConfigEditor';
 import ComponentFactory from './ComponentFactory';
-import TestFactory from '../factory/test-factory';
+// import TestFactory from '../factory/test-factory';
 import DataTypes from '../data-model/DataTypes';
+import ResumeShell from './resume-shells/ResumeShell';
 
 const ResumeEditor : FunctionComponent<IResumeConfigurationProps> = ({config}) => {
     // only render if we have a valid config object 
@@ -12,7 +13,7 @@ const ResumeEditor : FunctionComponent<IResumeConfigurationProps> = ({config}) =
         return null;
     }
 
-    const testFactory = new TestFactory();
+    // const testFactory = new TestFactory();
 
     return (
         <Grid container>
@@ -23,6 +24,7 @@ const ResumeEditor : FunctionComponent<IResumeConfigurationProps> = ({config}) =
 
             {/* the preview section */}
             <Grid item xs={12} md={4}>
+                <ResumeShell config={config} />
                 {/* 
                     <ResumeShell template={config?.templateId} />
                             ^^^ this guy is vvv
@@ -38,7 +40,7 @@ const ResumeEditor : FunctionComponent<IResumeConfigurationProps> = ({config}) =
                     So ResumeShell will transform into the correct resume shell template 
                 */}
 
-                <ComponentFactory map={testFactory} objectData={{
+                {/* <ComponentFactory map={testFactory} objectData={{
                     componentId: "test-one",
                     componentProps: [
                         {
@@ -52,7 +54,7 @@ const ResumeEditor : FunctionComponent<IResumeConfigurationProps> = ({config}) =
                             value: "Yo its me ya boi"
                         }
                     ]
-                }} />
+                }} /> */}
             </Grid>
         </Grid>
     )

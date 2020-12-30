@@ -13,6 +13,9 @@ export interface IFactoryEnabledComponentDefinition {
     // The properties to pass to the created component 
     componentProps?: IProperty[],
 
+    // the component's child data 
+    childrenData?: any,
+
     // clone the object
     clone(objectData: IFactoryEnabledComponentProps) : IFactoryEnabledComponentDefinition | ReactNode
 }
