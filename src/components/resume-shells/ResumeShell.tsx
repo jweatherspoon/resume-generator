@@ -16,13 +16,15 @@ class ResumeShell extends Component<{} | IResumeConfigurationProps>  {
         ];
 
         return (
-            <ComponentFactory map={FACTORIES.resumeShells}
-                objectData={configProps && {
+            <div style={{padding: 10}}>
+                <ComponentFactory map={FACTORIES.resumeShells}
+                    objectData={configProps && {
                         componentId: configProps.config?.templateId,
                         componentProps: componentProps,
                         childrenData: configProps.config?.regions,
                         clone: (o : IFactoryEnabledComponentDefinition) => createComponentWithMapping(FACTORIES.resumeShells, o)
-                }} />
+                    }} />
+            </div>
         )
     }
 };

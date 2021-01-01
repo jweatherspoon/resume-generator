@@ -11,6 +11,7 @@ class PropertyTypes {
     get BeginDate() : string { return "begin-date" }
     get EndDate() : string { return "end-date" }
     get Description() : string { return "description" } 
+    get FormatString() : string { return "format-string" }
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

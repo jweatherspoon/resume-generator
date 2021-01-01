@@ -1,11 +1,12 @@
 import { Container, Divider, Typography } from "@material-ui/core";
 import { Component } from "react";
+import RESUME_COMPONENT_IDS from ".";
 import { getPropertyValue } from "../../data-model";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
 import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from "../../factory/IFactoryEnabledComponent";
 
 class PositionHeader extends Component<IFactoryEnabledComponentProps | {}> implements IFactoryEnabledComponentDefinition {
-    componentId: string = "position-header";
+    componentId: string = RESUME_COMPONENT_IDS.PositionHeader;
 
     clone = (objectData: IFactoryEnabledComponentProps) : IFactoryEnabledComponentDefinition => new PositionHeader(objectData);
 

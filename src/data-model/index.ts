@@ -18,7 +18,7 @@ export const getProperty = (properties: IProperty[] | undefined, name: string) :
 
 export const getPropertyValue = (properties: IProperty[] | undefined, name: string) : any => getProperty(properties, name)?.value;
 
-export const getPropertyMap = (properties: IProperty[]) : {} => {
-    const keyValuePairs = properties.map(x => [ x.name, x ]);
-    return Object.fromEntries(keyValuePairs);
+export const getPropertyMap = (properties: IProperty[] | undefined) : any => {
+    const keyValuePairs = properties?.map(x => [ x.name, x ]);
+    return Object.fromEntries(keyValuePairs || []);
 }

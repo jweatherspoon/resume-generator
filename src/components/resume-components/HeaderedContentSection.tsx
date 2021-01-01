@@ -23,7 +23,7 @@ class HeaderedContentSection extends Component<IFactoryEnabledComponentProps | {
         return (
             <Grid container>
                 <Grid item xs={12}>
-                    <Typography variant="h6" style={{
+                    <Typography variant="h5" style={{
                         letterSpacing: `${contentSpacing}px`
                     }}>{`${title} ${flair}`}</Typography>
                 </Grid>
