@@ -1,4 +1,5 @@
 import ContactDetails from "../components/resume-components/ContactDetails";
+import HeaderedContentSection from "../components/resume-components/HeaderedContentSection";
 import PositionHeader from "../components/resume-components/PositionHeader";
 import FlashyResumeShell from "../components/resume-shells/FlashyResumeShell";
 import IFactoryEnabledComponentDefinition from "./IFactoryEnabledComponent";
@@ -28,7 +29,8 @@ class ResumeComponentFactory extends FactoryMapBase {
     constructor() {
         const components: IFactoryEnabledComponentDefinition[] = [
             new PositionHeader({}),
-            new ContactDetails({})
+            new ContactDetails({}),
+            new HeaderedContentSection({})
         ];
 
         super(components);

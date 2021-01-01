@@ -1,5 +1,5 @@
 import IResumeConfiguration from "./ResumeConfiguration";
-import { createProperty, createThemeProperty } from "./index";
+import { createProperty, createString, createNumber, createBoolean, createThemeProperty } from "./index";
 import DataTypes from "./DataTypes";
 import PROPERTY_TYPES from "./PropertyTypes";
 import RESUME_COMPONENT_IDS from "../components/resume-components";
@@ -31,6 +31,18 @@ const TestConfig : IResumeConfiguration = {
                     createProperty(PROPERTY_TYPES.Title, DataTypes.String, "Software Engineer")
                 ]
             }, 
+            {
+                componentId: RESUME_COMPONENT_IDS.HeaderedContentSection,
+                componentProps: [
+                    createString(PROPERTY_TYPES.Title, "WORK EXPERIENCE"),
+                    createNumber(PROPERTY_TYPES.ContentSpacing, 4),
+                    createBoolean(PROPERTY_TYPES.HasDivider, true),
+                    createString(PROPERTY_TYPES.Flair, "\\\\")
+                ],
+                childrenData: [
+                    
+                ]
+            }
         ]
     },
     clone: (o) => TestConfig

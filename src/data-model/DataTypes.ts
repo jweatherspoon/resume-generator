@@ -1,5 +1,7 @@
 enum DataTypes {
     String,
+    Number,
+    Boolean,
     List,
     Component,
     ResumeTheme
