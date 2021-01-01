@@ -6,6 +6,11 @@ class PropertyTypes {
     get HasDivider() : string { return "has-divider" }
     get ContentSpacing() : string { return "content-spacing" }
     get Flair() : string { return "flair" }
+    get Organization() : string { return "organization" }
+    get Location() : string { return "location" }
+    get BeginDate() : string { return "begin-date" }
+    get EndDate() : string { return "end-date" }
+    get Description() : string { return "description" } 
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

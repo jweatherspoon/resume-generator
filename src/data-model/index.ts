@@ -10,8 +10,15 @@ export const createNumber = (name: string, value: any): IProperty => ({ name, ty
 
 export const createBoolean = (name: string, value: any): IProperty => ({ name, type: DataTypes.Boolean, value });
 
+export const createDate = (name: string, value: Date) : IProperty => ({ name, type: DataTypes.Date, value });
+
 export const createThemeProperty = (value: any): IProperty => ({ name: PropertyTypes.Theme , type: DataTypes.ResumeTheme, value });
 
 export const getProperty = (properties: IProperty[] | undefined, name: string) : IProperty | undefined => properties?.find(x => x.name === name);
 
 export const getPropertyValue = (properties: IProperty[] | undefined, name: string) : any => getProperty(properties, name)?.value;
+
+export const getPropertyMap = (properties: IProperty[]) : {} => {
+    const keyValuePairs = properties.map(x => [ x.name, x ]);
+    return Object.fromEntries(keyValuePairs);
+}
