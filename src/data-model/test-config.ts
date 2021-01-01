@@ -13,24 +13,6 @@ const TestConfig : IResumeConfiguration = {
     regions: {
         sidebar: [
             {
-                componentId: "test-one",
-                componentProps: [
-                    createProperty("displayText", DataTypes.String, "hello")
-                ]
-            },
-            {
-                componentId: "test-one",
-                componentProps: [
-                    createProperty("displayText", DataTypes.String, "my")
-                ]
-            },
-            {
-                componentId: "test-one",
-                componentProps: [
-                    createProperty("displayText", DataTypes.String, "is")
-                ]
-            },
-            {
                 componentId: RESUME_COMPONENT_IDS.ContactDetails,
                 componentProps: [
                     createProperty(PROPERTY_TYPES.Details, DataTypes.String, [
@@ -49,13 +31,6 @@ const TestConfig : IResumeConfiguration = {
                     createProperty(PROPERTY_TYPES.Title, DataTypes.String, "Software Engineer")
                 ]
             }, 
-            {
-                componentId: RESUME_COMPONENT_IDS.PositionHeader,
-                componentProps: [
-                    createProperty(PROPERTY_TYPES.Name, DataTypes.String, "Mom"),
-                    createProperty(PROPERTY_TYPES.Title, DataTypes.String, "Universe Conquerer")
-                ]
-            },
         ]
     },
     clone: (o) => TestConfig

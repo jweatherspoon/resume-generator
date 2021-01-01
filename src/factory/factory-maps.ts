@@ -3,7 +3,6 @@ import PositionHeader from "../components/resume-components/PositionHeader";
 import FlashyResumeShell from "../components/resume-shells/FlashyResumeShell";
 import IFactoryEnabledComponentDefinition from "./IFactoryEnabledComponent";
 import IFactoryMapping from "./IFactoryMapping";
-import { TestComponentOne } from "./test-factory"
 
 export abstract class FactoryMapBase extends Map<string, IFactoryEnabledComponentDefinition> implements IFactoryMapping {
     constructor(supportedComponents: IFactoryEnabledComponentDefinition[]) {
@@ -28,7 +27,6 @@ class ResumeShellFactory extends FactoryMapBase {
 class ResumeComponentFactory extends FactoryMapBase {
     constructor() {
         const components: IFactoryEnabledComponentDefinition[] = [
-            new TestComponentOne({}),
             new PositionHeader({}),
             new ContactDetails({})
         ];
