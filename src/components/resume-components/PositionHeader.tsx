@@ -18,7 +18,7 @@ class PositionHeader extends Component<IFactoryEnabledComponentProps | {}> imple
             <Container>
                 <Typography align="center" variant="h3">{candidateName}</Typography>
                 <Divider />
-                <Typography align="center" variant="h4">{positionTitle}</Typography>
+                <Typography align="center" variant="h5">{positionTitle}</Typography>
             </Container>
         )
     }

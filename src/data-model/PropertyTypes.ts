@@ -18,6 +18,8 @@ class PropertyTypes {
     get Gpa() : string { return "gpa" } 
     get Degree() : string { return "degree" } 
     get Field() : string { return "field" } 
+    get Font() : string { return "font" } 
+    get FontWeight() : string { return "font-weight" } 
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

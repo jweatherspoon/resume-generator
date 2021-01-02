@@ -23,11 +23,11 @@ const TestConfig : IResumeConfiguration = {
                 componentId: RESUME_COMPONENT_IDS.ContactDetails,
                 componentProps: [
                     createProperty(PROPERTY_TYPES.Details, DataTypes.List, [
-                        { icon: "resources/icons/phone", detail: "(775) 303-2407" },
-                        { icon: "resources/icons/mail", detail: "jweatherspoon.se@gmail.com" },
-                        { icon: "resources/icons/github", detail: "@jweatherspoon" },
-                        { icon: "resources/icons/linkedin", detail: "/jweatherspoon" },
-                        { icon: "resources/icons/location", detail: "Reno, NV" },
+                        { detail: "(775) 303-2407" },
+                        { detail: "jweatherspoon.se@gmail.com" },
+                        { detail: "@jweatherspoon" },
+                        { detail: "/jweatherspoon" },
+                        { detail: "Reno, NV" },
                     ])
                 ]
             },
@@ -78,6 +78,12 @@ const TestConfig : IResumeConfiguration = {
                     createNumber(PROPERTY_TYPES.ContentSpacing, 4),
                     createBoolean(PROPERTY_TYPES.HasDivider, true),
                     createString(PROPERTY_TYPES.Flair, "\\\\")
+                ]
+            },
+            {
+                componentId: RESUME_COMPONENT_IDS.ReferenceSection,
+                componentProps: [
+                    createNumber(PROPERTY_TYPES.ContentSpacing, 4)
                 ]
             }
         ]

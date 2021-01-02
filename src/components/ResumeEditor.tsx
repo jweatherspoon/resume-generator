@@ -25,9 +25,9 @@ const ResumeEditor : FunctionComponent<IResumeConfigurationProps> = ({config}) =
     return (
         <Grid container className="fullHeight">
             {/* the config editor section */}
-            <Grid item sm={12} md={4}>
+            {/* <Grid item sm={12} md={4}>
                 <ResumeConfigEditor config={config} />
-            </Grid>
+            </Grid> */}
 
             {/* the preview section */}
             <Grid item sm={12} md={8} className={classes.preview}>

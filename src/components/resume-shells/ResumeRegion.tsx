@@ -10,7 +10,7 @@ export interface IResumeRegionProps {
 
 const ResumeRegion: FunctionComponent<PropsWithChildren<IResumeRegionProps>> = ({regionInfo}) => {
     return (
-        <Grid item xs={regionInfo.width || 12}>
+        <Grid item xs={regionInfo.width || 12} className="fullHeight">
             <ListComponentFactory map={FACTORIES.resumeComponents} objectDatas={regionInfo.components} />
         </Grid>
     )
