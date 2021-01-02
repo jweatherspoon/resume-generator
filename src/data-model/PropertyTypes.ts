@@ -16,6 +16,8 @@ class PropertyTypes {
     get Width() : string { return "width" } 
     get AltText() : string { return "alt-text" } 
     get Gpa() : string { return "gpa" } 
+    get Degree() : string { return "degree" } 
+    get Field() : string { return "field" } 
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

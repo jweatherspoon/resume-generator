@@ -15,7 +15,6 @@ const TestConfig : IResumeConfiguration = {
             {
                 componentId: RESUME_COMPONENT_IDS.IconImage,
                 componentProps: [
-                    // createString(PROPERTY_TYPES.ImageSource, "../resources/logos/logo-pink-01.png"),
                     createString(PROPERTY_TYPES.ImageSource, "resources/logos/logo-pink-01.png"),
                     createString(PROPERTY_TYPES.Width, "50%")
                 ]
@@ -23,7 +22,7 @@ const TestConfig : IResumeConfiguration = {
             {
                 componentId: RESUME_COMPONENT_IDS.ContactDetails,
                 componentProps: [
-                    createProperty(PROPERTY_TYPES.Details, DataTypes.String, [
+                    createProperty(PROPERTY_TYPES.Details, DataTypes.List, [
                         { icon: "resources/icons/phone", detail: "(775) 303-2407" },
                         { icon: "resources/icons/mail", detail: "jweatherspoon.se@gmail.com" },
                         { icon: "resources/icons/github", detail: "@jweatherspoon" },
@@ -32,6 +31,17 @@ const TestConfig : IResumeConfiguration = {
                     ])
                 ]
             },
+            {
+                componentId: RESUME_COMPONENT_IDS.EducationInformation,
+                componentProps: [
+                    createString(PROPERTY_TYPES.Organization, "University of Nevada, Reno"),
+                    createString(PROPERTY_TYPES.Degree, "Bachelor of Science"),
+                    createString(PROPERTY_TYPES.Field, "Computer Science and Engineering"),
+                    createString(PROPERTY_TYPES.Flair, "--"),
+                    createString(PROPERTY_TYPES.Description, "TBD"),
+                    createNumber(PROPERTY_TYPES.Gpa, 3.854),
+                ]
+            }
         ],
         mainContent: [
             {
