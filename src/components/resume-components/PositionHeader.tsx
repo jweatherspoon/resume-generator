@@ -16,9 +16,9 @@ class PositionHeader extends Component<IFactoryEnabledComponentProps | {}> imple
         const positionTitle = getPropertyValue(properties?.source.componentProps, PROPERTY_TYPES.Title);
         return (
             <Container>
-                <Typography align="center" variant="h5">{candidateName}</Typography>
+                <Typography align="center" variant="h3">{candidateName}</Typography>
                 <Divider />
-                <Typography align="center" variant="h6">{positionTitle}</Typography>
+                <Typography align="center" variant="h4">{positionTitle}</Typography>
             </Container>
         )
     }

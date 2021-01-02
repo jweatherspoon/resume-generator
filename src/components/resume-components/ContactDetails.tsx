@@ -8,7 +8,7 @@ import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } fro
 const ContactDetailRow = ({icon, detail} : any) => (
     <Grid item container>
         <Grid item xs={2}>
-            <Typography variant="body1" align="center">{icon}</Typography>
+            <img src={icon} alt="contact-detail icon" />
         </Grid>
         <Grid item>
             <Typography variant="body1" align="center">{detail}</Typography>

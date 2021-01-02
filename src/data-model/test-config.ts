@@ -17,16 +17,18 @@ const TestConfig : IResumeConfiguration = {
                 componentProps: [
                     // createString(PROPERTY_TYPES.ImageSource, "../resources/logos/logo-pink-01.png"),
                     createString(PROPERTY_TYPES.ImageSource, "resources/logos/logo-pink-01.png"),
-                    createString(PROPERTY_TYPES.Width, "60%")
+                    createString(PROPERTY_TYPES.Width, "50%")
                 ]
             },
             {
                 componentId: RESUME_COMPONENT_IDS.ContactDetails,
                 componentProps: [
                     createProperty(PROPERTY_TYPES.Details, DataTypes.String, [
-                        { icon: "P", detail: "(775) 303-2407" },
-                        { icon: "G", detail: "@jweatherspoon" },
-                        { icon: "E", detail: "jweatherspoon.se" },
+                        { icon: "resources/icons/phone", detail: "(775) 303-2407" },
+                        { icon: "resources/icons/mail", detail: "jweatherspoon.se@gmail.com" },
+                        { icon: "resources/icons/github", detail: "@jweatherspoon" },
+                        { icon: "resources/icons/linkedin", detail: "/jweatherspoon" },
+                        { icon: "resources/icons/location", detail: "Reno, NV" },
                     ])
                 ]
             },
@@ -35,7 +37,7 @@ const TestConfig : IResumeConfiguration = {
             {
                 componentId: RESUME_COMPONENT_IDS.PositionHeader,
                 componentProps: [
-                    createProperty(PROPERTY_TYPES.Name, DataTypes.String, "Jonathan Weatherspoon"),
+                    createProperty(PROPERTY_TYPES.Name, DataTypes.String, "Jon Weatherspoon"),
                     createProperty(PROPERTY_TYPES.Title, DataTypes.String, "Software Engineer")
                 ]
             }, 

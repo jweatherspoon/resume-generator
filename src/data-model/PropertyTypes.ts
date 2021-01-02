@@ -15,6 +15,7 @@ class PropertyTypes {
     get ImageSource() : string { return "image-source" } 
     get Width() : string { return "width" } 
     get AltText() : string { return "alt-text" } 
+    get Gpa() : string { return "gpa" } 
 }
 
 const PROPERTY_TYPES = new PropertyTypes();
