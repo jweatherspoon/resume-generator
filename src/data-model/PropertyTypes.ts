@@ -12,6 +12,9 @@ class PropertyTypes {
     get EndDate() : string { return "end-date" }
     get Description() : string { return "description" } 
     get FormatString() : string { return "format-string" }
+    get ImageSource() : string { return "image-source" } 
+    get Width() : string { return "width" } 
+    get AltText() : string { return "alt-text" } 
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

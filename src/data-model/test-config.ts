@@ -13,6 +13,14 @@ const TestConfig : IResumeConfiguration = {
     regions: {
         sidebar: [
             {
+                componentId: RESUME_COMPONENT_IDS.IconImage,
+                componentProps: [
+                    // createString(PROPERTY_TYPES.ImageSource, "../resources/logos/logo-pink-01.png"),
+                    createString(PROPERTY_TYPES.ImageSource, "resources/logos/logo-pink-01.png"),
+                    createString(PROPERTY_TYPES.Width, "60%")
+                ]
+            },
+            {
                 componentId: RESUME_COMPONENT_IDS.ContactDetails,
                 componentProps: [
                     createProperty(PROPERTY_TYPES.Details, DataTypes.String, [
@@ -21,7 +29,7 @@ const TestConfig : IResumeConfiguration = {
                         { icon: "E", detail: "jweatherspoon.se" },
                     ])
                 ]
-            }
+            },
         ],
         mainContent: [
             {

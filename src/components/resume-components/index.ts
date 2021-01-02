@@ -6,6 +6,7 @@ class ResumeComponentIds {
     get EducationInformation() : string { return "education-information" }
     get JobDescription() : string { return "job-description" }
     get ReferenceSection() : string { return "reference-section" }
+    get IconImage() : string { return "icon-image" }
 }
 
 const RESUME_COMPONENT_IDS = new ResumeComponentIds();

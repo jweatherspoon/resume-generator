@@ -1,5 +1,6 @@
 import ContactDetails from "../components/resume-components/ContactDetails";
 import HeaderedContentSection from "../components/resume-components/HeaderedContentSection";
+import IconImage from "../components/resume-components/IconImage";
 import JobDescription from "../components/resume-components/JobDescription";
 import PositionHeader from "../components/resume-components/PositionHeader";
 import FlashyResumeShell from "../components/resume-shells/FlashyResumeShell";
@@ -33,6 +34,7 @@ class ResumeComponentFactory extends FactoryMapBase {
             new ContactDetails({}),
             new HeaderedContentSection({}),
             new JobDescription({}),
+            new IconImage({}),
         ];
 
         super(components);
