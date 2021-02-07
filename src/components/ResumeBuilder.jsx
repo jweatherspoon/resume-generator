@@ -1,11 +1,5 @@
-import { FunctionComponent } from 'react';
 import { Divider, Grid, makeStyles } from '@material-ui/core';
-import IResumeConfigurationProps from './IResumeConfigurationProps';
 import ResumeConfigEditor from './ResumeConfigEditor';
-import ComponentFactory from './factory/ComponentFactory';
-// import TestFactory from '../factory/test-factory';
-import DataTypes from '../data-model/DataTypes';
-import ResumeShell from './resume-shells/ResumeShell';
 
 const useStyles = makeStyles({
     preview: {
@@ -13,7 +7,7 @@ const useStyles = makeStyles({
     }
 });
 
-const ResumeEditor = ({config}) => {
+const ResumeBuilder = ({config}) => {
     const classes = useStyles();
     
     // only render if we have a valid config object 
@@ -30,10 +24,9 @@ const ResumeEditor = ({config}) => {
 
             {/* the preview section */}
             <Grid item xs={12} md={5} className={classes.preview}>
-                <ResumeShell config={config} />
             </Grid>
         </Grid>
     )
 };
 
-export default ResumeEditor;
+export default ResumeBuilder;
