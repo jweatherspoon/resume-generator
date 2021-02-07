@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core'
 import { Component, ReactNode } from 'react';
-import IProperty from '../../data-model/IProperty';
-import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from '../../factory/IFactoryEnabledComponent';
+import IProperty from '../../data-model/Property';
+import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from '../factory/IFactoryEnabledComponent';
 import IResumeConfigurationProps from '../IResumeConfigurationProps';
 import ResumeRegion from './ResumeRegion';
 import ResumeShell from './ResumeShell';

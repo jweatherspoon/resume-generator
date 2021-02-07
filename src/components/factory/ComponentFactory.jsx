@@ -1,4 +1,4 @@
-import { createComponentWithMapping } from '../factory';
+import { createComponentWithMapping } from './factory';
 
 const ComponentFactory = ({map, objectData}) => {
     if (!map.has(objectData.componentId)) {

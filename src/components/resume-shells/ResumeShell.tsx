@@ -1,10 +1,10 @@
 import { Component } from "react";
-import ComponentFactory from "../ComponentFactory";
+import ComponentFactory from "../factory/ComponentFactory";
 import IResumeConfigurationProps from "../IResumeConfigurationProps";
-import FACTORIES from "../../factory/factory-maps";
-import { createComponentWithMapping } from "../../factory";
+import FACTORIES from "../factory/factory-maps";
+import { createComponentWithMapping } from "../factory";
 import { createThemeProperty } from "../../data-model";
-import IFactoryEnabledComponentDefinition from "../../factory/IFactoryEnabledComponent";
+import IFactoryEnabledComponentDefinition from "../factory/IFactoryEnabledComponent";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
 
 // so the resume shell is meant to display a resume configuration 

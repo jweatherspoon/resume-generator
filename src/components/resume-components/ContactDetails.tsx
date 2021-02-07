@@ -3,7 +3,7 @@ import { Component } from "react";
 import RESUME_COMPONENT_IDS from ".";
 import { getPropertyValue } from "../../data-model";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
-import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from "../../factory/IFactoryEnabledComponent";
+import IFactoryEnabledComponentDefinition, { IFactoryEnabledComponentProps } from "../factory/IFactoryEnabledComponent";
 
 const ContactDetailRow = ({icon, detail} : any) => (
     <Grid item container>
