@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import { Divider, Grid, makeStyles } from '@material-ui/core';
 import ResumeConfigEditor from './ResumeConfigEditor';
 
@@ -7,19 +8,14 @@ const useStyles = makeStyles({
     }
 });
 
-const ResumeBuilder = ({config}) => {
+const ResumeBuilder = ({components}) => {
     const classes = useStyles();
-    
-    // only render if we have a valid config object 
-    if (!config) {
-        return null;
-    }
 
     return (
         <Grid container className="fullHeight">
             {/* the config editor section */}
             <Grid item xs={12} md={7}>
-                <ResumeConfigEditor config={config} />
+                <ResumeConfigEditor />
             </Grid>
 
             {/* the preview section */}
@@ -29,4 +25,8 @@ const ResumeBuilder = ({config}) => {
     )
 };
 
-export default ResumeBuilder;
+const mapStateToProps = state => ({
+    components: state
+});
+
+export default connect(mapStateToProps)(ResumeBuilder);

@@ -20,6 +20,8 @@ class PropertyTypes {
     get Field() { return "field" }
     get Font() { return "font" }
     get FontWeight() { return "font-weight" }
+    get Icon() { return "icon" }
+    get Contents() { return "contents" }
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

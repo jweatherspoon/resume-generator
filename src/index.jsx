@@ -4,9 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import componentReducer from './data-model/reducers/ComponentReducer';
+
+const IS_DEBUG = true;
+
+const rootReducer = combineReducers({
+  components: componentReducer
+});
+
+const enhancer = IS_DEBUG ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null;
+const store = createStore(rootReducer, {}, enhancer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
