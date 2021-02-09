@@ -1,9 +1,13 @@
 import { Box, Button, Container, Typography } from '@material-ui/core';
+import ComponentEditorFactory from './editors/ComponentEditorFactory';
 
-const ResumeConfigEditor = ({config}) => (
-    <Container className="fullHeight">
-        <Typography align="center"  variant="h3">TODO: Editor Section</Typography>
-    </Container>
-);
+const ResumeConfigEditor = ({components}) => {
+    const componentEditors = Object.values(components || {}).map((c, i) => (<ComponentEditorFactory key={i} component={c} />));
+    return (
+        <Container>
+            {componentEditors}
+        </Container>
+    )
+}
 
 export default ResumeConfigEditor;

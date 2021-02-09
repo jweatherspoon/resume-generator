@@ -16,7 +16,7 @@ const ResumeBuilder = ({components}) => {
         <Grid container className="fullHeight">
             {/* the config editor section */}
             <Grid item xs={12} md={7}>
-                <ResumeConfigEditor />
+                <ResumeConfigEditor components={components}/>
             </Grid>
 
             {/* the preview section */}
