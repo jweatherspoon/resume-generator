@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Divider, Grid, makeStyles } from '@material-ui/core';
 import ResumeConfigEditor from './ResumeConfigEditor';
+import ResumeShell from "./resume-shells/ResumeShell";
 
 const useStyles = makeStyles({
     preview: {
@@ -20,13 +21,14 @@ const ResumeBuilder = ({components}) => {
 
             {/* the preview section */}
             <Grid item xs={12} md={5} className={classes.preview}>
+                <ResumeShell />
             </Grid>
         </Grid>
     )
 };
 
 const mapStateToProps = state => ({
-    components: state
+    components: state.components
 });
 
 export default connect(mapStateToProps)(ResumeBuilder);

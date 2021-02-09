@@ -1,6 +1,6 @@
 export const mapObjectArrayByKey = (arr, keySelector, valueSelector) => {
     if (!arr) {
-        return null;
+        return {};
     }
 
     // if keySelector wasn't specified, make it select whatever is passed in

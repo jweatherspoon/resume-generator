@@ -1,3 +1,4 @@
+import { mapObjectArrayByKey } from "../utility/DataUtility";
 import DATA_TYPES from "./DataTypes";
 
 class Property {
@@ -25,5 +26,7 @@ export class ArrayProperty extends Property {
         super(propertyType, DATA_TYPES.Array, value || []);
     }
 }
+
+export const mapPropertyArrayByType = propertyArray => mapObjectArrayByKey(propertyArray, p => p.propertyType);
 
 export default Property;

@@ -3,9 +3,11 @@ import { ArrayProperty, StringProperty } from '../Property';
 import PROPERTY_TYPES from '../PropertyTypes';
 import RESUME_COMPONENT_TYPES from "./ResumeComponentTypes";
 
-const createComponent = (type, properties, children) => ({
+const createComponent = (type, properties, children, isTopLevel = false) => ({
     componentId: uuidv4(),
     componentType: type,
+    isTopLevel,
+    region: null,
     properties: properties || [],
     children: children?.flat(Infinity).map(c => c.componentId) || []
 });
@@ -21,15 +23,13 @@ const createContactDetailsItem = (icon="", details="") => {
 }
 
 const createContactDetails = () => {
-    const defaultProperties = [];
-
     const defaultChildren = [
         createContactDetailsItem("phone", "(xxx) xxx-xxxx"),
         createContactDetailsItem("email", "xxxxx@xxx.com"),
         createContactDetailsItem("linkedin", "@xxxxx"),
     ];
 
-    const contactDetails = createComponent(RESUME_COMPONENT_TYPES.ContactDetails, defaultProperties, defaultChildren);
+    const contactDetails = createComponent(RESUME_COMPONENT_TYPES.ContactDetails, [], defaultChildren, true);
     return [contactDetails, ...defaultChildren];
 }
 
