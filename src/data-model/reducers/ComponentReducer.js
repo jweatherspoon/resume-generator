@@ -9,7 +9,10 @@ const componentReducingActions = {
 
 const contactDetails = createComponentFromTemplate(RESUME_COMPONENT_TYPES.ContactDetails);
 contactDetails[0].region = "sidebar";
-const initialState = mapObjectArrayByKey(contactDetails, c => c.componentId);
+const positionHeader = createComponentFromTemplate(RESUME_COMPONENT_TYPES.PositionHeader, "Jon Weatherspoon", "Software Engineer");
+positionHeader[0].region = "mainContent";
+
+const initialState = mapObjectArrayByKey([...contactDetails, ...positionHeader], c => c.componentId);
 
 const componentReducer = (state = initialState, action) => {
     const reducingAction = componentReducingActions[action.type];

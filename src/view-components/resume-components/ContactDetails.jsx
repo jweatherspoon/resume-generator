@@ -7,7 +7,6 @@ export const ContactDetailRow = ({ properties, componentId }) => {
     const icon = mappedProps[PROPERTY_TYPES.Icon]?.value;
     const altText = mappedProps[PROPERTY_TYPES]?.value;
     const details = mappedProps[PROPERTY_TYPES.Details]?.value;
-    console.log(properties);
     return (
         <Grid item container>
             <Grid item xs={2}>
