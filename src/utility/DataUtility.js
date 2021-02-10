@@ -17,7 +17,6 @@ export const getRootAndAllChildComponents = (root, allComponents) => {
 
     if (root) {
         const queue = [root];
-        console.log(queue);
         while (queue.length > 0) {
             const node = queue.shift();
             allChildren.push(node);

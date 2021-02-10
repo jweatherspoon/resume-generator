@@ -62,24 +62,6 @@ const handleUpdateProperty = (state, { componentId, propertyType, newValue }) =>
             ...state,
             [componentId]: copiedComponent
         };
-
-        // const propertyIndex = component?.properties.indexOf(p => p.propertyType === propertyType);
-        // console.log(component?.properties);
-        // if (propertyIndex !== -1) {
-        //     const copiedProperty = Object.assign({}, component.properties[propertyIndex]);
-        //     copiedProperty.value = newValue;
-
-        //     console.log(copiedProperty);
-
-        //     const copiedComponent = Object.assign({}, component);
-        //     copiedComponent.properties = [
-        //         ...component.properties.slice(0, propertyIndex),
-        //         copiedProperty,
-        //         ...component.properties.slice(propertyIndex + 1)
-        //     ];
-
-            
-        // }
     }
 
     return state;

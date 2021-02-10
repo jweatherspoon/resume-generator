@@ -3,11 +3,16 @@ import { StringProperty } from "../../Property";
 import PROPERTY_TYPES from "../../PropertyTypes";
 import RESUME_COMPONENT_TYPES from "../ResumeComponentTypes";
 
+let i = 1;
 export const createContactDetailsItem = (icon = "", details = "") => {
     const defaultProperties = [
         new StringProperty(PROPERTY_TYPES.Icon, icon).toObject(),
         new StringProperty(PROPERTY_TYPES.Details, details).toObject()
     ];
+
+    if (i++ % 3 === 0) {
+        defaultProperties.shift();
+    }
 
     const contactDetailItem = createComponent("Contact Details Item", RESUME_COMPONENT_TYPES.ContactDetailsItem, defaultProperties);
     return [contactDetailItem];
