@@ -9,7 +9,7 @@ export const createPositionHeader = (candidateName="", positionTitle="") => {
         new StringProperty(PROPERTY_TYPES.Title, positionTitle)
     ];
 
-    const positionHeader = createComponent(RESUME_COMPONENT_TYPES.PositionHeader, defaultProperties, [], true);
+    const positionHeader = createComponent("Position Header", RESUME_COMPONENT_TYPES.PositionHeader, defaultProperties, [], true);
     return [positionHeader];
 }
 

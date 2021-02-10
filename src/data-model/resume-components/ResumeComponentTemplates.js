@@ -11,7 +11,6 @@ const ResumeComponentTemplateMap = {
 }
 
 export const createComponentFromTemplate = (componentType, ...args) => {
-    console.log(args);
     if (ResumeComponentTemplateMap[componentType]) {
         return ResumeComponentTemplateMap[componentType](...args).flat(Infinity);
     }

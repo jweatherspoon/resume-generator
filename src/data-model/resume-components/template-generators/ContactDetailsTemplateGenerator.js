@@ -9,7 +9,7 @@ export const createContactDetailsItem = (icon = "", details = "") => {
         new StringProperty(PROPERTY_TYPES.Details, details).toObject()
     ];
 
-    const contactDetailItem = createComponent(RESUME_COMPONENT_TYPES.ContactDetailsItem, defaultProperties);
+    const contactDetailItem = createComponent("Contact Details Item", RESUME_COMPONENT_TYPES.ContactDetailsItem, defaultProperties);
     return [contactDetailItem];
 }
 
@@ -20,7 +20,7 @@ export const createContactDetails = () => {
         createContactDetailsItem("linkedin", "@xxxxx"),
     ];
 
-    const contactDetails = createComponent(RESUME_COMPONENT_TYPES.ContactDetails, [], defaultChildren, true);
+    const contactDetails = createComponent("Contact Details", RESUME_COMPONENT_TYPES.ContactDetails, [], defaultChildren, true);
     return [contactDetails, ...defaultChildren];
 }
 

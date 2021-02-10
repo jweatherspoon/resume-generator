@@ -16,17 +16,17 @@ export const getRootAndAllChildComponents = (root, allComponents) => {
     const allChildren = [];
 
     if (root) {
-        const stack = [root];
-        console.log(stack);
-        while (stack.length > 0) {
-            const node = stack.pop();
+        const queue = [root];
+        console.log(queue);
+        while (queue.length > 0) {
+            const node = queue.shift();
             allChildren.push(node);
 
-            // push any children onto the stack to be processed
+            // push any children onto the queue to be processed
             if (node.children) {
                 for (let childId of node.children) {
                     if (allComponents[childId]) {
-                        stack.push(allComponents[childId]);
+                        queue.push(allComponents[childId]);
                     }
                 }
             }
@@ -35,3 +35,19 @@ export const getRootAndAllChildComponents = (root, allComponents) => {
 
     return allChildren;
 }
+
+export const sortObjectArrayByKey = (arr, propertySelector) => arr?.sort((a, b) => {
+    const aUpper = propertySelector(a)?.toUpperCase();
+    const bUpper = propertySelector(b)?.toUpperCase();
+    if (aUpper && bUpper) {
+        if (aUpper < bUpper) {
+            return -1;
+        }
+        else if (aUpper > bUpper) {
+            return 1;
+        }
+    }
+
+    // not totally accurate sort, but good enough for now lol rip
+    return 0;
+})
