@@ -2,7 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes"
 
-export const ContactDetailRow = ({ properties, componentId }) => {
+export const ContactDetailRow = ({ properties }) => {
     const mappedProps = mapPropertyArrayByType(properties);
     const icon = mappedProps[PROPERTY_TYPES.Icon]?.value;
     const altText = mappedProps[PROPERTY_TYPES]?.value;

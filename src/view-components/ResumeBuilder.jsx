@@ -15,12 +15,12 @@ const ResumeBuilder = ({components}) => {
     return (
         <Grid container className="fullHeight">
             {/* the config editor section */}
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={6}>
                 <ResumeConfigEditor components={components}/>
             </Grid>
 
             {/* the preview section */}
-            <Grid item xs={12} md={5} className={classes.preview}>
+            <Grid item xs={12} md={6} className={classes.preview}>
                 <ResumeShell />
             </Grid>
         </Grid>
