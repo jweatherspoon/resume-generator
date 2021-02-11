@@ -1,28 +1,50 @@
 import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
+import { endianness } from "os";
 import DATA_TYPES from "../../data-model/DataTypes";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
 import { getRootAndAllChildComponents, sortObjectArrayByKey } from "../../utility/DataUtility";
 import PropertyEditorFactory from "./PropertyEditorFactory";
 
-const idColumnWidth = 2;
+// const idColumnWidth = 2;
 
 const useStyles = makeStyles({
-    headerRow: {
+    cell: {
+        alignItems: "center",
+        justifyContent: "center",
+        display: "flex",
+        width: "100%",
+        height: 50,
+    },
+    headerCell: {
         borderBottom: "1px solid black",
+        height: 30,
     },
     editorCell: {
         padding: 3,
+        justifyContent: "end",
+    },
+    gridColumn: (props) => ({
+        minWidth: props?.columnDefinition?.minWidth,
+        maxWidth: props?.columnDefinition?.maxWidth,
+        height: "100%",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
+        flexWrap: "wrap",
+        borderRight: "1px solid black",
+    }),
+    dataGrid: {
+        overflow: "auto",
+        display: "flex",
+        flexWrap: "nowrap",
     }
 });
 
-const createColumnDefinition = (property) => ({
+const createColumnDefinition = (property, { minWidth, maxWidth }) => ({
     field: property?.propertyType,
     header: property?.propertyType,
     description: property?.propertyType,
     type: property?.dataType,
+    minWidth, 
+    maxWidth
 });
 
 const convertPropertiesToRowDefinition = (component, rowId, columnDefinitions) => {
@@ -32,7 +54,7 @@ const convertPropertiesToRowDefinition = (component, rowId, columnDefinitions) =
             if (property.propertyType !== PROPERTY_TYPES.Region) {
                 rowDefinition[property.propertyType] = { componentId: component.componentId, ...property };
                 if (!columnDefinitions[property.propertyType]) {
-                    columnDefinitions[property.propertyType] = createColumnDefinition(property);
+                    columnDefinitions[property.propertyType] = createColumnDefinition(property, { minWidth: 100, maxWidth: 250 });
                 }
             }
         }
@@ -64,114 +86,78 @@ const constructDataGridInfo = (topLevelComponent, allComponents) => {
     }
 }
 
-const DataGridRow = ({rowDefinition, columnDefinitions}) => {
-    const classes = useStyles();
-
-    const cellData = columnDefinitions.map(cd => rowDefinition[cd.header]);
-    const cellWidth = (12 - idColumnWidth) / (columnDefinitions.length || 1);
-    const cells = [
-        <Grid item xs={idColumnWidth} key="id-cell" className={classes.editorCell}>
-            <Typography>{rowDefinition.id}</Typography>
-        </Grid>
-    ];
-
-    cells.push(...cellData.map((c, i) => (c ? (
-        <Grid item xs={cellWidth} key={i} className={classes.editorCell}>
-            {c && <PropertyEditorFactory {...c} hideLabel />}
-        </Grid>
-    ) : createCell(cellWidth, "-", i, false))));
-
-    return (
-        <Grid item container xs={12}>
-            {cells}
-        </Grid>
-    )
-}
-
-const createCell = (cellWidth, content, key, isHeaderCell) => (
-    <Grid item xs={cellWidth} key={key}>
-        <Container>
-            <Typography variant="body1" align="center">
-                {isHeaderCell ? (
-                    <strong>
-                        {content}
-                    </strong>
-                ) : content}
-            </Typography>
-        </Container>
-    </Grid>
+const createCell = (className, content, key, isHeaderCell) => (
+    <div key={key} className={className}>
+        <Typography variant="body1" align="center">
+            {isHeaderCell ? (
+                <strong>
+                    {content}
+                </strong>
+            ) : content}
+        </Typography>
+    </div>
 )
 
-const HeaderRow = ({sortedHeaders}) => {
-    const classes = useStyles();
+const constructCellsForColumn = (columnDefinition, rowDefinitions, nullValueClassName) => {
+    const cells = rowDefinitions.map((rowData, index) => {
+        const { field } = columnDefinition;
+        const key = `cell-${field}-${index}`
+        const cellValue = rowData[field] ? (<PropertyEditorFactory {...rowData[field]} hideLabel />) :
+            (createCell(nullValueClassName, "-", undefined, false))
+        return (
+            <DataGridCell key={key}>
+                {cellValue}
+            </DataGridCell>
+        );
+    });
 
-    const cellWidth = (12 - idColumnWidth) / (sortedHeaders.length);
-    const idCell = createCell(idColumnWidth, "-", "id-header", true);
-    const headerCells = sortedHeaders.map((h, i) => (
-        <Grid item xs={cellWidth} key={i}>
-            <Typography variant="body1" align="center">
-                <strong>
-                    {h}
-                </strong>
-            </Typography>
-        </Grid>
-    ));
+    return cells;
+}
+
+const DataGrid = ({ columnDefinitions, rowDefinitions }) => {
+    const classes = useStyles();
+    const columns = columnDefinitions.map((colDef, index) => {
+        const key = `col-${colDef.field}-${index}`;
+        return (
+            <DataGridColumn key={key} columnDefinition={colDef} rowDefinitions={rowDefinitions} />
+        )
+    });
 
     return (
-        <Grid item container xs={12} className={classes.headerRow}>
-            {idCell}
-            {headerCells}
-        </Grid>
+        <div className={classes.dataGrid}>
+            {columns}
+        </div>
+    );
+}
+
+const DataGridColumn = ({ columnDefinition, rowDefinitions }) => {
+    const classes = useStyles({ columnDefinition });
+    const headerCell = createCell([classes.cell, classes.headerCell].join(" "), columnDefinition.header, undefined, true);
+    const cells = constructCellsForColumn(columnDefinition, rowDefinitions, classes.cell);
+    return (
+        <div className={classes.gridColumn}>
+            {headerCell}
+            {cells}
+        </div>
     )
 }
 
-// TODO: Update this to support more than 12 columns I guess
-const TopLevelComponentEditorGrid = ({component, allComponents}) => {
-    const { rowDefinitions, columnDefinitions } = constructDataGridInfo(component, allComponents);
-
-    if (columnDefinitions.length > 12) {
-        columnDefinitions = columnDefinitions.slice(0, 12);
-    }
-
-    const sortedHeaders = columnDefinitions.map(cd => cd.header);
-    const rows = rowDefinitions.map((rd, i) => (
-        <DataGridRow key={i} rowDefinition={rd} columnDefinitions={columnDefinitions} />
-    ));
-
+const DataGridCell = (props) => {
+    const { children, className } = props;
+    const classes = useStyles(props);
+    const cellClass = [classes.cell, className || classes.editorCell].join(" ");
     return (
-        <Grid item container>
-            {/* header row */}
-            <HeaderRow sortedHeaders={sortedHeaders} />
-
-            {rows}
-        </Grid>
+        <div className={cellClass}>
+            {children}
+        </div>
     );
+}
+
+const TopLevelComponentEditorGrid = ({ component, allComponents }) => {
+    const { rowDefinitions, columnDefinitions } = constructDataGridInfo(component, allComponents);
+    return (
+        <DataGrid columnDefinitions={columnDefinitions} rowDefinitions={rowDefinitions} />
+    )
 }
 
 export default TopLevelComponentEditorGrid;
-
-const DataGridCell = ({ dataContext }) => {
-    const classes = useStyles(props);
-    return (
-        <Grid item container className={classes.editorCell} fullWidth>
-            
-        </Grid>
-    );
-}
-
-const constructCellsForColumn = (columnDefinition, rowDefinitions) => {
-    const cells = rowDefinitions.map((rowData, index) => (
-        <DataGridCell key={`${columnDefinition.propertyType}-${index}`} dataContext={rowData}>
-            {children}
-        </DataGridCell>
-    ))
-}
-
-const DataGridColumn = ({columnDefinition, rowDefinitions}) => {
-    const cells = constructCellsForColumn(columnDefinition, rowDefinitions);
-    return (
-        <Grid item container className={classes.editorColumn}>
-
-        </Grid>
-    )
-}

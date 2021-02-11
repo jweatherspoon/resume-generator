@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { createUpdatePropertyAction } from "../../data-model/actions/ComponentActions";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 
-const StringEditor = ({ componentId, allComponents, propertyType, updateProperty, variant }) => {
+const StringEditor = ({ componentId, allComponents, propertyType, updateProperty, variant, hideLabel }) => {
     const component = allComponents[componentId];
     const mappedProperties = mapPropertyArrayByType(component?.properties);
     const property = mappedProperties[propertyType];
-    const label = `${property?.propertyType}: `;
+    const label = !hideLabel && property?.propertyType;
     return (
-        <TextField variant={variant} startAdornment={label} type="text" value={property && property.value} placeholder={property?.propertyType} onChange={e => updateProperty(e.target.value)} fullWidth />
+        <TextField variant={variant} label={label} value={property && property.value}
+             placeholder={property?.propertyType} onChange={e => updateProperty(e.target.value)} fullWidth />
     )
 }
 

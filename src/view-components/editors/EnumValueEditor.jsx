@@ -4,7 +4,7 @@ import { createUpdatePropertyAction } from "../../data-model/actions/ComponentAc
 import getEnumOptions from "../../data-model/enumerations";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 
-const EnumValueEditor = ({ componentId, allComponents, propertyType, updateProperty, variant, hideLabel }) => {
+const EnumValueEditor = ({ componentId, allComponents, propertyType, updateProperty, variant, hideLabel, dense }) => {
     const component = allComponents[componentId];
     const mappedProperties = mapPropertyArrayByType(component?.properties);
     const property = mappedProperties[propertyType];
@@ -19,8 +19,8 @@ const EnumValueEditor = ({ componentId, allComponents, propertyType, updatePrope
     const label = !hideLabel && property?.propertyType;
 
     return (
-        <TextField select fullWidth value={property?.value || ""} label={label} variant={variant}
-            onChange={(e, c) => updateProperty(c?.props?.children || "")}>
+        <TextField select fullWidth value={property?.value || ""} label={label} variant={variant} margin={dense && "dense"}
+            onChange={(e, c) => updateProperty(c?.props?.children || "")} SelectProps={{autoWidth: true}}>
             {menuItems}
         </TextField>
     )
@@ -32,7 +32,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { componentId, propertyType }) => ({
     updateProperty: (newValue) => {
-        console.log(newValue);
         return dispatch(createUpdatePropertyAction(componentId, propertyType, newValue));
     }
 });
