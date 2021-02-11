@@ -12,7 +12,7 @@ const EnumValueEditor = ({ componentId, allComponents, propertyType, updatePrope
     const enumOptions = getEnumOptions(property?.source);
     const menuItems = enumOptions.map((o, i) => (
         <MenuItem key={i} value={o}>
-            {o}
+            {o || "-"}
         </MenuItem>
     ))
 
@@ -20,7 +20,7 @@ const EnumValueEditor = ({ componentId, allComponents, propertyType, updatePrope
 
     return (
         <TextField select fullWidth value={property?.value || ""} label={label} variant={variant} margin={dense && "dense"}
-            onChange={(e, c) => updateProperty(c?.props?.children || "")} SelectProps={{autoWidth: true}}>
+            onChange={(e) => updateProperty(e.target.value || "")} SelectProps={{autoWidth: true}}>
             {menuItems}
         </TextField>
     )
