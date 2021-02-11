@@ -1,15 +1,15 @@
-import { Input } from "@material-ui/core";
+import { Input, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import { createUpdatePropertyAction } from "../../data-model/actions/ComponentActions";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 
-const StringEditor = ({ componentId, allComponents, propertyType, updateProperty }) => {
+const StringEditor = ({ componentId, allComponents, propertyType, updateProperty, variant }) => {
     const component = allComponents[componentId];
     const mappedProperties = mapPropertyArrayByType(component?.properties);
     const property = mappedProperties[propertyType];
     const label = `${property?.propertyType}: `;
     return (
-        <Input startAdornment={label} type="text" value={property && property.value} placeholder={property?.propertyType} onChange={e => updateProperty(e.target.value)} fullWidth />
+        <TextField variant={variant} startAdornment={label} type="text" value={property && property.value} placeholder={property?.propertyType} onChange={e => updateProperty(e.target.value)} fullWidth />
     )
 }
 

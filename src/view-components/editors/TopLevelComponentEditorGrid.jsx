@@ -10,6 +10,12 @@ const useStyles = makeStyles({
     headerRow: {
         borderBottom: "1px solid black",
     },
+    editorCell: {
+        padding: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    }
 });
 
 const createColumnDefinition = (property) => ({
@@ -23,9 +29,11 @@ const convertPropertiesToRowDefinition = (component, rowId, columnDefinitions) =
     const rowDefinition = { id: rowId };
     if (component?.properties) {
         for (let property of component.properties) {
-            rowDefinition[property.propertyType] = { componentId: component.componentId, ...property };
-            if (!columnDefinitions[property.propertyType]) {
-                columnDefinitions[property.propertyType] = createColumnDefinition(property);
+            if (property.propertyType !== PROPERTY_TYPES.Region) {
+                rowDefinition[property.propertyType] = { componentId: component.componentId, ...property };
+                if (!columnDefinitions[property.propertyType]) {
+                    columnDefinitions[property.propertyType] = createColumnDefinition(property);
+                }
             }
         }
     }
@@ -57,17 +65,19 @@ const constructDataGridInfo = (topLevelComponent, allComponents) => {
 }
 
 const DataGridRow = ({rowDefinition, columnDefinitions}) => {
+    const classes = useStyles();
+
     const cellData = columnDefinitions.map(cd => rowDefinition[cd.header]);
     const cellWidth = (12 - idColumnWidth) / (columnDefinitions.length || 1);
     const cells = [
-        <Grid item xs={idColumnWidth}>
-            <Typography align="center">{rowDefinition.id}</Typography>
+        <Grid item xs={idColumnWidth} key="id-cell" className={classes.editorCell}>
+            <Typography>{rowDefinition.id}</Typography>
         </Grid>
     ];
 
     cells.push(...cellData.map((c, i) => (c ? (
-        <Grid item xs={cellWidth} key={i}>
-            {c && <PropertyEditorFactory {...c} />}
+        <Grid item xs={cellWidth} key={i} className={classes.editorCell}>
+            {c && <PropertyEditorFactory {...c} hideLabel />}
         </Grid>
     ) : createCell(cellWidth, "-", i, false))));
 
@@ -81,7 +91,7 @@ const DataGridRow = ({rowDefinition, columnDefinitions}) => {
 const createCell = (cellWidth, content, key, isHeaderCell) => (
     <Grid item xs={cellWidth} key={key}>
         <Container>
-            <Typography variant="body1" align="center" fullWidth>
+            <Typography variant="body1" align="center">
                 {isHeaderCell ? (
                     <strong>
                         {content}

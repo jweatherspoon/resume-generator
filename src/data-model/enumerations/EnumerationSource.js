@@ -1,5 +1,5 @@
-class Enumeration {
+class EnumerationSource {
     getEnumOptions = () => { throw new Error("implement in a derived class"); }
 }
 
-export default Enumeration;
+export default EnumerationSource;

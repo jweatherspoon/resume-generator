@@ -8,11 +8,13 @@ class Property {
         this.value = value;
     }
 
-    toObject = () => ({
-        propertyType: this.propertyType,
-        dataType: this.dataType,
-        value: this.value
-    });
+    toObject() {
+        return {
+            propertyType: this.propertyType,
+            dataType: this.dataType,
+            value: this.value
+        };
+    }
 }
 
 export class StringProperty extends Property {
@@ -24,6 +26,20 @@ export class StringProperty extends Property {
 export class ArrayProperty extends Property {
     constructor(propertyType, value) {
         super(propertyType, DATA_TYPES.Array, value || []);
+    }
+}
+
+export class EnumProperty extends Property {
+    constructor(propertyType, value, source) {
+        super(propertyType, DATA_TYPES.Enum, value);
+        this.source = source;
+    }
+
+    toObject() {
+        return {
+            ...super.toObject(),
+            source: this.source
+        };
     }
 }
 

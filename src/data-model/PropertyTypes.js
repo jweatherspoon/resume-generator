@@ -22,6 +22,7 @@ class PropertyTypes {
     get FontWeight() { return "Font-weight" }
     get Icon() { return "Icon" }
     get Contents() { return "Contents" }
+    get Region() { return "Region" }
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

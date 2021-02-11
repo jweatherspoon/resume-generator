@@ -1,4 +1,6 @@
 import { connect } from "react-redux";
+import { mapPropertyArrayByType } from "../../data-model/Property";
+import PROPERTY_TYPES from "../../data-model/PropertyTypes";
 import ResumeShellFactory from "./ResumeShellFactory";
 
 const ResumeShell = ({theme, resumeTemplate, components}) => {
@@ -6,15 +8,17 @@ const ResumeShell = ({theme, resumeTemplate, components}) => {
     const regionMappedComponents = {};
     const topLevelComponents = Object.values(components).filter(c => c.isTopLevel);
     for (let component of topLevelComponents) {
-        if (component.region) {
-            if (!regionMappedComponents[component.region]) {
-                regionMappedComponents[component.region] = [];
+        const propertyMap = mapPropertyArrayByType(component.properties);
+        const region = propertyMap[PROPERTY_TYPES.Region]?.value;
+        if (region) {
+            if (!regionMappedComponents[region]) {
+                regionMappedComponents[region] = [];
             }
 
             // push the top level component and all of its children into the region 
             const topLevelComponentAndChildren = [ component ];
             // const topLevelComponentAndChildren = getRootAndAllChildComponents(component, components);
-            regionMappedComponents[component.region].push(...topLevelComponentAndChildren);
+            regionMappedComponents[region].push(...topLevelComponentAndChildren);
         }
     }
 

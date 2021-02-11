@@ -4,20 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import componentReducer from './data-model/reducers/ComponentReducer';
-import activeConfigurationReducer from './data-model/reducers/ActiveConfigurationReducer';
+import store from "./store";
+import { createUpdateActiveTemplateAction } from './data-model/actions/ActiveConfigurationActions';
+import RESUME_SHELL_TYPES from './data-model/ResumeShellTypes';
+import { flashyResumeRegionInfo } from './view-components/resume-shells/FlashyResumeShell';
 
-const IS_DEBUG = true;
-
-const rootReducer = combineReducers({
-  components: componentReducer,
-  activeConfiguration: activeConfigurationReducer
-});
-
-const enhancer = IS_DEBUG ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null;
-const store = createStore(rootReducer, {}, enhancer);
+store.dispatch(createUpdateActiveTemplateAction(RESUME_SHELL_TYPES.Flashy, Object.keys(flashyResumeRegionInfo)))
 
 ReactDOM.render(
   <React.StrictMode>
