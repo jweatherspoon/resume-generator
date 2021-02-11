@@ -149,3 +149,29 @@ const TopLevelComponentEditorGrid = ({component, allComponents}) => {
 }
 
 export default TopLevelComponentEditorGrid;
+
+const DataGridCell = ({ dataContext }) => {
+    const classes = useStyles(props);
+    return (
+        <Grid item container className={classes.editorCell} fullWidth>
+            
+        </Grid>
+    );
+}
+
+const constructCellsForColumn = (columnDefinition, rowDefinitions) => {
+    const cells = rowDefinitions.map((rowData, index) => (
+        <DataGridCell key={`${columnDefinition.propertyType}-${index}`} dataContext={rowData}>
+            {children}
+        </DataGridCell>
+    ))
+}
+
+const DataGridColumn = ({columnDefinition, rowDefinitions}) => {
+    const cells = constructCellsForColumn(columnDefinition, rowDefinitions);
+    return (
+        <Grid item container className={classes.editorColumn}>
+
+        </Grid>
+    )
+}
