@@ -10,6 +10,13 @@ import { createUpdateActiveTemplateAction } from './data-model/actions/ActiveCon
 import RESUME_SHELL_TYPES from './data-model/ResumeShellTypes';
 import { flashyResumeRegionInfo } from './view-components/resume-shells/FlashyResumeShell';
 
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { fab } from '@fortawesome/free-brands-svg-icons'
+// import { faMobile, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+// library.add(fab, faMobile, faEnvelope)
+
+// TODO: Remove this after adding Add Component / persistence
 store.dispatch(createUpdateActiveTemplateAction(RESUME_SHELL_TYPES.Flashy, Object.keys(flashyResumeRegionInfo)))
 
 ReactDOM.render(

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 const ResumeRegion = ({ regionInfo: { width, components }, allComponents, scaleFactor }) => {
     const classes = useStyles({scaleFactor});
     const resumeComponents = components?.filter(c => c.isTopLevel).map((c, i) => (
-        <div className={classes.scaledComponent}>
+        <div className={classes.scaledComponent} key={`component-${c.name}-${i}`}>
             <ResumeComponentFactory key={i} scaleFactor={scaleFactor} allComponents={allComponents} {...c} />
         </div>
     ));

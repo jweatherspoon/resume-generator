@@ -5,6 +5,7 @@ class DataTypes {
     get Component() { return "component" }
     get Theme() { return "theme" }
     get Enum() { return "enum" }
+    get Number() { return "number" } 
 }
 
 const DATA_TYPES = new DataTypes();

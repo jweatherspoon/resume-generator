@@ -43,6 +43,12 @@ export class EnumProperty extends Property {
     }
 }
 
+export class NumberProperty extends Property {
+    constructor(propertyType, value) {
+        super(propertyType, DATA_TYPES.Number, value || 0);
+    }
+}
+
 export const mapPropertyArrayByType = propertyArray => mapObjectArrayByKey(propertyArray, p => p.propertyType);
 
 export default Property;

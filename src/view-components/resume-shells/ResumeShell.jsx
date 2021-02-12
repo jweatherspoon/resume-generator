@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
 import ResumeRegion from "./ResumeRegion";
-import ResumeShellFactory, { ResumeShellMap } from "./ResumeShellFactory";
+import { ResumeShellMap } from "./ResumeShellFactory";
 
 const useStyles = makeStyles({
     resumeShell: {
@@ -26,7 +26,6 @@ const mapTopLevelComponentsByRegion = (components) => {
 
             // push the top level component and all of its children into the region 
             const topLevelComponentAndChildren = [component];
-            // const topLevelComponentAndChildren = getRootAndAllChildComponents(component, components);
             regionMappedComponents[region].push(...topLevelComponentAndChildren);
         }
     }
