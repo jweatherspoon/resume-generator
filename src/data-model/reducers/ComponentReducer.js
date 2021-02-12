@@ -9,11 +9,12 @@ const componentReducingActions = {
     [UPDATE_PROPERTY]: (state, payload) => handleUpdateProperty(state, payload),
 };
 
-const contactDetails = createComponentFromTemplate(RESUME_COMPONENT_TYPES.ContactDetails);
-const positionHeader = createComponentFromTemplate(RESUME_COMPONENT_TYPES.PositionHeader, "Jon Weatherspoon", "Software Engineer");
-const logo = createComponentFromTemplate(RESUME_COMPONENT_TYPES.IconImage);
+// const contactDetails = createComponentFromTemplate(RESUME_COMPONENT_TYPES.ContactDetails);
+// const positionHeader = createComponentFromTemplate(RESUME_COMPONENT_TYPES.PositionHeader, "Jon Weatherspoon", "Software Engineer");
+// const logo = createComponentFromTemplate(RESUME_COMPONENT_TYPES.IconImage);
 
-const initialState = mapObjectArrayByKey([...contactDetails, ...positionHeader, ...logo], c => c.componentId);
+// const initialState = mapObjectArrayByKey([...contactDetails, ...positionHeader, ...logo], c => c.componentId);
+const initialState = [];
 
 const componentReducer = (state = initialState, action) => {
     const reducingAction = componentReducingActions[action.type];
