@@ -71,12 +71,10 @@ const ResumeShell = ({theme, resumeTemplate, components, pageConfiguration}) => 
     ));
 
     return (
-        <Grid container className={classes.resumeShell}>
+        <Grid container className={classes.resumeShell} tag={height / width}>
             {renderedRegions}
         </Grid>
-    )
-
-    return <ResumeShellFactory template={resumeTemplate} regionMappedComponents={regionMappedComponents} />;
+    );
 }
 
 const mapStateToProps = state => ({

@@ -6,8 +6,14 @@ import ResumeShell from "./resume-shells/ResumeShell";
 const useStyles = makeStyles({
     preview: {
         border: "1px solid black",
+        overflow: "auto",
     }
 });
+
+const cutoffs = {
+    xs: 12,
+    lg: 6
+};
 
 const ResumeBuilder = ({components}) => {
     const classes = useStyles();
@@ -15,12 +21,12 @@ const ResumeBuilder = ({components}) => {
     return (
         <Grid container className="fullHeight">
             {/* the config editor section */}
-            <Grid item xs={12} md={6}>
+            <Grid item {...cutoffs}>
                 <ResumeConfigEditor components={components}/>
             </Grid>
 
             {/* the preview section */}
-            <Grid item xs={12} md={6} className={classes.preview}>
+            <Grid item {...cutoffs} className={classes.preview}>
                 <ResumeShell />
             </Grid>
         </Grid>
