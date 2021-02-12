@@ -11,8 +11,9 @@ const componentReducingActions = {
 
 const contactDetails = createComponentFromTemplate(RESUME_COMPONENT_TYPES.ContactDetails);
 const positionHeader = createComponentFromTemplate(RESUME_COMPONENT_TYPES.PositionHeader, "Jon Weatherspoon", "Software Engineer");
+const logo = createComponentFromTemplate(RESUME_COMPONENT_TYPES.IconImage);
 
-const initialState = mapObjectArrayByKey([...contactDetails, ...positionHeader], c => c.componentId);
+const initialState = mapObjectArrayByKey([...contactDetails, ...positionHeader, ...logo], c => c.componentId);
 
 const componentReducer = (state = initialState, action) => {
     const reducingAction = componentReducingActions[action.type];

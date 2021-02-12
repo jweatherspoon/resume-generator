@@ -4,7 +4,10 @@ import ResumeComponentFactory from "../resume-components/ResumeComponentFactory"
 
 const useStyles = makeStyles({
     scaledComponent: {
-        transform: props => props?.scaleFactor && `scale(${props.scaleFactor})`
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        transform: props => props?.scaleFactor && `scale(${props.scaleFactor})`,
     }
 })
 

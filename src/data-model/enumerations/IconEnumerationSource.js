@@ -7,7 +7,7 @@ const allIcons = [
     "github",
     "instagram",
     "twitter",
-    "jw-logo",
+    "jwLogo",
 ];
 
 export const ICONS = Object.assign({}, ...allIcons.map(x => ({[x]: x})));

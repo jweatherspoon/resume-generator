@@ -1,5 +1,3 @@
-import { ArrayProperty, StringProperty } from '../Property';
-import PROPERTY_TYPES from '../PropertyTypes';
 import RESUME_COMPONENT_TYPES from "./ResumeComponentTypes";
 import createContactDetails, { createContactDetailsItem } from './template-generators/ContactDetailsTemplateGenerator';
 import createIconImage from './template-generators/IconImage';
