@@ -1,6 +1,5 @@
 import { mapObjectArrayByKey } from "../../utility/DataUtility";
 import { ADD_COMPONENT, UPDATE_PROPERTY } from "../actions/ComponentActions";
-import { mapPropertyArrayByType } from "../Property";
 import { createComponentFromTemplate } from "../resume-components/ResumeComponentTemplates";
 import RESUME_COMPONENT_TYPES from "../resume-components/ResumeComponentTypes";
 

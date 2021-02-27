@@ -1,5 +1,7 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import { connect } from "react-redux";
+import PROPERTY_TYPES from "../../data-model/PropertyTypes";
+import { sortObjectArrayWithValueSelector } from "../../utility/DataUtility";
 import ResumeComponentFactory from "../resume-components/ResumeComponentFactory";
 
 const useStyles = makeStyles({
@@ -13,7 +15,9 @@ const useStyles = makeStyles({
 
 const ResumeRegion = ({ regionInfo: { width, components }, allComponents, scaleFactor }) => {
     const classes = useStyles({scaleFactor});
-    const resumeComponents = components?.filter(c => c.isTopLevel).map((c, i) => (
+
+    const sortedComponents = sortObjectArrayWithValueSelector(components, c => c.properties?.find(prop => prop.propertyType === PROPERTY_TYPES.Order)?.value || 0);
+    const resumeComponents = sortedComponents?.filter(c => c.isTopLevel).map((c, i) => (
         <div className={classes.scaledComponent} key={`component-${c.name}-${i}`}>
             <ResumeComponentFactory key={i} scaleFactor={scaleFactor} allComponents={allComponents} {...c} />
         </div>

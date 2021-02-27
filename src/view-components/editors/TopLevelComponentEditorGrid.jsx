@@ -6,6 +6,10 @@ import { getRootAndAllChildComponents, sortObjectArrayByKey } from "../../utilit
 import PropertyEditorFactory from "./PropertyEditorFactory";
 
 // const idColumnWidth = 2;
+const propertiesToHide = [
+    PROPERTY_TYPES.Region,
+    PROPERTY_TYPES.Order
+];
 
 const useStyles = makeStyles({
     cell: {
@@ -51,7 +55,8 @@ const convertPropertiesToRowDefinition = (component, rowId, columnDefinitions) =
     const rowDefinition = { id: rowId };
     if (component?.properties) {
         for (let property of component.properties) {
-            if (property.propertyType !== PROPERTY_TYPES.Region) {
+            // if this property exists in the propertiesToHide, skip
+            if (!propertiesToHide.some(propertyType => property.propertyType === propertyType)) {
                 rowDefinition[property.propertyType] = { componentId: component.componentId, ...property };
                 if (!columnDefinitions[property.propertyType]) {
                     columnDefinitions[property.propertyType] = createColumnDefinition(property, { minWidth: 100, maxWidth: 250 });

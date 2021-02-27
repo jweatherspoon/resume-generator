@@ -49,4 +49,16 @@ export const sortObjectArrayByKey = (arr, propertySelector) => arr?.sort((a, b) 
 
     // not totally accurate sort, but good enough for now lol rip
     return 0;
+});
+
+export const sortObjectArrayWithValueSelector = (arr, valueSelector) => arr?.sort((a, b) => {
+    const aValue = valueSelector(a);
+    const bValue = valueSelector(b);
+
+    if (aValue !== null && bValue !== null) {
+        return aValue < bValue ? -1 : 1;
+    }
+
+    // not totally accurate sort, but good enough for now lol rip
+    return 0;
 })

@@ -23,6 +23,7 @@ class PropertyTypes {
     get Icon() { return "Icon" }
     get Contents() { return "Contents" }
     get Region() { return "Region" }
+    get Order() { return "Order" }
 }
 
 const PROPERTY_TYPES = new PropertyTypes();

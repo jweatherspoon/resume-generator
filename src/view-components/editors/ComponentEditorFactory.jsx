@@ -1,6 +1,7 @@
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
+import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
-import { getRootAndAllChildComponents } from "../../utility/DataUtility";
+import IncrementDecrementEditor from "./IncrementDecrementEditor";
 import PropertyEditorFactory from "./PropertyEditorFactory";
 import TopLevelComponentEditorGrid from "./TopLevelComponentEditorGrid";
 
@@ -34,27 +35,21 @@ const useStyles = makeStyles({
     },
     topLevelRegionSelector: {
         flex: 0.2
-    }
+    },
+    topLevelOrderSelector: {
+        display: "flex",
+    },
 })
 
 const ComponentEditorFactory = ({component, allComponents, maxHeight}) => {
     const classes = useStyles({maxHeight});
-    const regionProperty = component.properties.find(p => p.propertyType === PROPERTY_TYPES.Region);
+    const propertyMap = mapPropertyArrayByType(component.properties);
+    const regionProperty = propertyMap[PROPERTY_TYPES.Region];
+    const orderProperty = propertyMap[PROPERTY_TYPES.Order];
 
-    // return (
-    //     <Grid container item className={classes.componentEditor} fullWidth>
-    //         <Grid item xs={9} className={classes.topLevelHeader}>
-    //             <Typography variant="body1" className={classes.editorHeader}>Properties for {component.name}</Typography>
-    //         </Grid>
-    //         <Grid item xs={3} className={classes.topLevelHeader}>
-    //             <PropertyEditorFactory componentId={component.componentId} allComponents={allComponents} 
-    //                 variant="outlined" dense {...regionProperty}  />
-    //         </Grid>
-    //         <Grid item xs={12} className={classes.gridContainer}>
-    //             <TopLevelComponentEditorGrid component={component} allComponents={allComponents} />
-    //         </Grid>
-    //     </Grid>
-    // )
+    const orderSelector = (regionProperty?.value && orderProperty !== null) && (
+        <IncrementDecrementEditor componentId={component.componentId} allComponents={allComponents} {...orderProperty} />
+    );
 
     return (
         <div className={classes.componentEditor}>
@@ -62,6 +57,7 @@ const ComponentEditorFactory = ({component, allComponents, maxHeight}) => {
                 <div className={classes.topLevelComponentHeader}>
                     <Typography variant="body1" className={classes.editorHeader}>Properties for {component.name}</Typography>
                 </div>
+                {orderSelector}
                 <div className={classes.topLevelRegionSelector}>
                     <PropertyEditorFactory componentId={component.componentId} allComponents={allComponents}
                         variant="outlined" dense {...regionProperty} />
