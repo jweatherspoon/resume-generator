@@ -16,3 +16,7 @@ code {
 .fullHeight {
     height: 100%;
 }
+
+.MuiAppBar-colorDefault {
+    background-color: #ccc;
+}

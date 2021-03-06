@@ -7,7 +7,7 @@ const IncrementDecrementEditor = ({ updateProperty, variant, hideLabel, value })
     const label = !hideLabel && value;
     return (
         <div style={{display: "flex"}}>
-            <Button onClick={() => updateProperty(value + 1)}>
+            <Button onClick={() => updateProperty(Math.max(0, value - 1 || 0))}>
                 <ExpandLess />
             </Button>
             {!hideLabel && (
@@ -15,7 +15,7 @@ const IncrementDecrementEditor = ({ updateProperty, variant, hideLabel, value })
                     <Typography variant={variant}>{label}</Typography>
                 </div>
             )}
-            <Button onClick={() => updateProperty(Math.max(0, value - 1 || 0))}>
+            <Button onClick={() => updateProperty(value + 1)}>
                 <ExpandMore />
             </Button>
         </div>
