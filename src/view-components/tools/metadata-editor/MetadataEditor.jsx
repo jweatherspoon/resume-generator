@@ -12,7 +12,7 @@ const MetadataEditor = ({isOpen, closeDialog}) => {
     ]
 
     return (
-        <ToolWindow title="Metadata Editor" onClose={closeDialog}
+        <ToolWindow title="Metadata Editor" closeDialog={closeDialog}
             isOpen={isOpen} buttons={buttons}>
         </ToolWindow>
     )

@@ -90,8 +90,7 @@ const ResumeBuilder = ({components}) => {
             </Grid>
 
             {/* Section for the dialogs */}
-            {/* <AddComponentsDialog open={isAddComponentsDialogOpen}
-                setOpen={() => openDialog("")} /> */}
+            <AddComponentsDialog isOpen={dialogStates.addComponents} closeDialog={closeDialogs} />
             <MetadataEditor isOpen={dialogStates.metadataEditor} closeDialog={closeDialogs} />
         </Grid>
     )

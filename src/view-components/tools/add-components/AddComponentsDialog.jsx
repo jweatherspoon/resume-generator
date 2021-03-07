@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { createAddComponentAction } from "../../../data-model/actions/ComponentActions";
 import { createComponentFromTemplate } from "../../../data-model/resume-components/ResumeComponentTemplates";
 import RESUME_COMPONENT_TYPES from "../../../data-model/resume-components/ResumeComponentTypes";
+import ModalDialog from "../ModalDialog";
 
 const handleAddComponents = (componentsToAdd, dispatch) => {
     const dispatchActions = [];
@@ -15,15 +16,6 @@ const handleAddComponents = (componentsToAdd, dispatch) => {
     for (let action of dispatchActions) {
         dispatch(action);
     }
-}
-
-const onClose = ({ reason, componentsToAdd, dispatch, setOpen, setComponentsToAdd }) => {
-    if (reason === "") {
-        handleAddComponents(componentsToAdd, dispatch);
-    }
-
-    setComponentsToAdd && setComponentsToAdd([]);
-    setOpen && setOpen(false);
 }
 
 const getComponentName = (componentType, filterTopLevel = false) => {
@@ -39,9 +31,29 @@ const getComponentName = (componentType, filterTopLevel = false) => {
 }
 
 const AddComponentsDialog = (props) => {
+    const { isOpen, addComponents, closeDialog } = props;
     const [componentsToAdd, setComponentsToAdd] = useState([]);
 
-    const { open, setOpen, addComponents } = props;
+    const closeAndClearState = (isSave) => {
+        if (isSave) {
+            addComponents(componentsToAdd);
+        }
+
+        setComponentsToAdd([]);
+        closeDialog();
+    }
+
+    const buttons = [
+        {
+            content: "Cancel",
+            action: () => closeAndClearState(false),
+        },
+        {
+            content: "Save",
+            action: () => closeAndClearState(true),
+        }
+    ]
+
     const componentTypes = Object.values(RESUME_COMPONENT_TYPES);
     const topLevelComponentInfo = componentTypes.map((componentType, i) => ({
         componentType,
@@ -60,48 +72,22 @@ const AddComponentsDialog = (props) => {
         <Button key={i} fullWidth onClick={() => setComponentsToAdd([...componentsToAdd.slice(0, i), ...componentsToAdd.slice(i + 1)])}>{getComponentName(ct)}</Button>
     ));
 
-    const closeDialog = () => onClose({ setComponentsToAdd, setOpen });
-
     return (
-        <Dialog open={open} onClose={e => onClose({ e, ...props })}
-            onBackdropClick={() => closeDialog()} maxWidth='md' fullWidth>
-            <DialogTitle>
-                <Grid container>
-                    <Grid item xs={9} style={{margin: 'auto'}}>
-                        <Typography>
-                            <strong>
-                                Add Components
-                            </strong>
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3} className="dialog-button-container">
-                        <Button variant="outlined" className="dialog-button"
-                            onClick={closeDialog}>
-                            Cancel
-                        </Button>
-                        <Button variant="outlined" className="dialog-button"
-                            onClick={() => addComponents(componentsToAdd, setComponentsToAdd)}>
-                            Save
-                        </Button>
-                    </Grid>
+        <ModalDialog title="Add Components" buttons={buttons} closeDialog={() => closeAndClearState(false)} isOpen={isOpen}>
+            <Grid container>
+                <Grid item xs={6}>
+                    {addableComponents}
                 </Grid>
-            </DialogTitle>
-            <DialogContent>
-                <Grid container>
-                    <Grid item xs={6}>
-                        {addableComponents}
-                    </Grid>
-                    <Grid item xs={6}>
-                        {renderedComponentsToAdd}
-                    </Grid>
+                <Grid item xs={6}>
+                    {renderedComponentsToAdd}
                 </Grid>
-            </DialogContent>
-        </Dialog>
-    )
+            </Grid>
+        </ModalDialog>
+    );
 }
 
-const mapDispatchToProps = (dispatch, { open, setOpen }) => ({
-    addComponents: (componentsToAdd, setComponentsToAdd) => onClose({ reason: "", componentsToAdd, setComponentsToAdd, dispatch, open, setOpen })
+const mapDispatchToProps = (dispatch, { closeDialog }) => ({
+    addComponents: (componentsToAdd) => handleAddComponents(componentsToAdd, dispatch),
 })
 
 export default connect(null, mapDispatchToProps)(AddComponentsDialog);

@@ -1,7 +1,8 @@
-import { Button, Dialog, DialogContent, DialogTitle, DialogActions, Grid, Typography, Divider } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
+import { Button, Dialog, DialogContent, DialogTitle, Grid, Typography } from "@material-ui/core";
 
-const ToolWindow = ({title, children, isOpen, closeDialog, buttons}) => {
+const ModalDialog = (props) => {
+    const { title, isOpen, closeDialog, buttons, children, maxWidth } = props;
+    
     const dialogButtons = buttons?.map(btn => (
         <Button onClick={btn.action} variant="outlined" className="dialog-button">
             {btn.content}
@@ -9,7 +10,8 @@ const ToolWindow = ({title, children, isOpen, closeDialog, buttons}) => {
     ));
 
     return (
-        <Dialog open={isOpen} maxWidth='md' fullWidth fullScreen>
+        <Dialog open={isOpen} onBackdropClick={() => closeDialog()}
+            maxWidth={maxWidth || 'md'} fullWidth>
             <DialogTitle>
                 <Grid container>
                     <Grid item xs={9} style={{ margin: 'auto' }}>
@@ -20,23 +22,15 @@ const ToolWindow = ({title, children, isOpen, closeDialog, buttons}) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={3} className="dialog-button-container">
-                        <Button className="dialog-button"
-                            onClick={closeDialog}>
-                            <Close />
-                        </Button>
+                        {dialogButtons}
                     </Grid>
                 </Grid>
             </DialogTitle>
-            <Divider />
             <DialogContent>
                 {children}
             </DialogContent>
-            <Divider />
-            <DialogActions>
-                {dialogButtons}
-            </DialogActions>
         </Dialog>
     )
 }
 
-export default ToolWindow;
+export default ModalDialog;
