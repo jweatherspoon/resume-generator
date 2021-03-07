@@ -5,6 +5,7 @@ import ResumeShell from "./resume-shells/ResumeShell";
 
 import ApplicationMenu from "./app-menu/ApplicationMenu";
 import { useState } from "react";
+import AddComponentsDialog from "./tools/add-components/AddComponentsDialog";
 
 const useStyles = makeStyles({
     preview: {
@@ -70,6 +71,9 @@ const ResumeBuilder = ({components}) => {
             <Grid item {...cutoffs} className={classes.preview}>
                 <ResumeShell />
             </Grid>
+
+            <AddComponentsDialog open={isAddComponentsDialogOpen}
+                setOpen={setIsAddComponentsDialogOpen} />
         </Grid>
     )
 };
