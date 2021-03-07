@@ -6,6 +6,7 @@ import ResumeShell from "./resume-shells/ResumeShell";
 import ApplicationMenu from "./app-menu/ApplicationMenu";
 import { useState } from "react";
 import AddComponentsDialog from "./tools/add-components/AddComponentsDialog";
+import MetadataEditor from "./tools/metadata-editor/MetadataEditor";
 
 const useStyles = makeStyles({
     preview: {
@@ -22,7 +23,23 @@ const cutoffs = {
 const ResumeBuilder = ({components}) => {
     const classes = useStyles();
 
-    const [isAddComponentsDialogOpen, setIsAddComponentsDialogOpen] = useState(false);
+    const [dialogStates, setDialogStates] = useState({
+        addComponents: false,
+        metadataEditor: false
+    });
+
+    const tryOpenDialog = dialogName => {
+        const newDialogStates = Object.assign({}, dialogStates);
+        for (let key of Object.keys(newDialogStates)) {
+            // sets all keys to false except for the one that matches
+            newDialogStates[key] = key === dialogName;
+        }
+
+        setDialogStates(newDialogStates);
+    }
+
+    // will close all dialogs because none can have empty string as a key
+    const closeDialogs = () => tryOpenDialog("");
 
     const appMenuItemDefinitions = [
         // {
@@ -34,11 +51,11 @@ const ResumeBuilder = ({components}) => {
             children: [
                 {
                     header: "Add Components",
-                    action: () => setIsAddComponentsDialogOpen(true),
+                    action: () => tryOpenDialog("addComponents"),
                 },
                 {
                     header: "Metadata Editor",
-                    action: () => alert("TODO: Implement this!")
+                    action: () => tryOpenDialog("metadataEditor"),
                 },
                 {
                     header: "Submenu Test",
@@ -72,8 +89,10 @@ const ResumeBuilder = ({components}) => {
                 <ResumeShell />
             </Grid>
 
-            <AddComponentsDialog open={isAddComponentsDialogOpen}
-                setOpen={setIsAddComponentsDialogOpen} />
+            {/* Section for the dialogs */}
+            {/* <AddComponentsDialog open={isAddComponentsDialogOpen}
+                setOpen={() => openDialog("")} /> */}
+            <MetadataEditor isOpen={dialogStates.metadataEditor} closeDialog={closeDialogs} />
         </Grid>
     )
 };
