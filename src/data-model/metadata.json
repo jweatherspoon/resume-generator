@@ -18,7 +18,7 @@
         },
         "38154cce-7ff7-4f59-9607-cb4211352c44": {
             "name": "HasDivider",
-            "dataType": "String"
+            "dataType": "Boolean"
         },
         "f6d99eb8-e991-4305-9a20-2597d2b79004": {
             "name": "ContentSpacing",
@@ -38,11 +38,11 @@
         },
         "44a40670-2649-4c46-8158-d5098f28f56a": {
             "name": "BeginDate",
-            "dataType": "String"
+            "dataType": "Date"
         },
         "fb836308-984e-47fc-b815-5901a96e4369": {
             "name": "EndDate",
-            "dataType": "String"
+            "dataType": "Date"
         },
         "5070d24f-7c55-4ce5-be19-1fad6477b1d3": {
             "name": "Description",
@@ -58,7 +58,7 @@
         },
         "3f8c4f48-fb37-4f42-865f-0afa9a2971c1": {
             "name": "Width",
-            "dataType": "String"
+            "dataType": "Number"
         },
         "6b7f791d-5de6-49e7-9391-f198df605080": {
             "name": "AltText",
@@ -66,7 +66,7 @@
         },
         "c2856582-7728-4fbc-964f-60a2b9d1fdea": {
             "name": "Gpa",
-            "dataType": "String"
+            "dataType": "Number"
         },
         "76e0cc53-0a14-48be-bba8-c965a777f52f": {
             "name": "Degree",
@@ -82,7 +82,7 @@
         },
         "f04e7f9f-9f18-401c-9b34-a8cfa340f449": {
             "name": "FontWeight",
-            "dataType": "String"
+            "dataType": "Number"
         },
         "11b7a3fe-2c1d-40fa-8709-0dfa7ba3dc07": {
             "name": "Icon",
