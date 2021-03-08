@@ -42,10 +42,6 @@ const ResumeBuilder = ({components}) => {
     const closeDialogs = () => tryOpenDialog("");
 
     const appMenuItemDefinitions = [
-        // {
-        //     header: "File",
-        //     action: () => alert("hi")
-        // },
         {
             header: "Tools",
             children: [
@@ -54,19 +50,15 @@ const ResumeBuilder = ({components}) => {
                     action: () => tryOpenDialog("addComponents"),
                 },
                 {
-                    header: "Metadata Editor",
-                    action: () => tryOpenDialog("metadataEditor"),
-                },
-                {
-                    header: "Submenu Test",
+                    header: "Metadata",
                     children: [
                         {
-                            header: "Submenu Item 1",
-                            action: () => alert("I'm numbah one")
+                            header: "Global Metadata Editor",
+                            action: () => tryOpenDialog("metadataEditor"),
                         },
                         {
-                            header: "2 man groop",
-                            action: () => alert("I'm numbah to0o")
+                            header: "Custom Metadata Editor",
+                            action: () => alert("TODO: Implement this!")
                         }
                     ]
                 }

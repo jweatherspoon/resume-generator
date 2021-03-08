@@ -3,6 +3,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { createAddPropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 import DATA_TYPES from "../../../data-model/DataTypes";
+import TabbedContentControl from "../../TabbedContentControl";
 
 import ToolWindow from "../ToolWindow";
 import editorConfigs from "./editorConfigs";
@@ -16,9 +17,24 @@ const useStyles = makeStyles({
     objectListControlsSection: {
         borderBottom: "1px solid black"
     }
-})
+});
 
-const MetadataEditor = ({isOpen, closeDialog, globalMetadata, addPropertyType}) => {
+const tabDefinitions = [
+    {
+        id: "propertyTypes",
+        text: "Property Types",
+    },
+    {
+        id: "componentTypes",
+        text: "Component Types",
+    },
+    {
+        id: "componentTemplates",
+        text: "Component Templates",
+    },
+];
+
+const MetadataEditor = ({isOpen, closeDialog, globalMetadata}) => {
     const classes = useStyles();
 
     const [selectedTab, setSelectedTab] = useState("propertyTypes");
@@ -32,8 +48,9 @@ const MetadataEditor = ({isOpen, closeDialog, globalMetadata, addPropertyType}) 
                 closeDialog();
             }
         }
-    ]
+    ];
 
+    // configure the currently selected tab content
     const getMetadataObjects = key => Object.entries((globalMetadata && globalMetadata[key]) || {});
 
     const objectList = getMetadataObjects(selectedTab).map(([objectType, metadataObject], i) => (
@@ -64,30 +81,32 @@ const MetadataEditor = ({isOpen, closeDialog, globalMetadata, addPropertyType}) 
     return (
         <ToolWindow title="Metadata Editor" closeDialog={closeDialog}
             isOpen={isOpen} buttons={buttons}>
-                <Grid container>
-                    {/* object list */}
-                    <Grid item container xs={2} className={classes.objectList}>
-                        {/* controls section (e.g. add object) */}
-                        <Grid item xs={12} className={classes.objectListControlsSection}>
-                            {objectListControls}
+                <TabbedContentControl tabs={tabDefinitions} selectedTab={selectedTab} onSelectedTabChanged={newTab => setSelectedTab(newTab)}>
+                    <Grid container>
+                        {/* object list */}
+                        <Grid item container xs={2} className={classes.objectList}>
+                            {/* controls section (e.g. add object) */}
+                            <Grid item xs={12} className={classes.objectListControlsSection}>
+                                {objectListControls}
+                            </Grid>
+                            <Divider />
+                            <Grid item>
+                                <List dense>
+                                    {objectList}
+                                </List>
+                            </Grid>
                         </Grid>
-                        <Divider />
-                        <Grid item>
-                            <List dense>
-                                {objectList}
-                            </List>
-                        </Grid>
-                    </Grid>
 
-                    {/* editor section */}
-                    {selectedItem && (
-                        <Grid item container xs={10}>
-                            <List>
-                                {fieldEditors}
-                            </List>
-                        </Grid>
-                    )}
-                </Grid>
+                        {/* editor section */}
+                        {selectedItem && (
+                            <Grid item container xs={10}>
+                                <List>
+                                    {fieldEditors}
+                                </List>
+                            </Grid>
+                        )}
+                    </Grid>
+                </TabbedContentControl>
         </ToolWindow>
     )
 }

@@ -19,6 +19,32 @@ const editorConfigs = {
                 }
             ]
         }
+    },
+    componentTypes: {
+        controls: [
+
+        ],
+        editorDefinition: {
+            fields: [
+                {
+                    fieldName: "name",
+                    dataType: DATA_TYPES.String
+                },
+                {
+                    fieldName: "dataType",
+                    dataType: DATA_TYPES.Enum,
+                    source: ENUM_SOURCES.DataTypes
+                }
+            ]
+        }
+    },
+    componentTemplates: {
+        controls: [],
+        editorDefinition: {
+            fields: [
+                
+            ]
+        }
     }
 }
 
