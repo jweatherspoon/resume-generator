@@ -14,7 +14,7 @@ const EnumValueEditor = (props) => {
     ));
 
     return (
-        <TextField select fullWidth value={value} label={!hideLabel && label} variant={variant} margin={isDense && "dense"}
+        <TextField select fullWidth value={value || ""} label={!hideLabel && label} variant={variant} margin={isDense && "dense"}
             onChange={(e) => onValueChanged(value, e.target.value)} SelectProps={{autoWidth: true}}>
             {menuItems}
         </TextField>

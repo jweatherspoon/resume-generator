@@ -2,8 +2,8 @@ import { Button, Dialog, DialogContent, DialogTitle, DialogActions, Grid, Typogr
 import { Close } from "@material-ui/icons";
 
 const ToolWindow = ({title, children, isOpen, closeDialog, buttons}) => {
-    const dialogButtons = buttons?.map(btn => (
-        <Button onClick={btn.action} variant="outlined" className="dialog-button">
+    const dialogButtons = buttons?.map((btn, i) => (
+        <Button key={`tool-window-${title}-btn-${i}`} onClick={btn.action} variant="outlined" className="dialog-button">
             {btn.content}
         </Button>
     ));

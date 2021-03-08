@@ -3,6 +3,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { createAddPropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 import DATA_TYPES from "../../../data-model/DataTypes";
+import IconImage from "../../resume-components/IconImage";
 import TabbedContentControl from "../../TabbedContentControl";
 
 import ToolWindow from "../ToolWindow";
@@ -15,7 +16,9 @@ const useStyles = makeStyles({
         overflowY: "auto",
     },
     objectListControlsSection: {
-        borderBottom: "1px solid black"
+        borderBottom: "1px solid black",
+        display: 'flex',
+        justifyContent: 'flex-end',
     }
 });
 
@@ -34,7 +37,7 @@ const tabDefinitions = [
     },
 ];
 
-const MetadataEditor = ({isOpen, closeDialog, globalMetadata}) => {
+const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     const classes = useStyles();
 
     const [selectedTab, setSelectedTab] = useState("propertyTypes");
@@ -44,7 +47,8 @@ const MetadataEditor = ({isOpen, closeDialog, globalMetadata}) => {
         {
             content: "Save Changes",
             action: () => {
-                alert("saved!");
+                console.log(JSON.stringify(globalMetadata));
+                alert("Saved to the console!");
                 closeDialog();
             }
         }
@@ -63,8 +67,10 @@ const MetadataEditor = ({isOpen, closeDialog, globalMetadata}) => {
 
     const editorConfig = editorConfigs[selectedTab];
     const objectListControls = editorConfig.controls?.map((controlDefinition, i) => (
-        <Button key={`object-list-control-${i}`} onClick={() => controlDefinition.action && controlDefinition.action()}>
-            {controlDefinition.content}
+        <Button key={`object-list-control-${i}`} onClick={() => controlDefinition.action && controlDefinition.action(dispatch)}>
+            {controlDefinition.icon && (
+                <IconImage icon={controlDefinition.icon} altText={controlDefinition.description} />
+            )}
         </Button>
     ));
 
@@ -113,10 +119,6 @@ const MetadataEditor = ({isOpen, closeDialog, globalMetadata}) => {
 
 const mapStateToProps = (state) => ({
     globalMetadata: state.metadata?.global || {}
-})
+});
 
-const mapDispatchToProps = (dispatch) => ({
-    addPropertyType: () => dispatch(createAddPropertyTypeAction("new property", DATA_TYPES.String)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(MetadataEditor);
+export default connect(mapStateToProps)(MetadataEditor);

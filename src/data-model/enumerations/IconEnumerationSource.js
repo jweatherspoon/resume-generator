@@ -7,6 +7,7 @@ const allIcons = [
     "github",
     "instagram",
     "twitter",
+    "plus",
     "jwLogo",
 ];
 
