@@ -9,13 +9,13 @@ const editorConfigs = {
         editorDefinition: {
             fields: [
                 {
-                    name: "name",
-                    type: DATA_TYPES.String
+                    fieldName: "name",
+                    dataType: DATA_TYPES.String
                 },
                 {
-                    name: "dataType",
-                    type: DATA_TYPES.Enum,
-                    source: ENUM_SOURCES.DATA_TYPES
+                    fieldName: "dataType",
+                    dataType: DATA_TYPES.Enum,
+                    source: ENUM_SOURCES.DataTypes
                 }
             ]
         }
