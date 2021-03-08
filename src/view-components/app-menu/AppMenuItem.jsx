@@ -20,23 +20,20 @@ const AppMenuItem = ({header, action, children, closeParent}) => {
     }
 
     const closeSubmenu = () => {
-        console.log("Trying to close menu! Anchor El before:", anchorEl);
         setAnchorEl(null);
     }
     
     const childMenuItems = children?.map((childDef, i) => <AppMenuItem key={`${childDef}-${i}`} {...childDef} closeParent={closeSubmenu} />);
     if (childMenuItems && childMenuItems.length > 0) {
         return (
-            <ClickAwayListener onClickAway={closeSubmenu}>
-                <div onMouseEnter={triggerExpandEvent} >
-                    <MenuItem>
-                        {header}
-                    </MenuItem>
-                    <Menu open={Boolean(anchorEl)} anchorEl={anchorEl} onMouseLeave={closeSubmenu}>
-                        {childMenuItems}
-                    </Menu>
-                </div>
-            </ClickAwayListener>
+            <div onMouseEnter={triggerExpandEvent} >
+                <MenuItem>
+                    {header}
+                </MenuItem>
+                <Menu open={Boolean(anchorEl)} anchorEl={anchorEl} onMouseLeave={closeSubmenu}>
+                    {childMenuItems}
+                </Menu>
+            </div>
         );
     }
     else {

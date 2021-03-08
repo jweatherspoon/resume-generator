@@ -57,7 +57,7 @@ const convertPropertiesToRowDefinition = (component, rowId, columnDefinitions) =
         for (let property of component.properties) {
             // if this property exists in the propertiesToHide, skip
             if (!propertiesToHide.some(propertyType => property.propertyType === propertyType)) {
-                rowDefinition[property.propertyType] = { componentId: component.componentId, ...property };
+                rowDefinition[property.propertyType] = { component: component, ...property };
                 if (!columnDefinitions[property.propertyType]) {
                     columnDefinitions[property.propertyType] = createColumnDefinition(property, { minWidth: 100, maxWidth: 250 });
                 }

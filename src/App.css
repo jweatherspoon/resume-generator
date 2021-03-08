@@ -37,6 +37,10 @@
   }
 }
 
+.fullHeight {
+    height: 100%;
+}
+
 .dialog-button-container {
     flex-wrap: nowrap;
     display: flex;

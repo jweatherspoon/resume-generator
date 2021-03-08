@@ -1,7 +1,6 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/PropertyTypes";
-import IncrementDecrementEditor from "./IncrementDecrementEditor";
 import PropertyEditorFactory from "./PropertyEditorFactory";
 import TopLevelComponentEditorGrid from "./TopLevelComponentEditorGrid";
 
@@ -48,7 +47,7 @@ const ComponentEditorFactory = ({component, allComponents, maxHeight}) => {
     const orderProperty = propertyMap[PROPERTY_TYPES.Order];
 
     const orderSelector = (regionProperty?.value && orderProperty !== null) && (
-        <IncrementDecrementEditor componentId={component.componentId} allComponents={allComponents} {...orderProperty} />
+        <PropertyEditorFactory component={component} {...orderProperty} isIncrementDecrement />
     );
 
     return (
@@ -59,8 +58,7 @@ const ComponentEditorFactory = ({component, allComponents, maxHeight}) => {
                 </div>
                 {orderSelector}
                 <div className={classes.topLevelRegionSelector}>
-                    <PropertyEditorFactory componentId={component.componentId} allComponents={allComponents}
-                        variant="outlined" dense {...regionProperty} />
+                    <PropertyEditorFactory component={component} variant="outlined" isDense {...regionProperty} />
                 </div>
             </div>
 
