@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { createUpdatePropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
+import { createUpdateComponentTypeAction, createUpdatePropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 import DATA_TYPES from "../../../data-model/DataTypes";
 import getEnumOptions from "../../../data-model/enumerations";
 import EnumValueEditor from "../../editors/EnumValueEditor";
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch, { id, table, fieldName }) => ({
                 dispatch(createUpdatePropertyTypeAction(id, fieldName, newValue));
                 break;
             case "componentTypes":
-                alert("TODO: Implement this!");
+                dispatch(createUpdateComponentTypeAction(id, fieldName, newValue));
                 break;
             case "componentTemplates":
                 alert("TODO: Implement this!");

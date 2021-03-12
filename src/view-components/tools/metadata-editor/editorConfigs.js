@@ -1,7 +1,7 @@
 import { ICONS } from "../../../data-model/enumerations/IconEnumerationSource"
 import DATA_TYPES from "../../../data-model/DataTypes";
 import ENUM_SOURCES from "../../../data-model/enumerations/EnumSources";
-import { createAddPropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
+import { createAddComponentTypeAction, createAddPropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 
 const editorConfigs = {
     propertyTypes: {
@@ -9,7 +9,7 @@ const editorConfigs = {
             {
                 icon: ICONS.plus,
                 description: "Add Property Type",
-                action: dispatch => dispatch(createAddPropertyTypeAction("new property", DATA_TYPES.String))
+                action: dispatch => dispatch(createAddPropertyTypeAction("new component", DATA_TYPES.String))
             }
         ],
         editorDefinition: {
@@ -28,7 +28,11 @@ const editorConfigs = {
     },
     componentTypes: {
         controls: [
-
+            {
+                icon: ICONS.plus,
+                description: "Add Component Type",
+                action: dispatch => dispatch(createAddComponentTypeAction("new Component"))
+            }
         ],
         editorDefinition: {
             fields: [
@@ -36,11 +40,6 @@ const editorConfigs = {
                     fieldName: "name",
                     dataType: DATA_TYPES.String
                 },
-                {
-                    fieldName: "dataType",
-                    dataType: DATA_TYPES.Enum,
-                    source: ENUM_SOURCES.DataTypes
-                }
             ]
         }
     },

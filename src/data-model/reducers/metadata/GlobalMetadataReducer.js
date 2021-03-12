@@ -1,4 +1,4 @@
-import { ADD_PROPERTY_TYPE, UPDATE_PROPERTY_TYPE } from "../../actions/metadata/GlobalMetadataActions";
+import { ADD_COMPONENT_TYPE, ADD_PROPERTY_TYPE, UPDATE_COMPONENT_TYPE, UPDATE_PROPERTY_TYPE } from "../../actions/metadata/GlobalMetadataActions";
 import metadata from "../../metadata.json";
 import { createReducer } from "../index";
 import { v4 as uuidv4 } from "uuid";
@@ -25,6 +25,28 @@ const handleUpdatePropertyType = (state, { id, fieldName, newValue }) => {
     }
 }
 
+const handleAddComponentType = (state, { name }) => {
+    return {
+        ...state,
+        componentTypes: {
+            ...state.componentTypes,
+            [getUniqueTypeId(Object.keys(state))]: { name }
+        }
+    }
+}
+
+const handleUpdateComponentType = (state, { id, fieldName, newValue }) => {
+    const copiedComponentType = Object.assign({}, state.componentTypes[id]);
+    copiedComponentType[fieldName] = newValue;
+    return {
+        ...state,
+        componentTypes: {
+            ...state.componentTypes,
+            [id]: copiedComponentType
+        }
+    }
+}
+
 const getUniqueTypeId = (existingTypes) => {
     let typeId = uuidv4();
     while (existingTypes.some(eType => eType === typeId)) {
@@ -37,7 +59,9 @@ const getUniqueTypeId = (existingTypes) => {
 const initialState = metadata;
 const reducingActions = {
     [ADD_PROPERTY_TYPE]: handleAddPropertyType,
+    [ADD_COMPONENT_TYPE]: handleAddComponentType,
     [UPDATE_PROPERTY_TYPE]: handleUpdatePropertyType,
+    [UPDATE_COMPONENT_TYPE]: handleUpdateComponentType,
 };
 
 const globalMetadataReducer = createReducer(initialState, reducingActions);
