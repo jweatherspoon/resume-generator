@@ -109,6 +109,7 @@ const ComponentTemplateEditor = (props) => {
     const {
         id,
         selectedObject,
+        enumSources,
         propertyTypes,
         componentTypes,
         componentTemplates,
@@ -122,7 +123,7 @@ const ComponentTemplateEditor = (props) => {
     } = props;
 
     // used to get component and property type names for display 
-    const getNameFromId = id => componentTypes[id]?.name || propertyTypes[id]?.name || `type ${id}`;
+    const getNameFromId = id => componentTypes[id]?.name || propertyTypes[id]?.name || enumSources[id]?.name || `type ${id}`;
     const componentName = getNameFromId(id);
 
     // if a template does not exist for the given type, give the option to create one 
@@ -191,6 +192,7 @@ const ComponentTemplateEditor = (props) => {
 }
 
 const mapStateToProps = state => ({
+    enumSources: state.metadata.global.enumSources,
     propertyTypes: state.metadata.global.propertyTypes,
     componentTypes: state.metadata.global.componentTypes,
     componentTemplates: state.metadata.global.componentTemplates

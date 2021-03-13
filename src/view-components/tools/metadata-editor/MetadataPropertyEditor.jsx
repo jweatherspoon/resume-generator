@@ -1,19 +1,10 @@
 import { connect } from "react-redux";
-import { createUpdateComponentTypeAction, createUpdatePropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
-import DATA_TYPES, { METADATA_TYPES } from "../../../data-model/DataTypes";
+import { createUpdateComponentTypeAction, createUpdateEnumSourceTopLevelPropertyAction, createUpdatePropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
+import { METADATA_TYPES } from "../../../data-model/DataTypes";
 import getEnumOptions from "../../../data-model/enumerations";
-import BooleanEditor from "../../editors/BooleanEditor";
-import EnumValueEditor from "../../editors/EnumValueEditor";
-import NumberEditor from "../../editors/NumberEditor";
-import StringEditor from "../../editors/StringEditor";
+import PropertyDataTypeEditorMap from "../../editors/PropertyDataTypeEditorMap";
 import ComponentTemplateEditor from "./ComponentTemplateEditor";
-
-const editorGenerators = {
-    [DATA_TYPES.String]: props => (<StringEditor {...props} />),
-    [DATA_TYPES.Number]: props => (<NumberEditor {...props} />),
-    [DATA_TYPES.Enum]: props => (<EnumValueEditor {...props} />),
-    [DATA_TYPES.Boolean]: props => (<BooleanEditor {...props} />),
-}
+import EnumSourceEditor from "./EnumSourceEditor";
 
 const MetadataPropertyEditor = props => {
     const {
@@ -33,9 +24,14 @@ const MetadataPropertyEditor = props => {
             <ComponentTemplateEditor {...props} />
         );
     }
+    else if (dataType === METADATA_TYPES.EnumSource) {
+        return (
+            <EnumSourceEditor {...props} />
+        )
+    }
 
     // if not a special case, try to get an editor generator
-    const editorGenerator = editorGenerators[dataType];
+    const editorGenerator = PropertyDataTypeEditorMap[dataType];
     if (selectedObject && editorGenerator) {
         // convert to editor model
         const editorProps = {
@@ -62,6 +58,9 @@ const mapDispatchToProps = (dispatch, { id, table, fieldName }) => ({
                 break;
             case "componentTypes":
                 dispatch(createUpdateComponentTypeAction(id, fieldName, newValue));
+                break;
+            case "enumSources":
+                dispatch(createUpdateEnumSourceTopLevelPropertyAction(id, fieldName, newValue));
                 break;
         }
     }

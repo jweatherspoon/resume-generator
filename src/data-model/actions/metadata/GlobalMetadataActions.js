@@ -20,6 +20,25 @@ export const createUpdateComponentTypeAction = (id, fieldName, newValue) => crea
 
 /* ======================== END COMPONENT TYPE ACTIONS ======================== */
 
+/* ======================== BEGIN ENUM SOURCE ACTIONS ======================== */
+
+export const ADD_ENUM_SOURCE = "ADD_ENUM_SOURCE";
+export const createAddEnumSourceAction = (name, isStatic) => createAction(ADD_ENUM_SOURCE, { name, isStatic });
+
+export const UPDATE_ENUM_SOURCE_TOP_LEVEL_PROPERTY = "UPDATE_ENUM_SOURCE_TOP_LEVEL_PROPERTY";
+export const createUpdateEnumSourceTopLevelPropertyAction = (id, fieldName, newValue) => createAction(UPDATE_ENUM_SOURCE_TOP_LEVEL_PROPERTY, { id, fieldName, newValue });
+
+export const ADD_ENUM_SOURCE_OPTION = "ADD_ENUM_SOURCE_OPTION";
+export const createAddEnumSourceOptionAction = (enumSourceId, option) => createAction(ADD_ENUM_SOURCE_OPTION, { enumSourceId, option });
+
+export const UPDATE_ENUM_SOURCE_OPTION = "UPDATE_ENUM_SOURCE_OPTION";
+export const createUpdateEnumSourceOptionAction = (enumSourceId, index, newValue) => createAction(UPDATE_ENUM_SOURCE_OPTION, { enumSourceId, index, newValue });
+
+export const REMOVE_ENUM_SOURCE_OPTION = "REMOVE_ENUM_SOURCE_OPTION";
+export const createRemoveEnumSourceOptionAction = (enumSourceId, option) => createAction(REMOVE_ENUM_SOURCE_OPTION, { enumSourceId, option });
+
+/* ======================== END ENUM SOURCE ACTIONS ======================== */
+
 /* ======================== BEGIN COMPONENT TEMPLATE ACTIONS ======================== */
 
 // this action used for adding a new component template to metadata

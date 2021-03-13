@@ -9,7 +9,8 @@ const DATA_TYPES = {
 
 // special metadata types
 export const METADATA_TYPES = {
-    ComponentTemplate: "ComponentTemplate"
+    ComponentTemplate: "ComponentTemplate",
+    EnumSource: "EnumSource",
 }
 
 export default DATA_TYPES;

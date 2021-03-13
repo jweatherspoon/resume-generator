@@ -34,6 +34,10 @@ const tabDefinitions = [
         id: "componentTemplates",
         text: "Component Templates",
     },
+    {
+        id: "enumSources",
+        text: "Enum Sources",
+    },
 ];
 
 const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {

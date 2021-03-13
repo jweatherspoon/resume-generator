@@ -4,10 +4,12 @@ const DATA_MODEL_PATH = process.argv[2];
 const METADATA_PATH = `${DATA_MODEL_PATH}/metadata.json`;
 const CODE_GEN_PATH = `${DATA_MODEL_PATH}/code-gen/`;
 
+const nameKeyRegex = /\s/g;
+
 const mapTypesByName = (typeDefinitions) => {
     const convertedMap = {};
     for (let [typeId, typeDefinition] of Object.entries(typeDefinitions)) {
-        const nameKey = typeDefinition.name.replace(/\s/g, "");
+        const nameKey = typeDefinition.name.replace(nameKeyRegex, "");
         convertedMap[nameKey] = typeId;
     }
 
@@ -37,4 +39,8 @@ fs.readFile(METADATA_PATH, (err, data) => {
     // convert componentTypes to ComponentTypes.js
     const componentTypes = mapTypesByName(metadata.componentTypes);
     convertToCodeFile("ComponentTypes.js", "COMPONENT_TYPES", componentTypes);
+
+    // convert enumSources to EnumSources.js
+    const enumSources = mapTypesByName(metadata.enumSources);
+    convertToCodeFile("EnumSources.js", "ENUM_SOURCES", enumSources);
 });
