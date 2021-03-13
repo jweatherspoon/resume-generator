@@ -1,12 +1,12 @@
-import RESUME_COMPONENT_TYPES from "../../data-model/resume-components/ResumeComponentTypes";
+import COMPONENT_TYPES from "../../data-model/code-gen/ComponentTypes";
 import ContactDetails from "./ContactDetails"
 import IconImage from "./IconImage";
 import PositionHeader from "./PositionHeader";
 
 const ResumeComponentMap = {
-    [RESUME_COMPONENT_TYPES.ContactDetails]: (props) => (<ContactDetails {...props} />),
-    [RESUME_COMPONENT_TYPES.PositionHeader]: (props) => (<PositionHeader {...props} />),
-    [RESUME_COMPONENT_TYPES.IconImage]: (props) => (<IconImage {...props} />),
+    [COMPONENT_TYPES.ContactDetails]: (props) => (<ContactDetails {...props} />),
+    [COMPONENT_TYPES.PositionHeader]: (props) => (<PositionHeader {...props} />),
+    [COMPONENT_TYPES.IconImage]: (props) => (<IconImage {...props} />),
 }
 
 const ResumeComponentFactory = props => {

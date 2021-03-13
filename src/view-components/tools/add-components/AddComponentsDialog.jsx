@@ -3,7 +3,6 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { createAddComponentAction } from "../../../data-model/actions/ComponentActions";
 import { createComponentFromTemplate } from "../../../data-model/resume-components/ResumeComponentTemplates";
-import { flattenTree } from "../../../utility/DataUtility";
 import ModalDialog from "../ModalDialog";
 
 const handleAddComponents = (componentTypesToAdd, createFromTemplate, dispatch) => {
@@ -59,8 +58,6 @@ const AddComponentsDialog = (props) => {
         componentType,
         name: getComponentName(componentType),
     }));
-
-    console.log(topLevelTemplates, topLevelComponentInfo);
 
     const addableComponents = topLevelComponentInfo.map((info, i) => (
         <Button key={i} fullWidth onClick={() => setComponentsToAdd([...componentsToAdd, info.componentType])}>

@@ -1,5 +1,5 @@
 import { mapPropertyArrayByType } from "../../data-model/Property";
-import PROPERTY_TYPES from "../../data-model/PropertyTypes";
+import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ICONS } from "../../data-model/enumerations/IconEnumerationSource";
 

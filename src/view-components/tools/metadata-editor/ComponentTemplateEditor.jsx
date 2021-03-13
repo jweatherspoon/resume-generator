@@ -174,7 +174,7 @@ const ComponentTemplateEditor = (props) => {
     }
 
     return (
-        <Grid container xs={12}>
+        <Grid container>
             {/* top level properties */}
             <Grid item xs={12}>
                 <BooleanEditor value={selectedObject.isTopLevel || false} onValueChanged={(oldValue, newValue) => handleIsTopLevelChanged(newValue)} 

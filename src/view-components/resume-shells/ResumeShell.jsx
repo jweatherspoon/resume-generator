@@ -1,7 +1,7 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import { connect } from "react-redux";
 import { mapPropertyArrayByType } from "../../data-model/Property";
-import PROPERTY_TYPES from "../../data-model/PropertyTypes";
+import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import ResumeRegion from "./ResumeRegion";
 import { ResumeShellMap } from "./ResumeShellFactory";
 

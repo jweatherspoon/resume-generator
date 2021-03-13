@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import { mapPropertyArrayByType } from "../../data-model/Property";
-import PROPERTY_TYPES from "../../data-model/PropertyTypes";
+import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import PropertyEditorFactory from "./PropertyEditorFactory";
 import TopLevelComponentEditorGrid from "./TopLevelComponentEditorGrid";
 

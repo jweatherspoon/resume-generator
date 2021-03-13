@@ -1,6 +1,6 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import { connect } from "react-redux";
-import PROPERTY_TYPES from "../../data-model/PropertyTypes";
+import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import { sortObjectArrayWithValueSelector } from "../../utility/DataUtility";
 import ResumeComponentFactory from "../resume-components/ResumeComponentFactory";
 

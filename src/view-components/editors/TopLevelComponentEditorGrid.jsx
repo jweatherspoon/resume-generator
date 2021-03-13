@@ -1,7 +1,7 @@
 import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
 import { endianness } from "os";
 import DATA_TYPES from "../../data-model/DataTypes";
-import PROPERTY_TYPES from "../../data-model/PropertyTypes";
+import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import { getRootAndAllChildComponents, sortObjectArrayByKey } from "../../utility/DataUtility";
 import PropertyEditorFactory from "./PropertyEditorFactory";
 

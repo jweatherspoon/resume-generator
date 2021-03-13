@@ -1,4 +1,4 @@
-import { Grid, Button, List, ListItem, ListItemText, Divider, makeStyles, Typography } from "@material-ui/core";
+import { Grid, Button, List, ListItem, ListItemText, Divider, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";
@@ -47,7 +47,7 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
             content: "Save Changes",
             action: () => {
                 console.log(JSON.stringify(globalMetadata));
-                alert("Saved to the console!");
+                alert("Saved to the console! Replace the contents of metadata.json and run `$npm run code-gen` to update the code genned files!");
                 closeDialog();
             }
         }

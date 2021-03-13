@@ -1,6 +1,6 @@
 import { Container, Divider, Grid, Typography } from "@material-ui/core";
 import { mapPropertyArrayByType } from "../../data-model/Property";
-import PROPERTY_TYPES from "../../data-model/PropertyTypes"
+import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes"
 
 export const PositionHeader = ({ properties }) => {
     const mappedProps = mapPropertyArrayByType(properties);
