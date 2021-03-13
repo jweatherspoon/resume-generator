@@ -9,9 +9,8 @@ import ModalDialog from "../ModalDialog";
 const handleAddComponents = (componentTypesToAdd, createFromTemplate, dispatch) => {
     const dispatchActions = [];
     for (let componentType of componentTypesToAdd) {
-        const component = createFromTemplate(componentType);
-        const flattenedComponents = flattenTree(component, (component) => component?.children);
-        dispatchActions.push(...flattenedComponents.map(c => createAddComponentAction(c)));
+        const components = createFromTemplate(componentType);
+        dispatchActions.push(...components.map(c => createAddComponentAction(c)));
     }
 
     for (let action of dispatchActions) {

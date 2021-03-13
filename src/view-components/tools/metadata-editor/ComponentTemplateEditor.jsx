@@ -197,7 +197,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, { id }) => ({
-    addComponentTemplate: () => dispatch(createAddComponentTemplateAction(id, true)),
+    addComponentTemplate: () => dispatch(createAddComponentTemplateAction(id, false)),
     updateTopLevelProperty: (fieldName, newValue) => dispatch(createUpdateTopLevelPropertyAction(id, fieldName, newValue)),
     addDefaultProperty: (propertyType) => dispatch(createAddTemplatedPropertyAction(id, propertyType)),
     addDefaultChild: (childType) => dispatch(createAddTemplatedChildAction(id, childType)),

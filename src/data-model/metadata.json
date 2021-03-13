@@ -106,22 +106,22 @@
         "4aa04dcb-cecb-4a21-bab0-426cd32f96e9": {
             "name": "Contact Details"
         },
-        "a2726803-6d48-4abd-8158-48608aa216a4": {
+        "3b40b720-07ee-498b-887f-ca5547f9e8dd": {
             "name": "Contact Details Item"
         },
-        "ce9432a3-036e-4d0a-a054-e6b49f4b266b": {
+        "2afe76be-3ac6-456e-8074-aa130151d452": {
             "name": "Education Information"
         },
         "14d87358-501c-4e72-9c48-d324864ae936": {
             "name": "Headered Content Section"
         },
-        "d8d502c0-8723-46da-a79d-fd19e18d2be5": {
+        "6fd6b290-8742-4b2d-a801-2811366260bd": {
             "name": "Icon Image"
         },
         "3930c3d0-a987-40fb-b5f4-f271cef1ee81": {
             "name": "Job Description"
         },
-        "dee8f55d-e0c6-47bb-905d-8338ee3fde0d": {
+        "05efd983-7ecd-4625-a125-24e327e45c85": {
             "name": "Position Header"
         },
         "46f5f67e-cba9-479a-a9b4-b4fd4bd9a91b": {
@@ -139,11 +139,21 @@
                 "a2726803-6d48-4abd-8158-48608aa216a4"
             ]
         },
-        "a2726803-6d48-4abd-8158-48608aa216a4": {
+        "3b40b720-07ee-498b-887f-ca5547f9e8dd": {
             "isTopLevel": false,
             "properties": [
                 "11b7a3fe-2c1d-40fa-8709-0dfa7ba3dc07",
                 "69b97132-6ba8-4f1f-85b1-21e7741072f9"
+            ],
+            "children": []
+        },
+        "05efd983-7ecd-4625-a125-24e327e45c85": {
+            "isTopLevel": true,
+            "properties": [
+                "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                "8251618f-48ea-435b-9a01-be70f5c92822",
+                "7ee7c098-bb00-417c-8ffc-744c99672ebb",
+                "5c50f728-9e37-44db-8ded-78d780310325"
             ],
             "children": []
         }
