@@ -2,7 +2,7 @@ import { Grid, Button, List, ListItem, ListItemText, Divider, makeStyles } from 
 import { useState } from "react";
 import { connect } from "react-redux";
 import DATA_TYPES from "../../../data-model/DataTypes";
-import getEnumOptions from "../../../data-model/enumerations";
+import { getEnumOptions } from "../../../data-model/code-gen/EnumSources";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";
 import IconImage from "../../resume-components/IconImage";
 import TabbedContentControl from "../../TabbedContentControl";

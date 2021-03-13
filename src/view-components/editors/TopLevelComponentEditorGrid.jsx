@@ -1,11 +1,8 @@
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
-import { endianness } from "os";
-import DATA_TYPES from "../../data-model/DataTypes";
+import { makeStyles, Typography } from "@material-ui/core";
 import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import { getRootAndAllChildComponents, sortObjectArrayByKey } from "../../utility/DataUtility";
 import PropertyEditorFactory from "./PropertyEditorFactory";
 
-// const idColumnWidth = 2;
 const propertiesToHide = [
     PROPERTY_TYPES.Region,
     PROPERTY_TYPES.Order
@@ -44,8 +41,8 @@ const useStyles = makeStyles({
 
 const createColumnDefinition = (property, { minWidth, maxWidth }) => ({
     field: property?.propertyType,
-    header: property?.propertyType,
-    description: property?.propertyType,
+    header: property?.name,
+    description: property?.name,
     type: property?.dataType,
     minWidth, 
     maxWidth

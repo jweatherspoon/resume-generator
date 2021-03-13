@@ -5,17 +5,18 @@ export const mapPropertyArrayByType = propertyArray => mapObjectArrayByKey(prope
 
 export const createPropertyOfType = (propertyType, propertyTypes) => {
     if (propertyTypes[propertyType]) {
-        return createPropertyFromTypeDefinition(propertyTypes[propertyType]);
+        return createPropertyFromTypeDefinition({propertyType, ...propertyTypes[propertyType]});
     }
 
     return null;
 }
 
 export const createPropertyFromTypeDefinition = propertyTypeDefinition => {
-    const { name, dataType, source } = propertyTypeDefinition;
+    const { name, propertyType, dataType, source } = propertyTypeDefinition;
     const propertyDefinition = { 
+        name,
         dataType,
-        propertyType: name, 
+        propertyType, 
         value: null,
     };
 

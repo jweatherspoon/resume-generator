@@ -22,7 +22,8 @@ const handleAddEnumSource = (state, { name, isStatic }) => {
         [getUniqueTypeId(Object.keys(state))]: {
             name,
             isStatic,
-            options: []
+            options: [],
+            importName: `${name}EnumerationSource`,
         }
     }
 }

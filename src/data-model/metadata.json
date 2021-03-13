@@ -58,7 +58,7 @@
         },
         "3f8c4f48-fb37-4f42-865f-0afa9a2971c1": {
             "name": "Width",
-            "dataType": "Number"
+            "dataType": "String"
         },
         "6b7f791d-5de6-49e7-9391-f198df605080": {
             "name": "AltText",
@@ -96,7 +96,7 @@
         "8251618f-48ea-435b-9a01-be70f5c92822": {
             "name": "Region",
             "dataType": "Enum",
-            "source": "RegionEnumerationSource"
+            "source": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555"
         },
         "a33a7074-e2de-4119-af60-8699dd0ed48b": {
             "name": "Order",
@@ -184,6 +184,12 @@
                 "Boolean",
                 "Date"
             ]
+        },
+        "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555": {
+            "name": "Regions",
+            "isStatic": false,
+            "options": [],
+            "importName": "RegionsEnumerationSource"
         }
     }
 }

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { createUpdateComponentTypeAction, createUpdateEnumSourceTopLevelPropertyAction, createUpdatePropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 import { METADATA_TYPES } from "../../../data-model/DataTypes";
-import getEnumOptions from "../../../data-model/enumerations";
+import { getEnumOptions } from "../../../data-model/code-gen/EnumSources";
 import PropertyDataTypeEditorMap from "../../editors/PropertyDataTypeEditorMap";
 import ComponentTemplateEditor from "./ComponentTemplateEditor";
 import EnumSourceEditor from "./EnumSourceEditor";

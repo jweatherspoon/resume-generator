@@ -13,6 +13,7 @@ const EnumSourceEditor = (props) => {
         selectedObject,
         updateName,
         updateIsStatic,
+        updateImportName,
         removeEnumOption,
         updateEnumOption,
         ...other
@@ -35,21 +36,24 @@ const EnumSourceEditor = (props) => {
                     }} />
             </Grid>
 
-            {selectedObject.isStatic && (
-                <Grid item xs={12}>
+            <Grid item xs={12}>
+                {selectedObject.isStatic ? (
                     <ListEditor dataType={DATA_TYPES.String} values={selectedObject.options} addAction={() => addEnumOption("_newEnumOption")}
-                        onValueChanged={(oldValue, newValue, index) => updateEnumOption(index, newValue)}
-                        attributes={{
-                            isDense: true
-                        }} />
-                </Grid>
-            )}
+                    onValueChanged={(oldValue, newValue, index) => updateEnumOption(index, newValue)}
+                    attributes={{
+                        isDense: true
+                    }} />
+                ) : (
+                        <StringEditor value={selectedObject.importName} onValueChanged={(oldValue, newValue) => updateImportName(newValue)} attributes={{ label: "Import Name" }} />
+                )}
+            </Grid>
         </Grid>
     );
 }
 
 const mapDispatchToProps = (dispatch, { id }) => ({
     updateName: (name) => dispatch(createUpdateEnumSourceTopLevelPropertyAction(id, "name", name)),
+    updateImportName: (name) => dispatch(createUpdateEnumSourceTopLevelPropertyAction(id, "importName", name)),
     updateIsStatic: (isStatic) => dispatch(createUpdateEnumSourceTopLevelPropertyAction(id, "isStatic", isStatic)),
     addEnumOption: (option) => dispatch(createAddEnumSourceOptionAction(id, option)),
     removeEnumOption: (option) => dispatch(createRemoveEnumSourceOptionAction(id, option)),

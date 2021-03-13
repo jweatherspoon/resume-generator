@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
 import { createUpdatePropertyAction } from "../../data-model/actions/ComponentActions";
 
-import getEnumOptions from "../../data-model/enumerations";
+import { getEnumOptions } from "../../data-model/code-gen/EnumSources";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PropertyDataTypeEditorMap from "./PropertyDataTypeEditorMap";
 
 const PropertyEditorFactory = (props) => {
     const {
+        name,
         component,
         propertyType,
         updateProperty,
@@ -23,7 +24,7 @@ const PropertyEditorFactory = (props) => {
             value: propertyMap[propertyType]?.value,
             onValueChanged: updateProperty,
             attributes: {
-                label: propertyType,
+                label: name,
                 options: source && getEnumOptions(source, enumSources),
                 ...other
             },

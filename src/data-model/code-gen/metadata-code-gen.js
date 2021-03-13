@@ -6,14 +6,32 @@ const CODE_GEN_PATH = `${DATA_MODEL_PATH}/code-gen/`;
 
 const nameKeyRegex = /\s/g;
 
-const mapTypesByName = (typeDefinitions) => {
+const mapTypesByKey = (typeDefinitions, keySelector, valueSelector, filter) => {
+    keySelector = keySelector || ((typeId, typeDef) => typeId);
+    valueSelector = valueSelector || ((typeId, typeDef) => typeId);
+    filter = filter || ((typeDef) => true);
+
     const convertedMap = {};
     for (let [typeId, typeDefinition] of Object.entries(typeDefinitions)) {
-        const nameKey = typeDefinition.name.replace(nameKeyRegex, "");
-        convertedMap[nameKey] = typeId;
+        if (filter(typeDefinition)) {
+            const selectedValue = keySelector(typeId, typeDefinition);
+            if (!selectedValue) {
+                throw `
+============================================================================================================
+================ ERROR: Failed key selection for type ${typeId}! ================
+============================================================================================================`
+            }
+
+            const nameKey = keySelector(typeId, typeDefinition).replace(nameKeyRegex, "");
+            convertedMap[nameKey] = valueSelector(typeId, typeDefinition);
+        }
     }
 
     return convertedMap;
+}
+
+const mapTypesByName = (typeDefinitions) => {
+    return mapTypesByKey(typeDefinitions, (typeId, typeDef) => typeDef.name)
 }
 
 const convertToCodeFile = (fileName, exportName, values) => {
@@ -23,6 +41,73 @@ export default ${exportName};`;
 
     const filePath = `${CODE_GEN_PATH}/${fileName}`;
     fs.writeFile(filePath, fileContents, (err) => err && console.error(err));
+}
+
+const getEnumOptions = (enumSourceId, enumSources) => {
+    // return enum source options 
+    if (enumSourceId === null) {
+        return Object.entries(enumSources).map((([enumSourceId, enumSourceDefinition]) => ({
+            id: enumSourceId,
+            ...enumSourceDefinition,
+        })));
+    }
+
+    const sourceDefinition = enumSources[enumSourceId];
+    if (sourceDefinition) {
+        if (sourceDefinition.isStatic) {
+            return sourceDefinition.options || [];
+        }
+        else {
+            /*const dynamicEnumSource = DYNAMIC_ENUM_SOURCE_MAP[enumSourceId];
+            if (dynamicEnumSource?.getEnumOptions) {
+                return dynamicEnumSource.getEnumOptions();
+            }*/
+        }
+    }
+
+    // unknown enum source
+    return [];
+}
+
+const convertEnumSourcesToCodeFile = (fileName, enumSources) => {
+    const mainExportValues = mapTypesByName(enumSources);
+    const dynamicEnumTypes = Object.entries(enumSources).filter(([enumSourceId, enumDefinition]) => !enumDefinition.isStatic);
+
+    // create an import for each 
+    const imports = dynamicEnumTypes.map(([enumSourceId, enumDefinition]) => `import ${enumDefinition.importName} from "../enumerations/${enumDefinition.importName}"`);
+    const dynamicExportValues = mapTypesByKey(enumSources, (typeId, typeDef) => `"${typeId}"`, (typeId, typeDef) => typeDef.importName, (typeDef) => !typeDef.isStatic);
+
+    const getJSObjectAsLines = (obj, spacing) => {
+        const spaces = [];
+        for (let i = 0; i < spacing ; i++) spaces.push(" ");
+        
+        const lines = ["{"];
+        for (let [key, value] of Object.entries(obj)) {
+            lines.push([
+                ...spaces,
+                `${key}: new ${value}(),`,
+            ].join(""));
+        }
+
+        lines.push("}");
+        return lines;
+    }
+
+    const multilineCommentRegex = /(\/\*|\*\/)/g
+    const fileLines = [
+        ...imports,
+        "",
+        `const ENUM_SOURCES = ${JSON.stringify(mainExportValues, null, 4)};`,
+        "",
+        `export const DYNAMIC_ENUM_SOURCE_MAP = ${getJSObjectAsLines(dynamicExportValues, 4).join("\n")};`,
+        "",
+        `export const getEnumOptions = ${getEnumOptions.toString().replace(multilineCommentRegex, "")}`,
+        "",
+        "export default ENUM_SOURCES;"   
+    ];
+
+    const filePath = `${CODE_GEN_PATH}/${fileName}`;
+    fs.writeFile(filePath, fileLines.join("\n"), (err) => err && console.error(err));
 }
 
 fs.readFile(METADATA_PATH, (err, data) => {
@@ -41,6 +126,5 @@ fs.readFile(METADATA_PATH, (err, data) => {
     convertToCodeFile("ComponentTypes.js", "COMPONENT_TYPES", componentTypes);
 
     // convert enumSources to EnumSources.js
-    const enumSources = mapTypesByName(metadata.enumSources);
-    convertToCodeFile("EnumSources.js", "ENUM_SOURCES", enumSources);
+    convertEnumSourcesToCodeFile("EnumSources.js", metadata.enumSources);
 });
