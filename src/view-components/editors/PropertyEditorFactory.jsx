@@ -10,11 +10,14 @@ const PropertyEditorFactory = (props) => {
         name,
         component,
         propertyType,
+        propertyTypes,
         updateProperty,
         source,
         enumSources,
         ...other
     } = props;
+
+    const enumSourceId = propertyTypes[propertyType]?.source || source;
     
     const editorGenerator = PropertyDataTypeEditorMap[props.dataType];
     if (editorGenerator) {
@@ -25,7 +28,7 @@ const PropertyEditorFactory = (props) => {
             onValueChanged: updateProperty,
             attributes: {
                 label: name,
-                options: source && getEnumOptions(source, enumSources),
+                options: enumSourceId && getEnumOptions(enumSourceId, enumSources),
                 ...other
             },
         };
@@ -37,7 +40,8 @@ const PropertyEditorFactory = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    enumSources: state.metadata?.global?.enumSources || []
+    enumSources: state.metadata?.global?.enumSources || [],
+    propertyTypes: state.metadata?.global?.propertyTypes || []
 })
 
 const mapDispatchToProps = (dispatch, { component, propertyType }) => ({
