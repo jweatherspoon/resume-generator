@@ -17,6 +17,7 @@ const TemplatedValueList = (props) => {
         ids,
         header,
         getName,
+        isDense,
         addAction,
         deleteAction,
         addableOptions,
@@ -56,13 +57,13 @@ const TemplatedValueList = (props) => {
     ];
 
     const openAddDialogButton = addableOptions && (
-        <Button onClick={() => setIsAddDialogOpen(true)}>
+        <Button onClick={() => setIsAddDialogOpen(true)} fullWidth variant="contained">
             <IconImage icon={ICONS.plus} altText="Add New" />
         </Button>
     );
 
     const addDialogOptions = addableOptions?.map((option, index) => (
-        <ListItem button key={`addable-option-${index}`} onClick={() => setSelectedItem(option)}>
+        <ListItem button key={`addable-option-${index}`} onClick={() => setSelectedItem(option)} selected={option === selectedItem}>
             <ListItemText>
                 {getName(option)}
             </ListItemText>
@@ -72,27 +73,24 @@ const TemplatedValueList = (props) => {
     return (
         <Grid item container xs={12}>
             <Grid item container xs={12}>
-                <Grid item xs={9}>
+                <Grid item xs={11}>
                     <Typography variant="h6">
                         {header}
                     </Typography>
                 </Grid>
                 <Grid item xs={1}>
-                    <Divider orientation="vertical" />
-                </Grid>
-                <Grid item xs={2}>
                     {openAddDialogButton}
                 </Grid>
                 <Divider />
             </Grid>
             <Grid item xs={12}>
-                <List>
+                <List dense={isDense}>
                     {listItems}
                 </List>
             </Grid>
             <ModalDialog title="Add New" buttons={buttons} isOpen={isAddDialogOpen}
                 closeDialog={closeDialog} maxWidth="sm">
-                    <List>
+                    <List dense={isDense}>
                         {addDialogOptions}
                     </List>
             </ModalDialog>
@@ -163,8 +161,8 @@ const ComponentTemplateEditor = (props) => {
             </Grid>
 
             {/* default property / child types */}
-            <TemplatedValueList header="Default Properties" addableOptions={Object.keys(propertyTypes)} ids={selectedObject.properties} getName={getNameFromId} addAction={ptype => addDefaultProperty(ptype)} deleteAction={ptype => removeDefaultProperty(ptype)} />
-            <TemplatedValueList header="Default Children" addableOptions={Object.keys(componentTypes)} ids={selectedObject.children} getName={getNameFromId} addAction={ctype => addDefaultChild(ctype)} deleteAction={ctype => removeDefaultChild(ctype)} />
+            <TemplatedValueList isDense header="Default Properties" addableOptions={Object.keys(propertyTypes)} ids={selectedObject.properties} getName={getNameFromId} addAction={ptype => addDefaultProperty(ptype)} deleteAction={ptype => removeDefaultProperty(ptype)} />
+            <TemplatedValueList isDense header="Default Children" addableOptions={Object.keys(componentTypes)} ids={selectedObject.children} getName={getNameFromId} addAction={ctype => addDefaultChild(ctype)} deleteAction={ctype => removeDefaultChild(ctype)} />
         </Grid>
     );
 }

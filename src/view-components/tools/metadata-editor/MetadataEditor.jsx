@@ -1,8 +1,6 @@
 import { Grid, Button, List, ListItem, ListItemText, Divider, makeStyles, Typography } from "@material-ui/core";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { createAddPropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
-import DATA_TYPES from "../../../data-model/DataTypes";
 import IconImage from "../../resume-components/IconImage";
 import TabbedContentControl from "../../TabbedContentControl";
 
@@ -55,13 +53,11 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     ];
 
     // configure the currently selected tab content
-    const getMetadataObjects = key => {
-        const keyToUse = key === "componentTemplates" ? "componentTypes" : key;
-        return Object.entries((globalMetadata && globalMetadata[keyToUse]) || {});
-    }
+    const nameKey = selectedTab === "componentTemplates" ? "componentTypes" : selectedTab;
+    const getMetadataObjects = key => Object.entries((globalMetadata && globalMetadata[key]) || {});
 
-    const objectList = getMetadataObjects(selectedTab).map(([objectType, metadataObject], i) => (
-        <ListItem button key={`${metadataObject.name}-${i}`} onClick={() => setSelectedItem(objectType)}>
+    const objectList = getMetadataObjects(nameKey).map(([objectType, metadataObject], i) => (
+        <ListItem button key={`${metadataObject.name}-${i}`} onClick={() => setSelectedItem(objectType)} selected={objectType === selectedItem}>
             <ListItemText>
                 {metadataObject.name}
             </ListItemText>
@@ -111,9 +107,11 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
                         {/* editor section */}
                         {selectedItem && (
                             <Grid item container xs={10}>
-                                <List>
-                                    {fieldEditors}
-                                </List>
+                                <Grid item xs={12}>
+                                    <List>
+                                        {fieldEditors}
+                                    </List>
+                                </Grid>
                             </Grid>
                         )}
                     </Grid>
