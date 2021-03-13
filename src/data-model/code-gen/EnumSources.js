@@ -3,7 +3,8 @@ import RegionsEnumerationSource from "../enumerations/RegionsEnumerationSource"
 const ENUM_SOURCES = {
     "Icons": "9298908a-df0f-4931-8e31-8f73097780af",
     "DataTypes": "e1220ef7-bff3-4d3d-828c-6752343241f2",
-    "Regions": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555"
+    "Regions": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555",
+    "Logos": "b3c0e4f0-e97c-44d2-9851-62baab179c94"
 };
 
 export const DYNAMIC_ENUM_SOURCE_MAP = {

@@ -101,6 +101,11 @@
         "a33a7074-e2de-4119-af60-8699dd0ed48b": {
             "name": "Order",
             "dataType": "Number"
+        },
+        "e95daefa-b2c3-4c5d-a002-d8134064dbe5": {
+            "name": "Logo",
+            "dataType": "Enum",
+            "source": "b3c0e4f0-e97c-44d2-9851-62baab179c94"
         }
     },
     "componentTypes": {
@@ -170,8 +175,7 @@
                 "github",
                 "instagram",
                 "twitter",
-                "plus",
-                "jwLogo"
+                "plus"
             ]
         },
         "e1220ef7-bff3-4d3d-828c-6752343241f2": {
@@ -190,6 +194,15 @@
             "isStatic": false,
             "options": [],
             "importName": "RegionsEnumerationSource"
+        },
+        "b3c0e4f0-e97c-44d2-9851-62baab179c94": {
+            "name": "Logos",
+            "isStatic": true,
+            "options": [
+                "jwLogoPink",
+                "jwLogoBlack"
+            ],
+            "importName": ""
         }
     }
 }

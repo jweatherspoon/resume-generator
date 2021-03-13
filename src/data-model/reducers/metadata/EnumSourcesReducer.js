@@ -23,7 +23,7 @@ const handleAddEnumSource = (state, { name, isStatic }) => {
             name,
             isStatic,
             options: [],
-            importName: `${name}EnumerationSource`,
+            importName: "",
         }
     }
 }

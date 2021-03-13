@@ -23,7 +23,8 @@ const PROPERTY_TYPES = {
     "Icon": "11b7a3fe-2c1d-40fa-8709-0dfa7ba3dc07",
     "Contents": "7ce47014-85ad-4733-8716-2f61e08e14eb",
     "Region": "8251618f-48ea-435b-9a01-be70f5c92822",
-    "Order": "a33a7074-e2de-4119-af60-8699dd0ed48b"
+    "Order": "a33a7074-e2de-4119-af60-8699dd0ed48b",
+    "Logo": "e95daefa-b2c3-4c5d-a002-d8134064dbe5"
 };
 
 export default PROPERTY_TYPES;
