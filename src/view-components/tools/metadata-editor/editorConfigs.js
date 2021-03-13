@@ -1,6 +1,6 @@
 import { ICONS } from "../../../data-model/enumerations/IconEnumerationSource"
 import DATA_TYPES, { METADATA_TYPES } from "../../../data-model/DataTypes";
-import ENUM_SOURCES from "../../../data-model/enumerations/EnumSources";
+import ENUM_SOURCES from "../../../data-model/code-gen/EnumSources";
 import { createAddComponentTypeAction, createAddEnumSourceAction, createAddPropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 
 const editorConfigs = {

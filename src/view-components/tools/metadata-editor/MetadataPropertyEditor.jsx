@@ -13,6 +13,7 @@ const MetadataPropertyEditor = props => {
         source,
         dataType,
         fieldName,
+        enumSources,
         selectedObject,
         updateMetadata,
         ...other
@@ -35,10 +36,13 @@ const MetadataPropertyEditor = props => {
     if (selectedObject && editorGenerator) {
         // convert to editor model
         const editorProps = {
+            enumSources,
+            updateMetadata,
             value: selectedObject[fieldName],
             onValueChanged: (oldValue, newValue) => updateMetadata(newValue),
             attributes: {
-                options: source && getEnumOptions(source),
+                options: source && getEnumOptions(source, enumSources),
+                source,
                 ...other
             }
         };

@@ -1,6 +1,8 @@
 import { Grid, Button, List, ListItem, ListItemText, Divider, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import { connect } from "react-redux";
+import DATA_TYPES from "../../../data-model/DataTypes";
+import getEnumOptions from "../../../data-model/enumerations";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";
 import IconImage from "../../resume-components/IconImage";
 import TabbedContentControl from "../../TabbedContentControl";
@@ -78,15 +80,26 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
         </Button>
     ));
 
+    const selectedObject = globalMetadata[selectedTab]?.[selectedItem];
     const fieldEditors = editorConfig.editorDefinition?.fields?.map((fieldDefinition, i) => {
-        const selectedObject = globalMetadata[selectedTab]?.[selectedItem];
         return (
             <ListItem key={`field-${i}`}>
                 <MetadataPropertyEditor {...fieldDefinition} id={selectedItem} table={selectedTab}
-                    selectedObject={selectedObject} label={fieldDefinition.fieldName} />
+                    selectedObject={selectedObject} label={fieldDefinition.fieldName} enumSources={globalMetadata.enumSources} />
             </ListItem>
         );
     });
+
+    const isEnumType = selectedObject?.dataType === DATA_TYPES.Enum;
+    if (isEnumType) {
+        fieldEditors.push((
+            <ListItem>
+                <MetadataPropertyEditor fieldName="source" dataType={DATA_TYPES.Enum} id={selectedItem} table={selectedTab}
+                    selectedObject={selectedObject} label={"Enum Source"} enumSources={globalMetadata.enumSources}
+                    options={getEnumOptions(null, globalMetadata.enumSources)} />
+            </ListItem>
+        ));
+    }
 
     return (
         <ToolWindow title="Metadata Editor" closeDialog={closeDialog}

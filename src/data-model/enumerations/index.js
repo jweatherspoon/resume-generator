@@ -1,18 +1,24 @@
-import DataTypesEnumSource from "./DataTypesEnumerationSource";
-import ENUM_SOURCES from "./EnumSources";
-import IconEnumSource from "./IconEnumerationSource";
-import RegionEnumSource from "./RegionEnumerationSource";
+const getEnumOptions = (enumSourceId, enumSources) => {
+    // return enum source options 
+    if (enumSourceId === null) {
+        return Object.entries(enumSources).map((([enumSourceId, enumSourceDefinition]) => ({
+            id: enumSourceId,
+            ...enumSourceDefinition,
+        })));
+    }
 
-const EnumSourceMap = {
-    [ENUM_SOURCES.Icons]: IconEnumSource,
-    [ENUM_SOURCES.Regions]: RegionEnumSource,
-    [ENUM_SOURCES.DataTypes]: DataTypesEnumSource,
-}
+    const sourceDefinition = enumSources[enumSourceId];
+    if (sourceDefinition) {
+        if (sourceDefinition.isStatic) {
+            return sourceDefinition.options || [];
+        }
+        else {
+            // TODO: Implement code-genned dynamic map and implement here 
+        }
+    }
 
-const getEnumOptions = (enumSourceName) => {
-    const enumSource = EnumSourceMap[enumSourceName];
-    const options = enumSource?.getEnumOptions() || [];
-    return ["", ...options];
+    // unknown enum source
+    return [];
 }
 
 export default getEnumOptions;
