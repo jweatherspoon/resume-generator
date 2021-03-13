@@ -1,16 +1,17 @@
-import { Button, Dialog, DialogContent, DialogTitle, Grid, Typography } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { createAddComponentAction } from "../../../data-model/actions/ComponentActions";
 import { createComponentFromTemplate } from "../../../data-model/resume-components/ResumeComponentTemplates";
-import RESUME_COMPONENT_TYPES from "../../../data-model/resume-components/ResumeComponentTypes";
+import { flattenTree } from "../../../utility/DataUtility";
 import ModalDialog from "../ModalDialog";
 
-const handleAddComponents = (componentsToAdd, dispatch) => {
+const handleAddComponents = (componentTypesToAdd, createFromTemplate, dispatch) => {
     const dispatchActions = [];
-    for (let componentType of componentsToAdd) {
-        const components = createComponentFromTemplate(componentType);
-        dispatchActions.push(...components.map(c => createAddComponentAction(c)));
+    for (let componentType of componentTypesToAdd) {
+        const component = createFromTemplate(componentType);
+        const flattenedComponents = flattenTree(component, (component) => component?.children);
+        dispatchActions.push(...flattenedComponents.map(c => createAddComponentAction(c)));
     }
 
     for (let action of dispatchActions) {
@@ -18,27 +19,26 @@ const handleAddComponents = (componentsToAdd, dispatch) => {
     }
 }
 
-const getComponentName = (componentType, filterTopLevel = false) => {
-    const components = createComponentFromTemplate(componentType);
-    if (components && components.length > 0) {
-        const component = components[0];
-        if (!filterTopLevel || component.isTopLevel) {
-            return component.name;
-        }
-    }
-
-    return componentType;
-}
-
 const AddComponentsDialog = (props) => {
-    const { isOpen, addComponents, closeDialog } = props;
+    const { 
+        isOpen,
+        closeDialog, 
+        addComponents, 
+        propertyTypes,
+        componentTypes,
+        availableTemplates, 
+    } = props;
+
     const [componentsToAdd, setComponentsToAdd] = useState([]);
+
+    const getComponentName = (componentType) => componentTypes[componentType]?.name;
+    const createFromTemplate = (componentType) => createComponentFromTemplate(componentType, propertyTypes, componentTypes, availableTemplates);
 
     const closeAndClearState = (isSave) => {
         if (isSave) {
-            addComponents(componentsToAdd);
+            addComponents(componentsToAdd, createFromTemplate);
         }
-
+        
         setComponentsToAdd([]);
         closeDialog();
     }
@@ -51,25 +51,28 @@ const AddComponentsDialog = (props) => {
         {
             content: "Save",
             action: () => closeAndClearState(true),
+            isDisabled: () => !componentsToAdd?.length
         }
     ]
 
-    const componentTypes = Object.values(RESUME_COMPONENT_TYPES);
-    const topLevelComponentInfo = componentTypes.map((componentType, i) => ({
+    const topLevelTemplates = Object.entries(availableTemplates).filter(([componentType, componentTemplate]) => componentTemplate.isTopLevel);
+    const topLevelComponentInfo = topLevelTemplates.map(([componentType, componentTemplate]) => ({
         componentType,
-        components: createComponentFromTemplate(componentType) || [],
-    })).filter(componentInfo => componentInfo.components[0]?.isTopLevel)
-        .map(componentInfo => ({
-            componentType: componentInfo.componentType,
-            component: componentInfo.components[0],
-        }));
+        name: getComponentName(componentType),
+    }));
+
+    console.log(topLevelTemplates, topLevelComponentInfo);
 
     const addableComponents = topLevelComponentInfo.map((info, i) => (
-        <Button key={i} fullWidth onClick={() => setComponentsToAdd([...componentsToAdd, info.componentType])}>{info.component?.name}</Button>
+        <Button key={i} fullWidth onClick={() => setComponentsToAdd([...componentsToAdd, info.componentType])}>
+            {info.name}
+        </Button>
     ))
 
     const renderedComponentsToAdd = componentsToAdd.map((ct, i) => (
-        <Button key={i} fullWidth onClick={() => setComponentsToAdd([...componentsToAdd.slice(0, i), ...componentsToAdd.slice(i + 1)])}>{getComponentName(ct)}</Button>
+        <Button key={i} fullWidth onClick={() => setComponentsToAdd([...componentsToAdd.slice(0, i), ...componentsToAdd.slice(i + 1)])}>
+            {getComponentName(ct)}
+        </Button>
     ));
 
     return (
@@ -86,8 +89,14 @@ const AddComponentsDialog = (props) => {
     );
 }
 
-const mapDispatchToProps = (dispatch, { closeDialog }) => ({
-    addComponents: (componentsToAdd) => handleAddComponents(componentsToAdd, dispatch),
+const mapStateToProps = (state) => ({
+    propertyTypes: state.metadata.global.propertyTypes || {},
+    componentTypes: state.metadata.global.componentTypes || {},
+    availableTemplates: state.metadata.global.componentTemplates || {},
 })
 
-export default connect(null, mapDispatchToProps)(AddComponentsDialog);
+const mapDispatchToProps = (dispatch) => ({
+    addComponents: (componentsToAdd, createFromTemplate) => handleAddComponents(componentsToAdd, createFromTemplate, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddComponentsDialog);

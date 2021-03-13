@@ -62,3 +62,20 @@ export const sortObjectArrayWithValueSelector = (arr, valueSelector) => arr?.sor
     // not totally accurate sort, but good enough for now lol rip
     return 0;
 })
+
+export const flattenTree = (root, childrenSelector) => {
+    const flattenedItems = [];
+
+    if (root) {
+        const queue = [root];
+        while (queue.length > 0) {
+            const currentItem = queue.shift();
+            flattenedItems.push(currentItem);
+            
+            const children = childrenSelector(currentItem) || [];
+            queue.push(...children);
+        }
+    }
+
+    return flattenedItems;
+}

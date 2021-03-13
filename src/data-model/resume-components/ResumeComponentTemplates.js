@@ -1,18 +1,13 @@
-import RESUME_COMPONENT_TYPES from "./ResumeComponentTypes";
-import createContactDetails, { createContactDetailsItem } from './template-generators/ContactDetailsTemplateGenerator';
-import createIconImage from './template-generators/IconImage';
-import createPositionHeader from './template-generators/PositionHeaderTemplateGenerator';
+import createComponent from "./template-generators";
+import { createPropertyOfType } from "../Property";
 
-const ResumeComponentTemplateMap = {
-    [RESUME_COMPONENT_TYPES.ContactDetailsItem]: createContactDetailsItem,
-    [RESUME_COMPONENT_TYPES.ContactDetails]: createContactDetails,
-    [RESUME_COMPONENT_TYPES.PositionHeader]: createPositionHeader,
-    [RESUME_COMPONENT_TYPES.IconImage]: createIconImage,
-}
-
-export const createComponentFromTemplate = (componentType, ...args) => {
-    if (ResumeComponentTemplateMap[componentType]) {
-        return ResumeComponentTemplateMap[componentType](...args).flat(Infinity);
+export const createComponentFromTemplate = (componentType, propertyTypes = {}, componentTypes = {}, componentTemplates = {}) => {
+    const typeDefinition = componentTypes[componentType];
+    const templateDefinition = componentTemplates[componentType];
+    if (typeDefinition && templateDefinition) {
+        const componentProperties = templateDefinition.properties?.map(propertyType => createPropertyOfType(propertyType, propertyTypes));
+        const componentChildren = templateDefinition.children?.map(childType => createComponentFromTemplate(childType, propertyTypes, componentTypes, componentTemplates));
+        return createComponent(typeDefinition.name, componentType, componentProperties, componentChildren, templateDefinition.isTopLevel);
     }
 
     return null;

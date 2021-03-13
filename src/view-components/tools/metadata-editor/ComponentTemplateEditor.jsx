@@ -6,6 +6,7 @@ import ModalDialog from "../ModalDialog";
 import { useState } from "react";
 import { ICONS } from "../../../data-model/enumerations/IconEnumerationSource";
 import IconImage from "../../resume-components/IconImage";
+import { sortObjectArrayByKey } from "../../../utility/DataUtility";
 
 /**
  * Renders a templated value list
@@ -62,7 +63,8 @@ const TemplatedValueList = (props) => {
         </Button>
     );
 
-    const addDialogOptions = addableOptions?.map((option, index) => (
+    const sortedOptions = addableOptions && sortObjectArrayByKey(addableOptions, (option) => getName(option));
+    const addDialogOptions = sortedOptions?.map((option, index) => (
         <ListItem button key={`addable-option-${index}`} onClick={() => setSelectedItem(option)} selected={option === selectedItem}>
             <ListItemText>
                 {getName(option)}
@@ -150,11 +152,32 @@ const ComponentTemplateEditor = (props) => {
         }
     }
 
+    const handleIsTopLevelChanged = newValue => {
+        updateTopLevelProperty("isTopLevel", newValue);
+
+        // add / remove the order and region properties depending on the value
+        const properties = Object.entries(propertyTypes).map(([propertyType, typeDefinition]) => ({
+            ...typeDefinition,
+            propertyType,
+        }));
+        
+        const orderProperty = properties.find(p => p.name === "Order");
+        const regionProperty = properties.find(p => p.name === "Region");
+        if (newValue) {
+            addDefaultProperty(orderProperty.propertyType);
+            addDefaultProperty(regionProperty.propertyType);
+        } 
+        else {
+            removeDefaultProperty(orderProperty.propertyType);
+            removeDefaultProperty(regionProperty.propertyType);
+        }
+    }
+
     return (
         <Grid container xs={12}>
             {/* top level properties */}
             <Grid item xs={12}>
-                <BooleanEditor value={selectedObject.isTopLevel || false} onValueChanged={(oldValue, newValue) => updateTopLevelProperty("isTopLevel", newValue)} 
+                <BooleanEditor value={selectedObject.isTopLevel || false} onValueChanged={(oldValue, newValue) => handleIsTopLevelChanged(newValue)} 
                     attributes={{
                         label: "Is Top Level",
                     }} />

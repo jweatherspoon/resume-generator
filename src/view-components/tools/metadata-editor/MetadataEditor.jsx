@@ -1,6 +1,7 @@
 import { Grid, Button, List, ListItem, ListItemText, Divider, makeStyles, Typography } from "@material-ui/core";
 import { useState } from "react";
 import { connect } from "react-redux";
+import { sortObjectArrayByKey } from "../../../utility/DataUtility";
 import IconImage from "../../resume-components/IconImage";
 import TabbedContentControl from "../../TabbedContentControl";
 
@@ -56,7 +57,7 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     const nameKey = selectedTab === "componentTemplates" ? "componentTypes" : selectedTab;
     const getMetadataObjects = key => Object.entries((globalMetadata && globalMetadata[key]) || {});
 
-    const objectList = getMetadataObjects(nameKey).map(([objectType, metadataObject], i) => (
+    const objectList = sortObjectArrayByKey(getMetadataObjects(nameKey), ([objectType, metadataObject]) => metadataObject.name).map(([objectType, metadataObject], i) => (
         <ListItem button key={`${metadataObject.name}-${i}`} onClick={() => setSelectedItem(objectType)} selected={objectType === selectedItem}>
             <ListItemText>
                 {metadataObject.name}

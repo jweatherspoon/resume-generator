@@ -1,18 +1,11 @@
-import { mapObjectArrayByKey } from "../../utility/DataUtility";
 import { ADD_COMPONENT, UPDATE_PROPERTY } from "../actions/ComponentActions";
-import { createComponentFromTemplate } from "../resume-components/ResumeComponentTemplates";
-import RESUME_COMPONENT_TYPES from "../resume-components/ResumeComponentTypes";
 
 const componentReducingActions = {
     [ADD_COMPONENT]: (state, payload) => handleAddComponent(state, payload),
     [UPDATE_PROPERTY]: (state, payload) => handleUpdateProperty(state, payload),
 };
 
-const contactDetails = createComponentFromTemplate(RESUME_COMPONENT_TYPES.ContactDetails);
-const positionHeader = createComponentFromTemplate(RESUME_COMPONENT_TYPES.PositionHeader, "Jon Weatherspoon", "Software Engineer");
-const logo = createComponentFromTemplate(RESUME_COMPONENT_TYPES.IconImage);
-
-const initialState = mapObjectArrayByKey([...contactDetails, ...positionHeader, ...logo], c => c.componentId);
+const initialState = {};
 
 const componentReducer = (state = initialState, action) => {
     const reducingAction = componentReducingActions[action.type];

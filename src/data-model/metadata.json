@@ -94,13 +94,58 @@
         },
         "8251618f-48ea-435b-9a01-be70f5c92822": {
             "name": "Region",
-            "dataType": "String"
+            "dataType": "Enum",
+            "source": "RegionEnumerationSource"
         },
         "a33a7074-e2de-4119-af60-8699dd0ed48b": {
             "name": "Order",
-            "dataType": "String"
+            "dataType": "Number"
         }
     },
-    "componentTypes": {},
-    "componentTemplates": {}
+    "componentTypes": {
+        "4aa04dcb-cecb-4a21-bab0-426cd32f96e9": {
+            "name": "Contact Details"
+        },
+        "a2726803-6d48-4abd-8158-48608aa216a4": {
+            "name": "Contact Details Item"
+        },
+        "ce9432a3-036e-4d0a-a054-e6b49f4b266b": {
+            "name": "Education Information"
+        },
+        "14d87358-501c-4e72-9c48-d324864ae936": {
+            "name": "Headered Content Section"
+        },
+        "d8d502c0-8723-46da-a79d-fd19e18d2be5": {
+            "name": "Icon Image"
+        },
+        "3930c3d0-a987-40fb-b5f4-f271cef1ee81": {
+            "name": "Job Description"
+        },
+        "dee8f55d-e0c6-47bb-905d-8338ee3fde0d": {
+            "name": "Position Header"
+        },
+        "46f5f67e-cba9-479a-a9b4-b4fd4bd9a91b": {
+            "name": "Reference Section"
+        }
+    },
+    "componentTemplates": {
+        "4aa04dcb-cecb-4a21-bab0-426cd32f96e9": {
+            "isTopLevel": true,
+            "properties": [
+                "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                "8251618f-48ea-435b-9a01-be70f5c92822"
+            ],
+            "children": [
+                "a2726803-6d48-4abd-8158-48608aa216a4"
+            ]
+        },
+        "a2726803-6d48-4abd-8158-48608aa216a4": {
+            "isTopLevel": false,
+            "properties": [
+                "11b7a3fe-2c1d-40fa-8709-0dfa7ba3dc07",
+                "69b97132-6ba8-4f1f-85b1-21e7741072f9"
+            ],
+            "children": []
+        }
+    }
 }
