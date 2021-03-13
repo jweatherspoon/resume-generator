@@ -4,7 +4,7 @@ const ModalDialog = (props) => {
     const { title, isOpen, closeDialog, buttons, children, maxWidth } = props;
     
     const dialogButtons = buttons?.map((btn, i) => (
-        <Button key={`dialog-${title}-btn-${i}`} onClick={btn.action} variant="outlined" className="dialog-button">
+        <Button key={`dialog-${title}-btn-${i}`} onClick={btn.action} variant="outlined" className="dialog-button" disabled={btn.isDisabled && btn.isDisabled()}>
             {btn.content}
         </Button>
     ));

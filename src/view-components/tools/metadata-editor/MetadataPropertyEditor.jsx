@@ -1,15 +1,18 @@
 import { connect } from "react-redux";
 import { createUpdateComponentTypeAction, createUpdatePropertyTypeAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
-import DATA_TYPES from "../../../data-model/DataTypes";
+import DATA_TYPES, { METADATA_TYPES } from "../../../data-model/DataTypes";
 import getEnumOptions from "../../../data-model/enumerations";
+import BooleanEditor from "../../editors/BooleanEditor";
 import EnumValueEditor from "../../editors/EnumValueEditor";
 import NumberEditor from "../../editors/NumberEditor";
 import StringEditor from "../../editors/StringEditor";
+import ComponentTemplateEditor from "./ComponentTemplateEditor";
 
 const editorGenerators = {
     [DATA_TYPES.String]: props => (<StringEditor {...props} />),
     [DATA_TYPES.Number]: props => (<NumberEditor {...props} />),
     [DATA_TYPES.Enum]: props => (<EnumValueEditor {...props} />),
+    [DATA_TYPES.Boolean]: props => (<BooleanEditor {...props} />),
 }
 
 const MetadataPropertyEditor = props => {
@@ -24,6 +27,14 @@ const MetadataPropertyEditor = props => {
         ...other
     } = props;
 
+    // special data type cases
+    if (dataType === METADATA_TYPES.ComponentTemplate) {
+        return (
+            <ComponentTemplateEditor {...props} />
+        );
+    }
+
+    // if not a special case, try to get an editor generator
     const editorGenerator = editorGenerators[dataType];
     if (selectedObject && editorGenerator) {
         // convert to editor model
@@ -39,6 +50,7 @@ const MetadataPropertyEditor = props => {
         return editorGenerator(editorProps);
     }
 
+    // we don't have a clue what to do with this thing lol
     return null;
 }
 
@@ -50,9 +62,6 @@ const mapDispatchToProps = (dispatch, { id, table, fieldName }) => ({
                 break;
             case "componentTypes":
                 dispatch(createUpdateComponentTypeAction(id, fieldName, newValue));
-                break;
-            case "componentTemplates":
-                alert("TODO: Implement this!");
                 break;
         }
     }

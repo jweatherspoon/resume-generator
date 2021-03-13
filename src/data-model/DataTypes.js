@@ -1,3 +1,4 @@
+// the main data types for things like properties
 const DATA_TYPES = {
     String: "String",
     Enum: "Enum",
@@ -5,5 +6,10 @@ const DATA_TYPES = {
     Boolean: "Boolean",
     Date: "Date",
 };
+
+// special metadata types
+export const METADATA_TYPES = {
+    ComponentTemplate: "ComponentTemplate"
+}
 
 export default DATA_TYPES;

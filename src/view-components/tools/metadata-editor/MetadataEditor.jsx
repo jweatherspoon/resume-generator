@@ -40,7 +40,7 @@ const tabDefinitions = [
 const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     const classes = useStyles();
 
-    const [selectedTab, setSelectedTab] = useState("propertyTypes");
+    const [selectedTab, setSelectedTab] = useState(tabDefinitions[0].id);
     const [selectedItem, setSelectedItem] = useState("");
 
     const buttons = [
@@ -55,7 +55,10 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     ];
 
     // configure the currently selected tab content
-    const getMetadataObjects = key => Object.entries((globalMetadata && globalMetadata[key]) || {});
+    const getMetadataObjects = key => {
+        const keyToUse = key === "componentTemplates" ? "componentTypes" : key;
+        return Object.entries((globalMetadata && globalMetadata[keyToUse]) || {});
+    }
 
     const objectList = getMetadataObjects(selectedTab).map(([objectType, metadataObject], i) => (
         <ListItem button key={`${metadataObject.name}-${i}`} onClick={() => setSelectedItem(objectType)}>
@@ -92,11 +95,13 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
                         {/* object list */}
                         <Grid item container xs={2} className={classes.objectList}>
                             {/* controls section (e.g. add object) */}
-                            <Grid item xs={12} className={classes.objectListControlsSection}>
-                                {objectListControls}
-                            </Grid>
-                            <Divider />
-                            <Grid item>
+                            {objectListControls && (
+                                <Grid item xs={12} className={classes.objectListControlsSection}>
+                                    {objectListControls}
+                                    <Divider />
+                                </Grid>
+                            )}
+                            <Grid item xs={12}>
                                 <List dense>
                                     {objectList}
                                 </List>
