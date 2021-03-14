@@ -3,6 +3,7 @@ const fs = require("fs");
 const DATA_MODEL_PATH = process.argv[2];
 const METADATA_PATH = `${DATA_MODEL_PATH}/metadata.json`;
 const CODE_GEN_PATH = `${DATA_MODEL_PATH}/code-gen/`;
+const CODE_GEN_STATIC_ENUMS_PATH = `${DATA_MODEL_PATH}/code-gen/enumerations/`;
 
 const nameKeyRegex = /\s/g;
 
@@ -69,6 +70,12 @@ const getEnumOptions = (enumSourceId, enumSources) => {
     return [];
 }
 
+const getSpacing = (spacing) => {
+    const spaces = [];
+    for (let i = 0; i < spacing; i++) spaces.push(" ");
+    return spaces;
+}
+
 const convertEnumSourcesToCodeFile = (fileName, enumSources) => {
     const mainExportValues = mapTypesByName(enumSources);
     const dynamicEnumTypes = Object.entries(enumSources).filter(([enumSourceId, enumDefinition]) => !enumDefinition.isStatic);
@@ -78,8 +85,7 @@ const convertEnumSourcesToCodeFile = (fileName, enumSources) => {
     const dynamicExportValues = mapTypesByKey(enumSources, (typeId, typeDef) => `"${typeId}"`, (typeId, typeDef) => typeDef.importName, (typeDef) => !typeDef.isStatic);
 
     const getJSObjectAsLines = (obj, spacing) => {
-        const spaces = [];
-        for (let i = 0; i < spacing ; i++) spaces.push(" ");
+        const spaces = getSpacing(spacing);
         
         const lines = ["{"];
         for (let [key, value] of Object.entries(obj)) {
@@ -108,6 +114,29 @@ const convertEnumSourcesToCodeFile = (fileName, enumSources) => {
 
     const filePath = `${CODE_GEN_PATH}/${fileName}`;
     fs.writeFile(filePath, fileLines.join("\n"), (err) => err && console.error(err));
+
+    // write out all the static sources to the enumerations folder
+    convertStaticEnumSourcesToCodeFiles(enumSources, 4);
+}
+
+const convertStaticEnumSourcesToCodeFiles = (enumSources, spacing) => {
+    const spaces = getSpacing(spacing);
+    const staticSources = Object.entries(enumSources).filter(([enumSourceId, enumSourceDefinition]) => enumSourceDefinition.isStatic && enumSourceDefinition.exportName);
+    for (let [enumSourceId, staticSourceDefinition] of staticSources) {
+        const filePath = `${CODE_GEN_STATIC_ENUMS_PATH}/${staticSourceDefinition.name}.js`;
+        
+        // { name: string, options: string[], isStatic: bool, importName: string, exportName: string }
+        const fileLines = [
+            `const ${staticSourceDefinition.exportName} = {`,
+            ...staticSourceDefinition.options.map(option => `${spaces.join("")}${option.replace(nameKeyRegex)}: "${option}",`),
+            "};",
+            "",
+            `export default ${staticSourceDefinition.exportName};`
+        ]
+
+        const fileContents = fileLines.join("\n");
+        fs.writeFile(filePath, fileContents, (err) => err && console.log(err));
+    }
 }
 
 fs.readFile(METADATA_PATH, (err, data) => {

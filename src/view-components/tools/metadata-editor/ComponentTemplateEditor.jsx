@@ -4,9 +4,9 @@ import { createAddComponentTemplateAction, createAddTemplatedChildAction, create
 import BooleanEditor from "../../editors/BooleanEditor";
 import ModalDialog from "../ModalDialog";
 import { useState } from "react";
-import { ICONS } from "../../../data-model/enumerations/IconEnumerationSource";
 import IconImage from "../../resume-components/IconImage";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";
+import ICONS from "../../../data-model/code-gen/enumerations/Icons";
 
 /**
  * Renders a templated value list

@@ -24,6 +24,7 @@ const handleAddEnumSource = (state, { name, isStatic }) => {
             isStatic,
             options: [],
             importName: "",
+            exportName: "",
         }
     }
 }

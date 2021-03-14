@@ -1,7 +1,7 @@
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ICONS } from "../../data-model/enumerations/IconEnumerationSource";
+import ICONS from "../../data-model/code-gen/enumerations/Icons";
 
 import { faLinkedin, faGithub, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faMobile, faEnvelope, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -14,7 +14,7 @@ const IconMap = {
     [ICONS.instagram]: () => faIcon(faInstagram),
     [ICONS.twitter]: () => faIcon(faTwitter),
     [ICONS.plus]: () => faIcon(faPlus),
-    [ICONS.jwLogo]: ({theme, width}) => pngIcon({icon: ICONS.jwLogo, theme, width}),
+    // [ICONS.jwLogo]: ({theme, width}) => pngIcon({icon: ICONS.jwLogo, theme, width}),
 }
 
 const faIcon = (icon) => <FontAwesomeIcon icon={icon} />

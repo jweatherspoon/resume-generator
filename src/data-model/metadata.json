@@ -176,7 +176,8 @@
                 "instagram",
                 "twitter",
                 "plus"
-            ]
+            ],
+            "exportName": "ICONS"
         },
         "e1220ef7-bff3-4d3d-828c-6752343241f2": {
             "name": "DataTypes",
@@ -187,7 +188,8 @@
                 "Number",
                 "Boolean",
                 "Date"
-            ]
+            ],
+            "exportName": "DATA_TYPES"
         },
         "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555": {
             "name": "Regions",
@@ -202,7 +204,8 @@
                 "jwLogoPink",
                 "jwLogoBlack"
             ],
-            "importName": ""
+            "importName": "",
+            "exportName": "LOGOS"
         }
     }
 }
