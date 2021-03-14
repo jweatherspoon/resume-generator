@@ -1,7 +1,7 @@
 import store from "../../store";
-import EnumerationSource from "./EnumerationSource";
+import DynamicEnumerationSource from "./DynamicEnumerationSource";
 
-class RegionsEnumerationSource extends EnumerationSource {
+class RegionsEnumerationSource extends DynamicEnumerationSource {
     getEnumOptions = () => {
         const currentState = store.getState();
         return currentState?.activeConfiguration?.regions || [];

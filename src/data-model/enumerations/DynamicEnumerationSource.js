@@ -1,5 +1,5 @@
-class EnumerationSource {
+class DynamicEnumerationSource {
     getEnumOptions = () => { throw new Error("implement in a derived class"); }
 }
 
-export default EnumerationSource;
+export default DynamicEnumerationSource;
