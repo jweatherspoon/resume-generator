@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Button, Container, Divider, Grid, List, ListItem, ListItemText, Typography } from "@material-ui/core";
 import { createAddComponentTemplateAction, createAddTemplatedChildAction, createAddTemplatedPropertyAction, createRemoveTemplatedChildAction, createRemoveTemplatedPropertyAction, createUpdateTopLevelPropertyAction } from "../../../data-model/actions/metadata/GlobalMetadataActions";
 import BooleanEditor from "../../editors/BooleanEditor";
-import ModalDialog from "../ModalDialog";
+import ModalDialog from "../../dialogs/ModalDialog";
 import { useState } from "react";
 import IconImage from "../../resume-components/IconImage";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";

@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, Grid, Typography } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@material-ui/core";
 
 const ModalDialog = (props) => {
     const { title, isOpen, closeDialog, buttons, children, maxWidth } = props;
@@ -21,14 +21,14 @@ const ModalDialog = (props) => {
                             </strong>
                         </Typography>
                     </Grid>
-                    <Grid item xs={3} className="dialog-button-container">
-                        {dialogButtons}
-                    </Grid>
                 </Grid>
             </DialogTitle>
             <DialogContent>
                 {children}
             </DialogContent>
+            <DialogActions>
+                {dialogButtons}
+            </DialogActions>
         </Dialog>
     )
 }

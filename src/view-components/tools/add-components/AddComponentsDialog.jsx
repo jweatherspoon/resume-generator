@@ -3,7 +3,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { createAddComponentAction } from "../../../data-model/actions/ComponentActions";
 import { createComponentFromTemplate } from "../../../data-model/resume-components/ResumeComponentTemplates";
-import ModalDialog from "../ModalDialog";
+import ModalDialog from "../../dialogs/ModalDialog";
 
 const handleAddComponents = (componentTypesToAdd, createFromTemplate, dispatch) => {
     const dispatchActions = [];

@@ -5,7 +5,7 @@ const NumberEditor = (props) => {
     const {
         value,
         onValueChanged,
-        attributes: { isIncrementDecrement }
+        attributes: { isIncrementDecrement, label, hideLabel }
     } = props;
 
     if (isIncrementDecrement) {
@@ -15,7 +15,7 @@ const NumberEditor = (props) => {
     }
 
     return (
-        <TextField type="number" value={value} onChange={e => onValueChanged(value, e.target.value)} />
+        <TextField type="number" value={value} onChange={e => onValueChanged(value, e.target.value)} label={!hideLabel && label} />
     )
 }
 

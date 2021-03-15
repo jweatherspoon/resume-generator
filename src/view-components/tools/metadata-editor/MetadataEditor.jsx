@@ -7,7 +7,7 @@ import { sortObjectArrayByKey } from "../../../utility/DataUtility";
 import IconImage from "../../resume-components/IconImage";
 import TabbedContentControl from "../../TabbedContentControl";
 
-import ToolWindow from "../ToolWindow";
+import ToolWindow from "../../dialogs/ToolWindow";
 import editorConfigs from "./editorConfigs";
 import MetadataPropertyEditor from "./MetadataPropertyEditor";
 
