@@ -6,7 +6,8 @@ const COMPONENT_TYPES = {
     "FAIcon": "6fd6b290-8742-4b2d-a801-2811366260bd",
     "JobDescription": "3930c3d0-a987-40fb-b5f4-f271cef1ee81",
     "PositionHeader": "05efd983-7ecd-4625-a125-24e327e45c85",
-    "ReferenceSection": "46f5f67e-cba9-479a-a9b4-b4fd4bd9a91b"
+    "ReferenceSection": "46f5f67e-cba9-479a-a9b4-b4fd4bd9a91b",
+    "Logo": "10e144e2-aa92-403a-97ab-99659c3e06d9"
 };
 
 export default COMPONENT_TYPES;

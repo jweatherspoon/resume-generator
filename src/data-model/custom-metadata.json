@@ -2,8 +2,6 @@
     "themes": {
         "flashy": {
             "palette": {
-                "primary": "",
-                "secondary": "",
                 "text": {
                     "black": "#191919",
                     "pink": "#FFBBE4",

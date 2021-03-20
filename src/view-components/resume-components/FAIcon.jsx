@@ -25,14 +25,6 @@ const useStyles = makeStyles({
 
 const faIcon = (icon, props) => <FontAwesomeIcon {...props} icon={icon} />
 
-const logoPath = "/resources/logos/";
-const pngIcon = ({icon, theme, width, altText}) => {
-    const path = `${logoPath}/${icon}-${theme?.iconColor || "pink"}.png`
-    return (
-        <img width={width} src={path} alt={altText || icon} />
-    );
-}
-
 const FAIcon = (props) => {
     const classes = useStyles(props);
 
