@@ -9,7 +9,7 @@ const activeConfigurationReducingActions = {
 const initialState = {
     activeTemplate: "",
     regions: [],
-    theme: "",
+    theme: "flashy",
     pageConfiguration: {
         length: 11,
         width: 8.5

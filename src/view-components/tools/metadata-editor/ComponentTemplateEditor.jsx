@@ -4,7 +4,7 @@ import { createAddComponentTemplateAction, createAddTemplatedChildAction, create
 import BooleanEditor from "../../editors/BooleanEditor";
 import ModalDialog from "../../dialogs/ModalDialog";
 import { useState } from "react";
-import IconImage from "../../resume-components/IconImage";
+import FAIcon from "../../resume-components/FAIcon";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";
 import ICONS from "../../../data-model/code-gen/enumerations/Icons";
 
@@ -59,7 +59,7 @@ const TemplatedValueList = (props) => {
 
     const openAddDialogButton = addableOptions && (
         <Button onClick={() => setIsAddDialogOpen(true)} fullWidth variant="contained">
-            <IconImage icon={ICONS.plus} altText="Add New" />
+            <FAIcon icon={ICONS.plus} altText="Add New" />
         </Button>
     );
 

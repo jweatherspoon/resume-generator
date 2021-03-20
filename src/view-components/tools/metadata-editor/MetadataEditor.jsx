@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import DATA_TYPES from "../../../data-model/DataTypes";
 import { getEnumOptions } from "../../../data-model/code-gen/EnumSources";
 import { sortObjectArrayByKey } from "../../../utility/DataUtility";
-import IconImage from "../../resume-components/IconImage";
+import FAIcon from "../../resume-components/FAIcon";
 import TabbedContentControl from "../../TabbedContentControl";
 
 import ToolWindow from "../../dialogs/ToolWindow";
@@ -75,7 +75,7 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     const objectListControls = editorConfig.controls?.map((controlDefinition, i) => (
         <Button key={`object-list-control-${i}`} onClick={() => controlDefinition.action && controlDefinition.action(dispatch)}>
             {controlDefinition.icon && (
-                <IconImage icon={controlDefinition.icon} altText={controlDefinition.description} />
+                <FAIcon icon={controlDefinition.icon} altText={controlDefinition.description} />
             )}
         </Button>
     ));
@@ -93,7 +93,7 @@ const MetadataEditor = ({isOpen, closeDialog, dispatch, globalMetadata}) => {
     const isEnumType = selectedObject?.dataType === DATA_TYPES.Enum;
     if (isEnumType) {
         fieldEditors.push((
-            <ListItem>
+            <ListItem key="field-enum-source">
                 <MetadataPropertyEditor fieldName="source" dataType={DATA_TYPES.Enum} id={selectedItem} table={selectedTab}
                     selectedObject={selectedObject} label={"Enum Source"} enumSources={globalMetadata.enumSources}
                     options={getEnumOptions(null, globalMetadata.enumSources)} />

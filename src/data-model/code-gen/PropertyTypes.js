@@ -24,7 +24,9 @@ const PROPERTY_TYPES = {
     "Contents": "7ce47014-85ad-4733-8716-2f61e08e14eb",
     "Region": "8251618f-48ea-435b-9a01-be70f5c92822",
     "Order": "a33a7074-e2de-4119-af60-8699dd0ed48b",
-    "Logo": "e95daefa-b2c3-4c5d-a002-d8134064dbe5"
+    "Logo": "e95daefa-b2c3-4c5d-a002-d8134064dbe5",
+    "PrimaryTextColor": "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+    "SecondaryTextColor": "0a77feb6-6198-4d9b-ae40-d26f81035dab"
 };
 
 export default PROPERTY_TYPES;

@@ -1,12 +1,12 @@
 import COMPONENT_TYPES from "../../data-model/code-gen/ComponentTypes";
 import ContactDetails from "./ContactDetails"
-import IconImage from "./IconImage";
+import FAIcon from "./FAIcon";
 import PositionHeader from "./PositionHeader";
 
 const ResumeComponentMap = {
     [COMPONENT_TYPES.ContactDetails]: (props) => (<ContactDetails {...props} />),
     [COMPONENT_TYPES.PositionHeader]: (props) => (<PositionHeader {...props} />),
-    [COMPONENT_TYPES.IconImage]: (props) => (<IconImage {...props} />),
+    [COMPONENT_TYPES.FAIcon]: (props) => (<FAIcon {...props} />),
 }
 
 const ResumeComponentFactory = props => {

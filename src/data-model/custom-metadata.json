@@ -1,0 +1,30 @@
+{
+    "themes": {
+        "flashy": {
+            "palette": {
+                "primary": "",
+                "secondary": "",
+                "text": {
+                    "black": "#191919",
+                    "pink": "#FFBBE4",
+                    "gold": "#DDB860",
+                    "gray": "#C6C6C6"
+                }
+            }
+        }
+    },
+    "shells": {
+        "flashy": {
+            "regions": {
+                "sideBar": {
+                    "width": 5,
+                    "background": "#FFFFFF"
+                },
+                "mainContent": {
+                    "width": 7,
+                    "background": "#191919"
+                }
+            }
+        }
+    }
+}

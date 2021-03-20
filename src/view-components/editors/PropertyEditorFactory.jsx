@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { createUpdatePropertyAction } from "../../data-model/actions/ComponentActions";
 
-import { getEnumOptions } from "../../data-model/code-gen/EnumSources";
+import ENUM_SOURCES, { getEnumOptions } from "../../data-model/code-gen/EnumSources";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PropertyDataTypeEditorMap from "./PropertyDataTypeEditorMap";
 
@@ -29,6 +29,7 @@ const PropertyEditorFactory = (props) => {
             attributes: {
                 label: name,
                 options: enumSourceId && getEnumOptions(enumSourceId, enumSources),
+                isColorDisplay: enumSourceId === ENUM_SOURCES.Colors,
                 ...other
             },
         };

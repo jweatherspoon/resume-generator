@@ -106,6 +106,16 @@
             "name": "Logo",
             "dataType": "Enum",
             "source": "b3c0e4f0-e97c-44d2-9851-62baab179c94"
+        },
+        "e0020d71-d2e5-4eb8-be45-67750b1c747a": {
+            "name": "PrimaryTextColor",
+            "dataType": "Enum",
+            "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+        },
+        "0a77feb6-6198-4d9b-ae40-d26f81035dab": {
+            "name": "SecondaryTextColor",
+            "dataType": "Enum",
+            "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
         }
     },
     "componentTypes": {
@@ -122,7 +132,7 @@
             "name": "Headered Content Section"
         },
         "6fd6b290-8742-4b2d-a801-2811366260bd": {
-            "name": "Icon Image"
+            "name": "FAIcon"
         },
         "3930c3d0-a987-40fb-b5f4-f271cef1ee81": {
             "name": "Job Description"
@@ -139,9 +149,14 @@
             "isTopLevel": true,
             "properties": [
                 "a33a7074-e2de-4119-af60-8699dd0ed48b",
-                "8251618f-48ea-435b-9a01-be70f5c92822"
+                "8251618f-48ea-435b-9a01-be70f5c92822",
+                "e0020d71-d2e5-4eb8-be45-67750b1c747a"
             ],
             "children": [
+                "3b40b720-07ee-498b-887f-ca5547f9e8dd",
+                "3b40b720-07ee-498b-887f-ca5547f9e8dd",
+                "3b40b720-07ee-498b-887f-ca5547f9e8dd",
+                "3b40b720-07ee-498b-887f-ca5547f9e8dd",
                 "3b40b720-07ee-498b-887f-ca5547f9e8dd"
             ]
         },
@@ -159,7 +174,9 @@
                 "a33a7074-e2de-4119-af60-8699dd0ed48b",
                 "8251618f-48ea-435b-9a01-be70f5c92822",
                 "7ee7c098-bb00-417c-8ffc-744c99672ebb",
-                "5c50f728-9e37-44db-8ded-78d780310325"
+                "5c50f728-9e37-44db-8ded-78d780310325",
+                "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+                "0a77feb6-6198-4d9b-ae40-d26f81035dab"
             ],
             "children": []
         }
@@ -206,6 +223,13 @@
             ],
             "importName": "",
             "exportName": "LOGOS"
+        },
+        "9dbaacf2-f91e-4d06-a633-7a851e8e62f6": {
+            "name": "Colors",
+            "isStatic": false,
+            "options": [],
+            "importName": "ColorsEnumerationSource",
+            "exportName": ""
         }
     }
 }
