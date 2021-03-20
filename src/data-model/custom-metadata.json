@@ -10,6 +10,9 @@
                     "gold": "#DDB860",
                     "gray": "#C6C6C6"
                 }
+            },
+            "typography": {
+                "fontFamily": "Raleway"
             }
         }
     },
@@ -17,11 +20,11 @@
         "flashy": {
             "regions": {
                 "sideBar": {
-                    "width": 5,
+                    "width": 4,
                     "background": "#FFFFFF"
                 },
                 "mainContent": {
-                    "width": 7,
+                    "width": 8,
                     "background": "#191919"
                 }
             }

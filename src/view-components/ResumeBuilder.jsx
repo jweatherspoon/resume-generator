@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 
 const cutoffs = {
     xs: 12,
-    lg: 6
 };
 
 const ResumeBuilder = ({components}) => {
@@ -69,7 +68,7 @@ const ResumeBuilder = ({components}) => {
     return (
         <Grid container className="fullHeight">
             {/* the config editor section */}
-            <Grid item {...cutoffs}>
+            <Grid item {...cutoffs} lg={7}>
                 {/* The app menu */}
                 <ApplicationMenu menuItemDefinitions={appMenuItemDefinitions} />
 
@@ -77,7 +76,7 @@ const ResumeBuilder = ({components}) => {
             </Grid>
 
             {/* the preview section */}
-            <Grid item {...cutoffs} className={classes.preview}>
+            <Grid item {...cutoffs} lg={5}>
                 <ResumeShell />
             </Grid>
 

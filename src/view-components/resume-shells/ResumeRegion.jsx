@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     }
 })
 
-const ResumeRegion = ({ regionInfo: { width, components }, allComponents, scaleFactor }) => {
+const ResumeRegion = ({ regionInfo: { width, components, background }, allComponents, scaleFactor }) => {
     const classes = useStyles({scaleFactor});
 
     const sortedComponents = sortObjectArrayWithValueSelector(components, c => c.properties?.find(prop => prop.propertyType === PROPERTY_TYPES.Order)?.value || 0);
@@ -24,7 +24,7 @@ const ResumeRegion = ({ regionInfo: { width, components }, allComponents, scaleF
     ));
 
     return (
-        <Grid item xs={width || 12} className="fullHeight">
+        <Grid item xs={width || 12} className="fullHeight" style={{ background }}>
             {resumeComponents}
         </Grid>
     )

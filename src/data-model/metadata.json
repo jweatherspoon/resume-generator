@@ -230,6 +230,13 @@
             "options": [],
             "importName": "ColorsEnumerationSource",
             "exportName": ""
+        },
+        "14b8248f-3bab-49c9-a0c9-7867ffa230f6": {
+            "name": "ResumeShells",
+            "isStatic": false,
+            "options": [],
+            "importName": "ResumeShellsEnumerationSource",
+            "exportName": ""
         }
     }
 }

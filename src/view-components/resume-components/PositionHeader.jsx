@@ -6,11 +6,14 @@ export const PositionHeader = ({ properties }) => {
     const mappedProps = mapPropertyArrayByType(properties);
     const candidateName = mappedProps[PROPERTY_TYPES.Name]?.value;
     const positionTitle = mappedProps[PROPERTY_TYPES.Title]?.value;
+    const primaryTextColor = mappedProps[PROPERTY_TYPES.PrimaryTextColor]?.value;
+    const secondaryTextColor = mappedProps[PROPERTY_TYPES.SecondaryTextColor]?.value;
+
     return (
         <Container>
-            <Typography align="center" variant="h3">{candidateName}</Typography>
+            <Typography align="center" variant="h3" style={{ color: primaryTextColor }}>{candidateName}</Typography>
             <Divider />
-            <Typography align="center" variant="h5">{positionTitle}</Typography>
+            <Typography align="center" variant="h5" style={{ color: secondaryTextColor }}>{positionTitle}</Typography>
         </Container>
     )
 }

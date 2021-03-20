@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes";
 import ResumeRegion from "./ResumeRegion";
-import { ResumeShellMap } from "./ResumeShellFactory";
+import getRegionInfo from "./ResumeShellFactory";
 
 const useStyles = makeStyles({
     resumeShell: {
         height: props => props?.height,
         width: props => props?.width,
-        // fontSize: props => `${(props?.scaleFactor && 12 * props.scaleFactor) || 5}pt`
+        float: "right",
+        border: "1px solid black",
+        fontFamily: props => props?.font && `${props?.font} !important;`,
     },
 })
 
@@ -55,19 +57,20 @@ const getResumeShellDimensions = ({ pageConfiguration: { length, width }}) => {
     return dimensions;
 }
 
-const ResumeShell = ({theme, resumeTemplate, components, pageConfiguration}) => {
+const ResumeShell = ({resumeTemplate, components, pageConfiguration}) => {
     const { height, width, scaleFactor } = getResumeShellDimensions({pageConfiguration});
-    const classes = useStyles({ height, width });
+    const classes = useStyles({ height, width, font: "Raleway" });
     
     // map the top-level components by their regions
-    const regionInfo = ResumeShellMap[resumeTemplate];
+    const regionInfos = getRegionInfo(resumeTemplate);
     const regionMappedComponents = mapTopLevelComponentsByRegion(components);
-    const renderedRegions = regionInfo && Object.entries(regionInfo).map(([name, info], i) => (
-        <ResumeRegion key={i} regionInfo={{
-            width: info.width,
-            components: regionMappedComponents[name]
-        }} scaleFactor={scaleFactor} />
-    ));
+    const renderedRegions = regionInfos && Object.entries(regionInfos).map(([name, info], i) => {
+        const regionInfo = Object.assign({}, info);
+        regionInfo.components = regionMappedComponents[name];
+        return (
+            <ResumeRegion key={i} regionInfo={regionInfo} scaleFactor={scaleFactor} />
+        );
+    });
 
     return (
         <Grid container className={classes.resumeShell} tag={height / width}>

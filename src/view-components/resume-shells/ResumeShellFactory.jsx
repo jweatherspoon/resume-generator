@@ -1,8 +1,5 @@
-import RESUME_SHELL_TYPES from "../../data-model/ResumeShellTypes";
-import { flashyResumeRegionInfo } from "./FlashyResumeShell";
+import customMetadata from "../../data-model/custom-metadata.json";
 
-export const ResumeShellMap = {
-    [RESUME_SHELL_TYPES.Flashy]: flashyResumeRegionInfo,
-}
+const getRegionInfo = (shellId) => customMetadata?.shells?.[shellId]?.regions || [];
 
-export default ResumeShellMap;
+export default getRegionInfo;

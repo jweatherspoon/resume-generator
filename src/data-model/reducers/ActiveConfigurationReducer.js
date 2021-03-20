@@ -1,5 +1,4 @@
 import { UPDATE_ACTIVE_TEMPLATE, UPDATE_PAGE_CONFIGURATION } from "../actions/ActiveConfigurationActions";
-import RESUME_SHELL_TYPES from "../ResumeShellTypes";
 
 const activeConfigurationReducingActions = {
     [UPDATE_ACTIVE_TEMPLATE]: (state, payload) => handleUpdateActiveTemplate(state, payload),
@@ -7,8 +6,7 @@ const activeConfigurationReducingActions = {
 };
 
 const initialState = {
-    activeTemplate: "",
-    regions: [],
+    activeTemplate: "flashy",
     theme: "flashy",
     pageConfiguration: {
         length: 11,

@@ -6,9 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
 import store from "./store";
-import { createUpdateActiveTemplateAction } from './data-model/actions/ActiveConfigurationActions';
-import RESUME_SHELL_TYPES from './data-model/ResumeShellTypes';
-import { flashyResumeRegionInfo } from './view-components/resume-shells/FlashyResumeShell';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core';
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -16,13 +15,16 @@ import { flashyResumeRegionInfo } from './view-components/resume-shells/FlashyRe
 
 // library.add(fab, faMobile, faEnvelope)
 
-// TODO: Remove this after adding Add Component / persistence
-store.dispatch(createUpdateActiveTemplateAction(RESUME_SHELL_TYPES.Flashy, Object.keys(flashyResumeRegionInfo)))
+// TODO: Remove this when I figure out how I want to handle themes from metadata
+import customMetadata from "./data-model/custom-metadata.json";
+const theme = createMuiTheme(customMetadata.themes.flashy);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+        <ThemeProvider theme={theme}>
+            <App />
+        </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
