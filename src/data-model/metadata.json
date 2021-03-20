@@ -116,6 +116,11 @@
             "name": "SecondaryTextColor",
             "dataType": "Enum",
             "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+        },
+        "14b3e800-f6da-4682-abf1-71f7bce66bd4": {
+            "name": "DividerColor",
+            "dataType": "Enum",
+            "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
         }
     },
     "componentTypes": {
@@ -142,6 +147,9 @@
         },
         "46f5f67e-cba9-479a-a9b4-b4fd4bd9a91b": {
             "name": "Reference Section"
+        },
+        "10e144e2-aa92-403a-97ab-99659c3e06d9": {
+            "name": "Logo"
         }
     },
     "componentTemplates": {
@@ -176,7 +184,28 @@
                 "7ee7c098-bb00-417c-8ffc-744c99672ebb",
                 "5c50f728-9e37-44db-8ded-78d780310325",
                 "e0020d71-d2e5-4eb8-be45-67750b1c747a",
-                "0a77feb6-6198-4d9b-ae40-d26f81035dab"
+                "0a77feb6-6198-4d9b-ae40-d26f81035dab",
+                "38154cce-7ff7-4f59-9607-cb4211352c44"
+            ],
+            "children": []
+        },
+        "10e144e2-aa92-403a-97ab-99659c3e06d9": {
+            "isTopLevel": true,
+            "properties": [
+                "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                "8251618f-48ea-435b-9a01-be70f5c92822",
+                "6b7f791d-5de6-49e7-9391-f198df605080",
+                "e95daefa-b2c3-4c5d-a002-d8134064dbe5",
+                "3f8c4f48-fb37-4f42-865f-0afa9a2971c1"
+            ],
+            "children": []
+        },
+        "2afe76be-3ac6-456e-8074-aa130151d452": {
+            "isTopLevel": false,
+            "properties": [
+                "76e0cc53-0a14-48be-bba8-c965a777f52f",
+                "c2856582-7728-4fbc-964f-60a2b9d1fdea",
+                "8be4e3ca-89e3-4a18-8381-233ab40ecd68"
             ],
             "children": []
         }
@@ -219,7 +248,9 @@
             "isStatic": true,
             "options": [
                 "jwLogoPink",
-                "jwLogoBlack"
+                "jwLogoBlack",
+                "jwLogoGold",
+                "jwLogoWhite"
             ],
             "importName": "",
             "exportName": "LOGOS"
