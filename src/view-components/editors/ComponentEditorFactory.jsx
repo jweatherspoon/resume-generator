@@ -40,7 +40,7 @@ const useStyles = makeStyles({
     },
 })
 
-const ComponentEditorFactory = ({component, allComponents, maxHeight}) => {
+const ComponentEditorFactory = ({component, allComponents, maxHeight, updatePropertyOverride}) => {
     const classes = useStyles({maxHeight});
     const propertyMap = mapPropertyArrayByType(component.properties);
     const regionProperty = propertyMap[PROPERTY_TYPES.Region];
@@ -56,14 +56,18 @@ const ComponentEditorFactory = ({component, allComponents, maxHeight}) => {
                 <div className={classes.topLevelComponentHeader}>
                     <Typography variant="body1" className={classes.editorHeader}>Properties for {component.name}</Typography>
                 </div>
-                {orderSelector}
-                <div className={classes.topLevelRegionSelector}>
-                    <PropertyEditorFactory component={component} variant="outlined" isDense {...regionProperty} />
-                </div>
+                {!updatePropertyOverride && (
+                    <div>
+                        {orderSelector}
+                        <div className={classes.topLevelRegionSelector}>
+                            <PropertyEditorFactory component={component} variant="outlined" isDense {...regionProperty} />
+                        </div>
+                    </div>
+                )}
             </div>
 
             <div className={classes.gridContainer}>
-                <TopLevelComponentEditorGrid component={component} allComponents={allComponents} />
+                <TopLevelComponentEditorGrid component={component} allComponents={allComponents} updatePropertyOverride={updatePropertyOverride} />
             </div>
         </div>    
     );

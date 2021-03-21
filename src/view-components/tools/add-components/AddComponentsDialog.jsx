@@ -91,8 +91,8 @@ const mapStateToProps = (state) => ({
     availableTemplates: state.metadata.global.componentTemplates || {},
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    addComponents: (componentsToAdd, createFromTemplate) => handleAddComponents(componentsToAdd, createFromTemplate, dispatch),
+const mapDispatchToProps = (dispatch, { addComponents }) => ({
+    addComponents: addComponents || ((componentsToAdd, createFromTemplate) => handleAddComponents(componentsToAdd, createFromTemplate, dispatch)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddComponentsDialog);

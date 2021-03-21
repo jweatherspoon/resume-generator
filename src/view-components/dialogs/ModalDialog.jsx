@@ -2,6 +2,10 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typogr
 
 const ModalDialog = (props) => {
     const { title, isOpen, closeDialog, buttons, children, maxWidth } = props;
+
+    if (!isOpen) {
+        return null;
+    }
     
     const dialogButtons = buttons?.map((btn, i) => (
         <Button key={`dialog-${title}-btn-${i}`} onClick={btn.action} variant="outlined" className="dialog-button" disabled={btn.isDisabled && btn.isDisabled()}>

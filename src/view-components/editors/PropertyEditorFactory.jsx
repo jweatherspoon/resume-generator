@@ -45,8 +45,15 @@ const mapStateToProps = (state) => ({
     propertyTypes: state.metadata?.global?.propertyTypes || []
 })
 
-const mapDispatchToProps = (dispatch, { component, propertyType }) => ({
-    updateProperty: (oldValue, newValue) => dispatch(createUpdatePropertyAction(component.componentId, propertyType, newValue)),
+const mapDispatchToProps = (dispatch, { component, propertyType, updatePropertyOverride }) => ({
+    updateProperty: (oldValue, newValue) => {
+        if (updatePropertyOverride) {
+            updatePropertyOverride(component, propertyType, oldValue, newValue);
+        }
+        else {
+            dispatch(createUpdatePropertyAction(component.componentId, propertyType, newValue));
+        }
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PropertyEditorFactory);

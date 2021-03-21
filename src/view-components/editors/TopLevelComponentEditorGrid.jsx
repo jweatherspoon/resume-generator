@@ -100,11 +100,11 @@ const createCell = (className, content, key, isHeaderCell) => (
     </div>
 )
 
-const constructCellsForColumn = (columnDefinition, rowDefinitions, nullValueClassName) => {
+const constructCellsForColumn = (columnDefinition, rowDefinitions, nullValueClassName, updatePropertyOverride) => {
     const cells = rowDefinitions.map((rowData, index) => {
         const { field } = columnDefinition;
         const key = `cell-${field}-${index}`
-        const cellValue = rowData[field] ? (<PropertyEditorFactory {...rowData[field]} hideLabel />) :
+        const cellValue = rowData[field] ? (<PropertyEditorFactory {...rowData[field]} hideLabel updatePropertyOverride={updatePropertyOverride} />) :
             (createCell(nullValueClassName, "-", undefined, false))
         return (
             <DataGridCell key={key}>
@@ -116,12 +116,12 @@ const constructCellsForColumn = (columnDefinition, rowDefinitions, nullValueClas
     return cells;
 }
 
-const DataGrid = ({ columnDefinitions, rowDefinitions }) => {
+const DataGrid = ({ columnDefinitions, rowDefinitions, updatePropertyOverride }) => {
     const classes = useStyles();
     const columns = columnDefinitions.map((colDef, index) => {
         const key = `col-${colDef.field}-${index}`;
         return (
-            <DataGridColumn key={key} columnDefinition={colDef} rowDefinitions={rowDefinitions} />
+            <DataGridColumn key={key} columnDefinition={colDef} rowDefinitions={rowDefinitions} updatePropertyOverride={updatePropertyOverride} />
         )
     });
 
@@ -132,10 +132,10 @@ const DataGrid = ({ columnDefinitions, rowDefinitions }) => {
     );
 }
 
-const DataGridColumn = ({ columnDefinition, rowDefinitions }) => {
+const DataGridColumn = ({ columnDefinition, rowDefinitions, updatePropertyOverride }) => {
     const classes = useStyles({ columnDefinition });
     const headerCell = createCell([classes.cell, classes.headerCell].join(" "), columnDefinition.header, undefined, true);
-    const cells = constructCellsForColumn(columnDefinition, rowDefinitions, classes.cell);
+    const cells = constructCellsForColumn(columnDefinition, rowDefinitions, classes.cell, updatePropertyOverride);
     return (
         <div className={classes.gridColumn}>
             {headerCell}
@@ -155,10 +155,10 @@ const DataGridCell = (props) => {
     );
 }
 
-const TopLevelComponentEditorGrid = ({ component, allComponents }) => {
+const TopLevelComponentEditorGrid = ({ component, allComponents, updatePropertyOverride }) => {
     const { rowDefinitions, columnDefinitions } = constructDataGridInfo(component, allComponents);
     return (
-        <DataGrid columnDefinitions={columnDefinitions} rowDefinitions={rowDefinitions} />
+        <DataGrid columnDefinitions={columnDefinitions} rowDefinitions={rowDefinitions} updatePropertyOverride={updatePropertyOverride} />
     )
 }
 

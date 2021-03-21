@@ -7,6 +7,7 @@ import ApplicationMenu from "./app-menu/ApplicationMenu";
 import { useState } from "react";
 import AddComponentsDialog from "./tools/add-components/AddComponentsDialog";
 import MetadataEditor from "./tools/metadata-editor/MetadataEditor";
+import CustomMetadataEditor from "./tools/metadata-editor/CustomMetadataEditor";
 
 const useStyles = makeStyles({
     preview: {
@@ -24,7 +25,8 @@ const ResumeBuilder = ({components}) => {
 
     const [dialogStates, setDialogStates] = useState({
         addComponents: false,
-        metadataEditor: false
+        metadataEditor: false,
+        customMetadataEditor: false,
     });
 
     const tryOpenDialog = dialogName => {
@@ -57,7 +59,7 @@ const ResumeBuilder = ({components}) => {
                         },
                         {
                             header: "Custom Metadata Editor",
-                            action: () => alert("TODO: Implement this!")
+                            action: () => tryOpenDialog("customMetadataEditor"),
                         }
                     ]
                 }
@@ -83,6 +85,7 @@ const ResumeBuilder = ({components}) => {
             {/* Section for the dialogs */}
             <AddComponentsDialog isOpen={dialogStates.addComponents} closeDialog={closeDialogs} />
             <MetadataEditor isOpen={dialogStates.metadataEditor} closeDialog={closeDialogs} />
+            <CustomMetadataEditor isOpen={dialogStates.customMetadataEditor} closeDialog={closeDialogs} />
         </Grid>
     )
 };

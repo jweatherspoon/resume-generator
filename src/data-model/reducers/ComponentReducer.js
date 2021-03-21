@@ -1,4 +1,5 @@
 import { ADD_COMPONENT, UPDATE_PROPERTY } from "../actions/ComponentActions";
+import { copyPropertyArrayWithUpdate } from "../../utility/PropertyUtility";
 
 const componentReducingActions = {
     [ADD_COMPONENT]: (state, payload) => handleAddComponent(state, payload),
@@ -24,24 +25,6 @@ const handleAddComponent = (state, { component }) => {
     }
 
     return state;
-}
-
-const copyPropertyArrayWithUpdate = (properties, propertyType, newValue) => {
-    const copiedProperties = [];
-    if (properties) {
-        for (let property of properties) {
-            if (property.propertyType === propertyType) {
-                const copiedProperty = Object.assign({}, property);
-                copiedProperty.value = newValue;
-                copiedProperties.push(copiedProperty);
-            }
-            else {
-                copiedProperties.push(property);
-            }
-        }
-    }
-
-    return copiedProperties;
 }
 
 const handleUpdateProperty = (state, { componentId, propertyType, newValue }) => {
