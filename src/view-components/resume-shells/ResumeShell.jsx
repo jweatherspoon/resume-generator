@@ -73,7 +73,7 @@ const ResumeShell = ({resumeTemplate, components, pageConfiguration}) => {
     });
 
     return (
-        <Grid container className={classes.resumeShell} tag={height / width}>
+        <Grid container className={classes.resumeShell} tag={height / width} id="resume-preview">
             {renderedRegions}
         </Grid>
     );
