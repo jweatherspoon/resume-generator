@@ -27,7 +27,8 @@ const PROPERTY_TYPES = {
     "Logo": "e95daefa-b2c3-4c5d-a002-d8134064dbe5",
     "PrimaryTextColor": "e0020d71-d2e5-4eb8-be45-67750b1c747a",
     "SecondaryTextColor": "0a77feb6-6198-4d9b-ae40-d26f81035dab",
-    "DividerColor": "14b3e800-f6da-4682-abf1-71f7bce66bd4"
+    "DividerColor": "14b3e800-f6da-4682-abf1-71f7bce66bd4",
+    "TypographyVariant": "ee437507-965f-48f6-926f-67d144f507ca"
 };
 
 export default PROPERTY_TYPES;

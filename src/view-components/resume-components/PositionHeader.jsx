@@ -8,12 +8,14 @@ export const PositionHeader = ({ properties }) => {
     const positionTitle = mappedProps[PROPERTY_TYPES.Title]?.value;
     const primaryTextColor = mappedProps[PROPERTY_TYPES.PrimaryTextColor]?.value;
     const secondaryTextColor = mappedProps[PROPERTY_TYPES.SecondaryTextColor]?.value;
+    const hasDivider = mappedProps[PROPERTY_TYPES.HasDivider]?.value;
+    const dividerColor = mappedProps[PROPERTY_TYPES.DividerColor]?.value;
 
     return (
         <Container>
             <Typography align="center" variant="h3" style={{ color: primaryTextColor }}>{candidateName}</Typography>
-            <Divider />
             <Typography align="center" variant="h5" style={{ color: secondaryTextColor }}>{positionTitle}</Typography>
+            {hasDivider && <Divider style={{ background: dividerColor }} />}
         </Container>
     )
 }

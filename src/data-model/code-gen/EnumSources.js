@@ -8,7 +8,8 @@ const ENUM_SOURCES = {
     "Regions": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555",
     "Logos": "b3c0e4f0-e97c-44d2-9851-62baab179c94",
     "Colors": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6",
-    "ResumeShells": "14b8248f-3bab-49c9-a0c9-7867ffa230f6"
+    "ResumeShells": "14b8248f-3bab-49c9-a0c9-7867ffa230f6",
+    "TypographyVariants": "80b032db-8571-428a-92e1-33aefc89a24d"
 };
 
 export const DYNAMIC_ENUM_SOURCE_MAP = {

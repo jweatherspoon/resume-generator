@@ -22,7 +22,7 @@
         },
         "f6d99eb8-e991-4305-9a20-2597d2b79004": {
             "name": "ContentSpacing",
-            "dataType": "String"
+            "dataType": "Number"
         },
         "e8e2bbe6-4fec-4a4f-88bb-36dd28e93238": {
             "name": "Flair",
@@ -121,6 +121,11 @@
             "name": "DividerColor",
             "dataType": "Enum",
             "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+        },
+        "ee437507-965f-48f6-926f-67d144f507ca": {
+            "name": "TypographyVariant",
+            "dataType": "Enum",
+            "source": "80b032db-8571-428a-92e1-33aefc89a24d"
         }
     },
     "componentTypes": {
@@ -140,7 +145,7 @@
             "name": "FAIcon"
         },
         "3930c3d0-a987-40fb-b5f4-f271cef1ee81": {
-            "name": "Job Description"
+            "name": "Work Item"
         },
         "05efd983-7ecd-4625-a125-24e327e45c85": {
             "name": "Position Header"
@@ -150,6 +155,12 @@
         },
         "10e144e2-aa92-403a-97ab-99659c3e06d9": {
             "name": "Logo"
+        },
+        "db87b132-ced4-4078-af46-f76aef01c072": {
+            "name": "Project Item"
+        },
+        "38311804-7918-4039-9cd9-ca0e36d559f1": {
+            "name": "Simple Header"
         }
     },
     "componentTemplates": {
@@ -185,7 +196,8 @@
                 "5c50f728-9e37-44db-8ded-78d780310325",
                 "e0020d71-d2e5-4eb8-be45-67750b1c747a",
                 "0a77feb6-6198-4d9b-ae40-d26f81035dab",
-                "38154cce-7ff7-4f59-9607-cb4211352c44"
+                "38154cce-7ff7-4f59-9607-cb4211352c44",
+                "14b3e800-f6da-4682-abf1-71f7bce66bd4"
             ],
             "children": []
         },
@@ -206,6 +218,21 @@
                 "76e0cc53-0a14-48be-bba8-c965a777f52f",
                 "c2856582-7728-4fbc-964f-60a2b9d1fdea",
                 "8be4e3ca-89e3-4a18-8381-233ab40ecd68"
+            ],
+            "children": []
+        },
+        "38311804-7918-4039-9cd9-ca0e36d559f1": {
+            "isTopLevel": true,
+            "properties": [
+                "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                "8251618f-48ea-435b-9a01-be70f5c92822",
+                "5c50f728-9e37-44db-8ded-78d780310325",
+                "f6d99eb8-e991-4305-9a20-2597d2b79004",
+                "e8e2bbe6-4fec-4a4f-88bb-36dd28e93238",
+                "38154cce-7ff7-4f59-9607-cb4211352c44",
+                "14b3e800-f6da-4682-abf1-71f7bce66bd4",
+                "ee437507-965f-48f6-926f-67d144f507ca",
+                "e0020d71-d2e5-4eb8-be45-67750b1c747a"
             ],
             "children": []
         }
@@ -268,6 +295,24 @@
             "options": [],
             "importName": "ResumeShellsEnumerationSource",
             "exportName": ""
+        },
+        "80b032db-8571-428a-92e1-33aefc89a24d": {
+            "name": "TypographyVariants",
+            "isStatic": true,
+            "options": [
+                "body1",
+                "body2",
+                "subtitle1",
+                "subtitle2",
+                "h6",
+                "h5",
+                "h4",
+                "h3",
+                "h2",
+                "h1"
+            ],
+            "importName": "",
+            "exportName": "TYPOGRAPHY_VARIANTS"
         }
     }
 }
