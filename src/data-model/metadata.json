@@ -136,7 +136,7 @@
             "name": "Contact Details Item"
         },
         "2afe76be-3ac6-456e-8074-aa130151d452": {
-            "name": "Education Information"
+            "name": "Education Item"
         },
         "14d87358-501c-4e72-9c48-d324864ae936": {
             "name": "Headered Content Section"
@@ -161,6 +161,9 @@
         },
         "38311804-7918-4039-9cd9-ca0e36d559f1": {
             "name": "Simple Header"
+        },
+        "59b44222-7c6d-4641-bd93-9826305ce87b": {
+            "name": "Bulleted Item"
         }
     },
     "componentTemplates": {
@@ -216,13 +219,21 @@
             "isExported": true
         },
         "2afe76be-3ac6-456e-8074-aa130151d452": {
-            "isTopLevel": false,
+            "isTopLevel": true,
             "properties": [
                 "76e0cc53-0a14-48be-bba8-c965a777f52f",
                 "c2856582-7728-4fbc-964f-60a2b9d1fdea",
-                "8be4e3ca-89e3-4a18-8381-233ab40ecd68"
+                "8be4e3ca-89e3-4a18-8381-233ab40ecd68",
+                "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                "8251618f-48ea-435b-9a01-be70f5c92822",
+                "5a9db2d6-3c9f-442a-b2e4-a64e6fc12539",
+                "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+                "0a77feb6-6198-4d9b-ae40-d26f81035dab"
             ],
-            "children": []
+            "children": [
+                "59b44222-7c6d-4641-bd93-9826305ce87b"
+            ],
+            "isExported": true
         },
         "38311804-7918-4039-9cd9-ca0e36d559f1": {
             "isTopLevel": true,
@@ -245,6 +256,15 @@
             "properties": [],
             "children": [],
             "isExported": true
+        },
+        "59b44222-7c6d-4641-bd93-9826305ce87b": {
+            "isTopLevel": false,
+            "properties": [
+                "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+                "5070d24f-7c55-4ce5-be19-1fad6477b1d3",
+                "ee437507-965f-48f6-926f-67d144f507ca"
+            ],
+            "children": []
         }
     },
     "enumSources": {

@@ -1,4 +1,4 @@
-import { Divider, makeStyles, Typography } from "@material-ui/core";
+import { Divider, Grid, makeStyles, Typography } from "@material-ui/core";
 import { mapPropertyArrayByType } from "../../data-model/Property";
 import PROPERTY_TYPES from "../../data-model/code-gen/PropertyTypes"
 import TYPOGRAPHY_VARIANTS from "../../data-model/code-gen/enumerations/TypographyVariants";
@@ -28,10 +28,10 @@ export const SimpleHeader = ({ properties }) => {
     });
 
     return (
-        <div>
+        <Grid item>
             <Typography align="start" variant={variant} className={classes.headerText}>{headerText}</Typography>
             {hasDivider && <Divider style={{ background: dividerColor }} />}
-        </div>
+        </Grid>
     )
 }
 
