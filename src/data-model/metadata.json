@@ -177,7 +177,8 @@
                 "3b40b720-07ee-498b-887f-ca5547f9e8dd",
                 "3b40b720-07ee-498b-887f-ca5547f9e8dd",
                 "3b40b720-07ee-498b-887f-ca5547f9e8dd"
-            ]
+            ],
+            "isExported": true
         },
         "3b40b720-07ee-498b-887f-ca5547f9e8dd": {
             "isTopLevel": false,
@@ -199,7 +200,8 @@
                 "38154cce-7ff7-4f59-9607-cb4211352c44",
                 "14b3e800-f6da-4682-abf1-71f7bce66bd4"
             ],
-            "children": []
+            "children": [],
+            "isExported": true
         },
         "10e144e2-aa92-403a-97ab-99659c3e06d9": {
             "isTopLevel": true,
@@ -210,7 +212,8 @@
                 "e95daefa-b2c3-4c5d-a002-d8134064dbe5",
                 "3f8c4f48-fb37-4f42-865f-0afa9a2971c1"
             ],
-            "children": []
+            "children": [],
+            "isExported": true
         },
         "2afe76be-3ac6-456e-8074-aa130151d452": {
             "isTopLevel": false,
@@ -234,7 +237,14 @@
                 "ee437507-965f-48f6-926f-67d144f507ca",
                 "e0020d71-d2e5-4eb8-be45-67750b1c747a"
             ],
-            "children": []
+            "children": [],
+            "isExported": true
+        },
+        "6fd6b290-8742-4b2d-a801-2811366260bd": {
+            "isTopLevel": false,
+            "properties": [],
+            "children": [],
+            "isExported": true
         }
     },
     "enumSources": {

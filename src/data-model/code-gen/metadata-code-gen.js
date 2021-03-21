@@ -4,6 +4,8 @@ const DATA_MODEL_PATH = process.argv[2];
 const METADATA_PATH = `${DATA_MODEL_PATH}/metadata.json`;
 const CODE_GEN_PATH = `${DATA_MODEL_PATH}/code-gen/`;
 const CODE_GEN_STATIC_ENUMS_PATH = `${DATA_MODEL_PATH}/code-gen/enumerations/`;
+const VIEW_COMPONENTS_PATH = `${DATA_MODEL_PATH}/../view-components/`;
+const RESUME_COMPONENTS_PATH = `${VIEW_COMPONENTS_PATH}/resume-components/`;
 
 const nameKeyRegex = /\s/g;
 
@@ -139,6 +141,37 @@ const convertStaticEnumSourcesToCodeFiles = (enumSources, spacing) => {
     }
 }
 
+const generateComponentFactoryFromTemplates = (fileName, componentTemplates, componentTypes, componentTypesExportName) => {
+    const spacing = getSpacing(4);
+    const spaces = spacing.join("");
+
+    const typesWithTemplates = Object.entries(componentTemplates)
+                                     .filter(([componentType, templateDef]) => templateDef.isExported)
+                                     .map(([componentType, templateDef]) => componentTypes[componentType]);
+
+    const componentNames = typesWithTemplates.map(typeDef => typeDef.name.replace(nameKeyRegex, ""));
+    const importLines = componentNames.map(name => `import ${name} from "./${name}";`);
+    const mappingLines = componentNames.map(name => `${spaces}[COMPONENT_TYPES.${name}]: (props) => (<${name} {...props} />),`);
+    const fileLines = [
+        `import ${componentTypesExportName} from "../../data-model/code-gen/ComponentTypes";`,
+        ...importLines,
+        "",
+        "const RESUME_COMPONENT_MAP = {",
+        ...mappingLines,
+        "};",
+        "",
+        "const ResumeComponentFactory = (props) => {",
+        `${spaces}const componentGenerator = RESUME_COMPONENT_MAP[props.componentType];`,
+        `${spaces}return componentGenerator && componentGenerator(props);`,
+        "}",
+        "",
+        "export default ResumeComponentFactory;"
+    ];
+
+    const filePath = `${RESUME_COMPONENTS_PATH}/${fileName}`;
+    fs.writeFile(filePath, fileLines.join("\n"), (err) => err && console.log(err));
+}
+
 fs.readFile(METADATA_PATH, (err, data) => {
     if (err) {
         throw err;
@@ -152,8 +185,12 @@ fs.readFile(METADATA_PATH, (err, data) => {
     
     // convert componentTypes to ComponentTypes.js
     const componentTypes = mapTypesByName(metadata.componentTypes);
-    convertToCodeFile("ComponentTypes.js", "COMPONENT_TYPES", componentTypes);
+    const componentTypesExportName = "COMPONENT_TYPES";
+    convertToCodeFile("ComponentTypes.js", componentTypesExportName, componentTypes);
 
     // convert enumSources to EnumSources.js
     convertEnumSourcesToCodeFile("EnumSources.js", metadata.enumSources);
+
+    // code-gen the ResumeComponentFactory.js in view-components 
+    generateComponentFactoryFromTemplates("ResumeComponentFactory.jsx", metadata.componentTemplates, metadata.componentTypes, componentTypesExportName);
 });

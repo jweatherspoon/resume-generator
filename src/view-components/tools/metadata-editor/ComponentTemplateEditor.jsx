@@ -177,10 +177,18 @@ const ComponentTemplateEditor = (props) => {
     return (
         <Grid container>
             {/* top level properties */}
-            <Grid item xs={12}>
+            <Grid item xs={2}>
+                <BooleanEditor value={selectedObject.isExported || false} onValueChanged={(oldValue, newValue) => updateTopLevelProperty("isExported", newValue)}
+                    attributes={{
+                        label: "Is Exported",
+                        labelLocation: "top"
+                    }} />
+            </Grid>
+            <Grid item xs={2}>
                 <BooleanEditor value={selectedObject.isTopLevel || false} onValueChanged={(oldValue, newValue) => handleIsTopLevelChanged(newValue)} 
                     attributes={{
                         label: "Is Top Level",
+                        labelLocation: "top"
                     }} />
             </Grid>
 
