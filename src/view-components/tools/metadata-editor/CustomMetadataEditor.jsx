@@ -8,9 +8,11 @@ import ToolWindow from "../../dialogs/ToolWindow";
 import ResumeConfigEditor from "../../ResumeConfigEditor";
 import AddComponentsDialog from "../add-components/AddComponentsDialog";
 import { copyPropertyArrayWithUpdate } from "../../../utility/PropertyUtility"
+import PROPERTY_TYPES from "../../../data-model/code-gen/PropertyTypes";
+import createPropertyOfType from "../../../data-model/Property";
 
 const CustomMetadataEditor = (props) => {
-    const { closeDialog, componentTypes, } = props;
+    const { closeDialog, propertyTypes, } = props;
 
     const [canSave, setCanSave] = useState(false);
     const [isAddComponentsDialogOpen, setIsAddComponentsDialogOpen] = useState(false);
@@ -26,6 +28,10 @@ const CustomMetadataEditor = (props) => {
         }
 
         for (let component of createdComponents) {
+            if (!component.properties.find(propertyInfo => propertyInfo.propertyType === PROPERTY_TYPES.TemplateName)) {
+                component.properties.push(createPropertyOfType(PROPERTY_TYPES.TemplateName, propertyTypes));
+            }
+
             copiedCustomTemplates[component.componentId] = component;
         }
 

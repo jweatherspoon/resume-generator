@@ -6,7 +6,8 @@
                     "black": "#191919",
                     "pink": "#FFBBE4",
                     "gold": "#DDB860",
-                    "gray": "#C6C6C6"
+                    "gray": "#C6C6C6",
+                    "white": "#FFFFFF"
                 }
             },
             "typography": {
@@ -229,7 +230,7 @@
                     "name": "DividerColor",
                     "dataType": "Enum",
                     "propertyType": "14b3e800-f6da-4682-abf1-71f7bce66bd4",
-                    "value": null,
+                    "value": "#FFFFFF",
                     "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
                 }
             ],
@@ -355,7 +356,7 @@
                     "name": "Logo",
                     "dataType": "Enum",
                     "propertyType": "e95daefa-b2c3-4c5d-a002-d8134064dbe5",
-                    "value": null,
+                    "value": "jwLogoBlack",
                     "source": "b3c0e4f0-e97c-44d2-9851-62baab179c94"
                 },
                 {
@@ -363,6 +364,225 @@
                     "dataType": "String",
                     "propertyType": "3f8c4f48-fb37-4f42-865f-0afa9a2971c1",
                     "value": "100%"
+                }
+            ],
+            "children": []
+        },
+        "9df24dd1-76e9-49d4-aa5f-bdca5bc3e53a": {
+            "componentId": "9df24dd1-76e9-49d4-aa5f-bdca5bc3e53a",
+            "componentType": "38311804-7918-4039-9cd9-ca0e36d559f1",
+            "name": "Simple Header",
+            "isTopLevel": true,
+            "properties": [
+                {
+                    "name": "Order",
+                    "dataType": "Number",
+                    "propertyType": "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                    "value": null
+                },
+                {
+                    "name": "Region",
+                    "dataType": "Enum",
+                    "propertyType": "8251618f-48ea-435b-9a01-be70f5c92822",
+                    "value": null,
+                    "source": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555"
+                },
+                {
+                    "name": "Title",
+                    "dataType": "String",
+                    "propertyType": "5c50f728-9e37-44db-8ded-78d780310325",
+                    "value": "EDUCATION"
+                },
+                {
+                    "name": "Template name",
+                    "dataType": "String",
+                    "propertyType": "0047e653-7c78-4a11-b94d-b0de45a584f8",
+                    "value": "Education Header"
+                },
+                {
+                    "name": "ContentSpacing",
+                    "dataType": "Number",
+                    "propertyType": "f6d99eb8-e991-4305-9a20-2597d2b79004",
+                    "value": "4"
+                },
+                {
+                    "name": "Flair",
+                    "dataType": "String",
+                    "propertyType": "e8e2bbe6-4fec-4a4f-88bb-36dd28e93238",
+                    "value": null
+                },
+                {
+                    "name": "HasDivider",
+                    "dataType": "Boolean",
+                    "propertyType": "38154cce-7ff7-4f59-9607-cb4211352c44",
+                    "value": true
+                },
+                {
+                    "name": "DividerColor",
+                    "dataType": "Enum",
+                    "propertyType": "14b3e800-f6da-4682-abf1-71f7bce66bd4",
+                    "value": null,
+                    "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+                },
+                {
+                    "name": "TypographyVariant",
+                    "dataType": "Enum",
+                    "propertyType": "ee437507-965f-48f6-926f-67d144f507ca",
+                    "value": "h5",
+                    "source": "80b032db-8571-428a-92e1-33aefc89a24d"
+                },
+                {
+                    "name": "PrimaryTextColor",
+                    "dataType": "Enum",
+                    "propertyType": "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+                    "value": null,
+                    "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+                }
+            ],
+            "children": []
+        },
+        "2412d15f-90b0-4700-a223-7c5535f9b730": {
+            "componentId": "2412d15f-90b0-4700-a223-7c5535f9b730",
+            "componentType": "38311804-7918-4039-9cd9-ca0e36d559f1",
+            "name": "Simple Header",
+            "isTopLevel": true,
+            "properties": [
+                {
+                    "name": "Order",
+                    "dataType": "Number",
+                    "propertyType": "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                    "value": null
+                },
+                {
+                    "name": "Region",
+                    "dataType": "Enum",
+                    "propertyType": "8251618f-48ea-435b-9a01-be70f5c92822",
+                    "value": null,
+                    "source": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555"
+                },
+                {
+                    "name": "Title",
+                    "dataType": "String",
+                    "propertyType": "5c50f728-9e37-44db-8ded-78d780310325",
+                    "value": "WORK EXPERIENCE"
+                },
+                {
+                    "name": "Template name",
+                    "dataType": "String",
+                    "propertyType": "0047e653-7c78-4a11-b94d-b0de45a584f8",
+                    "value": "Work Experience Header"
+                },
+                {
+                    "name": "ContentSpacing",
+                    "dataType": "Number",
+                    "propertyType": "f6d99eb8-e991-4305-9a20-2597d2b79004",
+                    "value": "4"
+                },
+                {
+                    "name": "Flair",
+                    "dataType": "String",
+                    "propertyType": "e8e2bbe6-4fec-4a4f-88bb-36dd28e93238",
+                    "value": "\\\\"
+                },
+                {
+                    "name": "HasDivider",
+                    "dataType": "Boolean",
+                    "propertyType": "38154cce-7ff7-4f59-9607-cb4211352c44",
+                    "value": true
+                },
+                {
+                    "name": "DividerColor",
+                    "dataType": "Enum",
+                    "propertyType": "14b3e800-f6da-4682-abf1-71f7bce66bd4",
+                    "value": null,
+                    "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+                },
+                {
+                    "name": "TypographyVariant",
+                    "dataType": "Enum",
+                    "propertyType": "ee437507-965f-48f6-926f-67d144f507ca",
+                    "value": "h4",
+                    "source": "80b032db-8571-428a-92e1-33aefc89a24d"
+                },
+                {
+                    "name": "PrimaryTextColor",
+                    "dataType": "Enum",
+                    "propertyType": "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+                    "value": null,
+                    "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+                }
+            ],
+            "children": []
+        },
+        "f1686d66-92aa-41ba-abd4-10386498cb01": {
+            "componentId": "f1686d66-92aa-41ba-abd4-10386498cb01",
+            "componentType": "38311804-7918-4039-9cd9-ca0e36d559f1",
+            "name": "Simple Header",
+            "isTopLevel": true,
+            "properties": [
+                {
+                    "name": "Order",
+                    "dataType": "Number",
+                    "propertyType": "a33a7074-e2de-4119-af60-8699dd0ed48b",
+                    "value": null
+                },
+                {
+                    "name": "Region",
+                    "dataType": "Enum",
+                    "propertyType": "8251618f-48ea-435b-9a01-be70f5c92822",
+                    "value": null,
+                    "source": "e7c4e9fa-5d4d-4e6a-953b-5f6a7d1ae555"
+                },
+                {
+                    "name": "Title",
+                    "dataType": "String",
+                    "propertyType": "5c50f728-9e37-44db-8ded-78d780310325",
+                    "value": "PERSONAL PROJECTS"
+                },
+                {
+                    "name": "Template name",
+                    "dataType": "String",
+                    "propertyType": "0047e653-7c78-4a11-b94d-b0de45a584f8",
+                    "value": "Personal Projects Header"
+                },
+                {
+                    "name": "ContentSpacing",
+                    "dataType": "Number",
+                    "propertyType": "f6d99eb8-e991-4305-9a20-2597d2b79004",
+                    "value": "4"
+                },
+                {
+                    "name": "Flair",
+                    "dataType": "String",
+                    "propertyType": "e8e2bbe6-4fec-4a4f-88bb-36dd28e93238",
+                    "value": "\\\\"
+                },
+                {
+                    "name": "HasDivider",
+                    "dataType": "Boolean",
+                    "propertyType": "38154cce-7ff7-4f59-9607-cb4211352c44",
+                    "value": true
+                },
+                {
+                    "name": "DividerColor",
+                    "dataType": "Enum",
+                    "propertyType": "14b3e800-f6da-4682-abf1-71f7bce66bd4",
+                    "value": null,
+                    "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
+                },
+                {
+                    "name": "TypographyVariant",
+                    "dataType": "Enum",
+                    "propertyType": "ee437507-965f-48f6-926f-67d144f507ca",
+                    "value": "h4",
+                    "source": "80b032db-8571-428a-92e1-33aefc89a24d"
+                },
+                {
+                    "name": "PrimaryTextColor",
+                    "dataType": "Enum",
+                    "propertyType": "e0020d71-d2e5-4eb8-be45-67750b1c747a",
+                    "value": null,
+                    "source": "9dbaacf2-f91e-4d06-a633-7a851e8e62f6"
                 }
             ],
             "children": []

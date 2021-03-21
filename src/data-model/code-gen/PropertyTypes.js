@@ -28,7 +28,8 @@ const PROPERTY_TYPES = {
     "PrimaryTextColor": "e0020d71-d2e5-4eb8-be45-67750b1c747a",
     "SecondaryTextColor": "0a77feb6-6198-4d9b-ae40-d26f81035dab",
     "DividerColor": "14b3e800-f6da-4682-abf1-71f7bce66bd4",
-    "TypographyVariant": "ee437507-965f-48f6-926f-67d144f507ca"
+    "TypographyVariant": "ee437507-965f-48f6-926f-67d144f507ca",
+    "TemplateName": "0047e653-7c78-4a11-b94d-b0de45a584f8"
 };
 
 export default PROPERTY_TYPES;

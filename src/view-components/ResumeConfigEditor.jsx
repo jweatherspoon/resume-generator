@@ -3,7 +3,7 @@ import ComponentEditorFactory from './editors/ComponentEditorFactory';
 
 const ResumeConfigEditor = ({ components, updatePropertyOverride }) => {
     const componentEditors = Object.values(components || {}).filter(c => c.isTopLevel).map((c, i) => (
-        <Grid item container key={i}>
+        <Grid item container xs={12} key={i}>
             <ComponentEditorFactory component={c} allComponents={components} updatePropertyOverride={updatePropertyOverride} />
         </Grid>
     ));

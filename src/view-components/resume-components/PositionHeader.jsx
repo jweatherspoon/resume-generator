@@ -13,8 +13,8 @@ export const PositionHeader = ({ properties }) => {
 
     return (
         <Container>
-            <Typography align="center" variant="h3" style={{ color: primaryTextColor }}>{candidateName}</Typography>
-            <Typography align="center" variant="h5" style={{ color: secondaryTextColor }}>{positionTitle}</Typography>
+            <Typography align="center" variant="h3" paragraph style={{ color: primaryTextColor }}>{candidateName}</Typography>
+            <Typography align="center" variant="h5" gutterBottom style={{ color: secondaryTextColor }}>{positionTitle}</Typography>
             {hasDivider && <Divider style={{ background: dividerColor }} />}
         </Container>
     )

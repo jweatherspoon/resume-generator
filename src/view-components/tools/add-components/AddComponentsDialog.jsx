@@ -2,6 +2,7 @@ import { Button, Grid } from "@material-ui/core";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { createAddComponentAction } from "../../../data-model/actions/ComponentActions";
+import PROPERTY_TYPES from "../../../data-model/code-gen/PropertyTypes";
 import { createComponentFromTemplate } from "../../../data-model/resume-components/ResumeComponentTemplates";
 import ModalDialog from "../../dialogs/ModalDialog";
 
@@ -25,12 +26,30 @@ const AddComponentsDialog = (props) => {
         propertyTypes,
         componentTypes,
         availableTemplates, 
+        createFromTemplateOverride,
     } = props;
 
     const [componentsToAdd, setComponentsToAdd] = useState([]);
 
-    const getComponentName = (componentType) => componentTypes[componentType]?.name;
-    const createFromTemplate = (componentType) => createComponentFromTemplate(componentType, propertyTypes, componentTypes, availableTemplates);
+    const getComponentName = (componentType) => {
+        const component = availableTemplates[componentType];
+        const templateName = component?.properties?.find(propertyInfo => propertyInfo?.propertyType === PROPERTY_TYPES.TemplateName);
+        if (templateName?.value) {
+            return templateName.value;
+        }
+
+        const name = componentTypes[componentType]?.name;
+        return name || componentTypes[component?.componentType]?.name;
+    }
+
+    const createFromTemplate = (componentType) => {
+        if (createFromTemplateOverride) {
+            return createFromTemplateOverride(componentType, propertyTypes, componentTypes, availableTemplates);
+        }
+        else {
+            return createComponentFromTemplate(componentType, propertyTypes, componentTypes, availableTemplates);
+        }
+    }
 
     const closeAndClearState = (isSave) => {
         if (isSave) {
@@ -85,10 +104,10 @@ const AddComponentsDialog = (props) => {
     );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, { availableTemplates }) => ({
     propertyTypes: state.metadata.global.propertyTypes || {},
     componentTypes: state.metadata.global.componentTypes || {},
-    availableTemplates: state.metadata.global.componentTemplates || {},
+    availableTemplates: availableTemplates || state.metadata.global.componentTemplates || {},
 })
 
 const mapDispatchToProps = (dispatch, { addComponents }) => ({

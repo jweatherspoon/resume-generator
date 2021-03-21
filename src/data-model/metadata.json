@@ -126,6 +126,10 @@
             "name": "TypographyVariant",
             "dataType": "Enum",
             "source": "80b032db-8571-428a-92e1-33aefc89a24d"
+        },
+        "0047e653-7c78-4a11-b94d-b0de45a584f8": {
+            "name": "Template Name",
+            "dataType": "String"
         }
     },
     "componentTypes": {

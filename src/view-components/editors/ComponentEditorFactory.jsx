@@ -56,14 +56,12 @@ const ComponentEditorFactory = ({component, allComponents, maxHeight, updateProp
                 <div className={classes.topLevelComponentHeader}>
                     <Typography variant="body1" className={classes.editorHeader}>Properties for {component.name}</Typography>
                 </div>
-                {!updatePropertyOverride && (
-                    <div>
-                        {orderSelector}
-                        <div className={classes.topLevelRegionSelector}>
-                            <PropertyEditorFactory component={component} variant="outlined" isDense {...regionProperty} />
-                        </div>
+                <div className={classes.topLevelOrderSelector}>
+                    {orderSelector}
+                    <div className={classes.topLevelRegionSelector}>
+                        <PropertyEditorFactory {...regionProperty} component={component} variant="outlined" isDense />
                     </div>
-                )}
+                </div>
             </div>
 
             <div className={classes.gridContainer}>

@@ -6,8 +6,12 @@ import ResumeShell from "./resume-shells/ResumeShell";
 import ApplicationMenu from "./app-menu/ApplicationMenu";
 import { useState } from "react";
 import AddComponentsDialog from "./tools/add-components/AddComponentsDialog";
+
 import MetadataEditor from "./tools/metadata-editor/MetadataEditor";
 import CustomMetadataEditor from "./tools/metadata-editor/CustomMetadataEditor";
+import customMetadata from "../data-model/custom-metadata.json";
+import { mapObjectArrayByKey } from "../utility/DataUtility";
+import AddComponentsFromCustomTemplatesDialog from "./tools/add-components/AddComponentsFromCustomTemplatesDialog";
 
 const useStyles = makeStyles({
     preview: {
@@ -26,6 +30,7 @@ const ResumeBuilder = ({components}) => {
     const [dialogStates, setDialogStates] = useState({
         addComponents: false,
         metadataEditor: false,
+        addCustomComponents: false,
         customMetadataEditor: false,
     });
 
@@ -47,8 +52,12 @@ const ResumeBuilder = ({components}) => {
             header: "Tools",
             children: [
                 {
-                    header: "Add Components",
+                    header: "Add Blank Components",
                     action: () => tryOpenDialog("addComponents"),
+                },
+                {
+                    header: "Add Custom Components",
+                    action: () => tryOpenDialog("addCustomComponents"),
                 },
                 {
                     header: "Metadata",
@@ -67,6 +76,13 @@ const ResumeBuilder = ({components}) => {
         }
     ];
 
+    // Here, I'm mapping the top level templates by their types, but I'm not updating the children arrays of the top level components but I kinda can't ya feel
+    // I somehow need to tell it to pull the correct children from the available templates instead of the type for blank templates... maybe update createFromTemplate call 
+    // to check in the componentTemplates for the id if it doesn't find it oh wait that's the issue entirely lol rip. I could add an optional childSelector function? 
+    // that createFromTemplate would call on when iterating over its children 
+    const customTemplateDefinitions = mapObjectArrayByKey(Object.values(customMetadata.customTemplates), (templateDef) => templateDef.componentType, (templateDef) => templateDef);
+    const addComponentsChildTypeSelector = childId => customMetadata.customTemplates[childId]?.componentType;
+
     return (
         <Grid container className="fullHeight">
             {/* the config editor section */}
@@ -84,6 +100,7 @@ const ResumeBuilder = ({components}) => {
 
             {/* Section for the dialogs */}
             <AddComponentsDialog isOpen={dialogStates.addComponents} closeDialog={closeDialogs} />
+            <AddComponentsFromCustomTemplatesDialog isOpen={dialogStates.addCustomComponents} availableTemplates={customMetadata.customTemplates} closeDialog={closeDialogs} />
             <MetadataEditor isOpen={dialogStates.metadataEditor} closeDialog={closeDialogs} />
             <CustomMetadataEditor isOpen={dialogStates.customMetadataEditor} closeDialog={closeDialogs} />
         </Grid>
