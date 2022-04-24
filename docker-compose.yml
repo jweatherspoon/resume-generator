@@ -1,0 +1,19 @@
+services:
+  client:
+    env_file: env/resume-generator.env.local
+    build: resume-generator
+    ports:
+      - "80:3000"
+  
+  theme-service-db:
+    image: mongo:5.0
+    container_name: "theme-service-db"
+    ports:
+      - "27017:27017"
+    volumes: 
+      - theme-db:/db
+    env_file: env/theme-service.env.local
+    
+volumes:
+  theme-db:
+
