@@ -3,6 +3,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import BooleanEditor from '../components/editors/boolean-editor';
 import DateEditor from '../components/editors/date-editor';
+import EnumEditor from '../components/editors/enum-editor';
 import NumericEditor from '../components/editors/numeric-editor';
 import TextEditor from '../components/editors/text-editor';
 
@@ -30,12 +31,16 @@ const query = `
     }
 `;
 
+const options = ['hi', 'no', 'pls', 'wait', 'bing', 'bong'];
+
 const Test: NextPage = () => {
   const [d, sd] = useState(false);
   const [n, sn] = useState(0);
   const [ss, sss] = useState('');
   const [ms, sms] = useState('');
   const [dv, sdv] = useState(new Date());
+  const [ev, sev] = useState(options[0]);
+
   const { data, error } = useSWR(query, fetcher);
 
   if (error) return <div>{JSON.stringify(error)}</div>;
@@ -48,6 +53,7 @@ const Test: NextPage = () => {
       <TextEditor value={ss} setValue={sss} />
       <TextEditor value={ms} setValue={sms} inputProps={{ multiline: true }} />
       <DateEditor value={dv} setValue={sdv} />
+      <EnumEditor value={ev} setValue={sev} options={options} />
     </div>
   );
 };
